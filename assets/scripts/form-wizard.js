@@ -106,7 +106,7 @@ var FormWizard = function () {
 					   if(data === 'successful')
 					   { 
 					   
-					    window.location.replace('dashboard.php?page=company_table');
+					    window.location.replace('dashboard.php?page=company_table&success=1');
 						//alert('Save Successful');
 					   }
 					   else {

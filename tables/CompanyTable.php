@@ -25,11 +25,29 @@ require_once("./db_connection/database_connect.php"); // For database connection
                </div>
             </div>
             <!-- END PAGE HEADER-->
-			
-			
+			<div class="row-fluid">
+			<div class="span6">
+			         <?php
+					 $succcess = 0; 
+					  if(isset($_GET['page'])){
+					  
+					  $success = $_GET['success'] ;
+					  
+					  } 
+					  
+					  ?>
+			   
+			       <?php if($success > 0) {?>
+                  <div id="message" class="alert alert-success">
+					<button class="close" data-dismiss="alert"></button>
+					<span>Record Save was Success!</span>
+				  </div>
+				  <?php }?>
+			  </div>
+			 </div>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
-               
+			 
 			   <div class="span12">
                   <!-- BEGIN EXAMPLE TABLE PORTLET-->
                   <div class="portlet box blue">
@@ -45,9 +63,9 @@ require_once("./db_connection/database_connect.php"); // For database connection
                      <div class="portlet-body">
                         <div class="clearfix">
                            <div class="btn-group">
-                              <button id="sample_editable_1_new" class="btn green">
-                              Add New <i class="icon-plus"></i>
-                              </button>
+                              <!--  -->
+                              <a href="dashboard.php?page=company"> <button  class="btn green">Add New</button><i class="icon-plus"></i> </a> 
+                             <!--  -->
                            </div>
                            <div class="btn-group pull-right">
                               <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>

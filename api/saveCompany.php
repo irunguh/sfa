@@ -47,7 +47,7 @@ $statement->execute(array(':username' => $username,
 ///
 if(!$statement)
 {
-  echo "error" ;
+   echo "error" ;
 }
 else 
 {

@@ -65,6 +65,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                           </a> 
                                        </li>
 									   
+									   
                                     </ul>
                                  </div>
                               </div>
@@ -168,7 +169,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">State</label>
                                        <div class="controls">
-                                       <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" />  
+                                <!--  <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" /> -->
+								  <select name="" id="company_state" class="span6 select2">
+										 <?php foreach($db->query("SELECT  StateID ,State  FROM   state") as $row): ?>
+										  <option value="<?php echo $row['StateID'] ?>"><?php echo $row['State'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                        </div>
                                     </div>
 									<div class="control-group">
@@ -177,15 +183,6 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        <div class="controls">
 										   <select name="" id="select2_sample4" class="span6 select2">
 											  <?php 
-										   //we write a query to retrive countries from database table
-										   
-										   
-										   /*while($rows = $stmt->fetchAll(PDO::FETCH_ASSOC))
-										   {
-										    echo "<option value=\"".$row['country']."\">".$row['country']."\n  ";
-										   } */
-										   
-										  
 										  ?>
 										 <?php foreach($db->query("SELECT country_code, country FROM  country") as $row): ?>
 										  <option value="<?php echo $row['country_code'] ?>"><?php echo $row['country'] ?></option>
@@ -288,6 +285,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  </div>
 								  
                               </div>
+							  
                               <div class="form-actions clearfix">
                                  <a href="javascript:;" class="btn button-previous">
                                  <i class="m-icon-swapleft"></i> Back 
@@ -305,6 +303,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                   </div>
                </div>
             </div>
+			 
             <!-- END PAGE CONTENT-->         
          </div>
          <!-- END PAGE CONTAINER-->
