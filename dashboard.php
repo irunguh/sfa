@@ -61,6 +61,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css" />
    <!-- End Form Component -->	
+   <!-- Data Tables -->
+  
+   <link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css" />
+   <!-- End Data Tables -->
    <!-- END PAGE LEVEL STYLES -->
    <link rel="shortcut icon" href="favicon.ico" />
 </head>
@@ -695,6 +699,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'brand_reminders': 
 						    include('./forms/BrandRemindersForm.php');
 							break;
+						case 'company_table': 
+						    include('./tables/CompanyTable.php');
+							break;
 						  default:
 						   // $page ='dashboard';
 	                        include('dashboard.php');
@@ -777,8 +784,14 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
    <script src="assets/scripts/form-wizard.js"></script>     
    <script src="assets/scripts/form-components.js"></script> 
-   <script src="assets/scripts/form-validation.js"></script>  
+    
    <!-- End Form Scripts -->
+   
+   <!-- Tables Scripts -->
+   <script src="assets/scripts/table-editable.js"></script> 
+   <script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.js"></script>
+   <script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js"></script>
+   <!-- End Tables Scripts -->
    <!-- END PAGE LEVEL PLUGINS -->
    
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -798,9 +811,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
          Index.initDashboardDaterange();
          Index.initIntro();
 		 FormWizard.init();
-		// FormValidation.init();
 		 FormComponents.init();
-		 //Submit.init();
+		 TableEditable.init();
 		 
       });
    </script>

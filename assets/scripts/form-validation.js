@@ -8,212 +8,97 @@ var FormValidation = function () {
             // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
 			
-			
+			var form2 = document.getElementById("#create_company");
+            var error2 = $('.alert-error', form2);
+            var success2 = $('.alert-success', form2);
 			/////////////////////
-			 $('#company_form').validate({
+			form2.validate({
 	            errorElement: 'span', //default input error message container
                 errorClass: 'help-inline', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     username: {
-                        minlength: 2,
-                        required: true,
-						username: true
-                    },
-                    company_name: {
-                        required: true,
-                        company_name: true
-                    },
-                    company_address: {
-                        required: true,
-                        company_address: true
-                    },
-                    company_office_number1: {
-                        required: true,
-                        company_office_number1: true
-                    },
-                    company_email: {
-                        required: true,
-                        company_email: true
-                    },
-                    company_website: {
-                        required: true,
-                        company_website: true
-                    },
-                    company_location_no: {
-                        minlength: 5,
-                    },
-                    company_type: {
-                        required: true
-                    }
-                },
+	                    required: true
+	                },
+	                company_name: {
+	                    required: true
+	                },
+	                company_address: {
+	                    required: true
+	                },
+	                company_office_number1: {
+	                    required: true
+	                },
+	                company_office_number2: {
+	                    required: false
+	                },
+	                company_email: {
+	                    required: true
+	                },
+	                company_website: {
+	                    required: false
+	                },
+	                company_location_no: {
+	                    required: true
+	                },
+	                company_size: {
+	                    required: true
+	                },
+	                company_type: {
+	                    required: true
+	                },
+					company_status: {
+	                    required: false
+	                },
+					company_state: {
+	                    required: true
+	                },
+	                country: {
+	                    required: false
+	                }
+	            },
+				
+				 messages: {
+	                username: {
+	                    required: "Please Enter a valid Username."
+	                },
+	                company_name: {
+	                    required: "Company Name is Required."
+	                }
+					,
+	                company_address: {
+	                    required: "Address is Required."
+	                }
+					,
+	                company_office_number1: {
+	                    required: "Office Number is Required."
+	                }
+					,
+	                company_email: {
+	                    required: "Email is Required."
+	                }
+					,
+	                company_location_no: {
+	                    required: "Location is Required."
+	                }
+					,
+	                company_size: {
+	                    required: "Size is Required."
+	                }
+					,
+	                company_type: {
+	                    required: "Type is Required."
+	                }
+					,
+	                company_state: {
+	                    required: "State is Required."
+	                }
+	            },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit              
-                    success1.hide();
-                    error1.show();
-                    App.scrollTo(error1, -200);
-                },
-
-                highlight: function (element) { // hightlight error inputs
-                    $(element)
-                        .closest('.help-inline').removeClass('ok'); // display OK icon
-                    $(element)
-                        .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
-                },
-
-                unhighlight: function (element) { // revert the change dony by hightlight
-                    $(element)
-                        .closest('.control-group').removeClass('error'); // set error class to the control group
-                },
-
-                success: function (label) {
-                    label
-                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
-                    .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
-                },
-
-                submitHandler: function (form) {
-                    success1.show();
-                    error1.hide();
-                }
-				   });
-			////////////////////
-
-            var form1 = $('#form1');
-            var error1 = $('.alert-error', form1);
-            var success1 = $('.alert-success', form1);
-
-            form1.validate({
-                errorElement: 'span', //default input error message container
-                errorClass: 'help-inline', // default input error message class
-                focusInvalid: false, // do not focus the last invalid input
-                ignore: "",
-                rules: {
-                    username: {
-                        minlength: 2,
-                        required: true
-                    },
-                    company_name: {
-                        required: true,
-                        company_name: true
-                    },
-                    company_address: {
-                        required: true,
-                        company_address: true
-                    },
-                    company_office_number1: {
-                        required: true,
-                        company_office_number1: true
-                    },
-                    company_email: {
-                        required: true,
-                        company_email: true
-                    },
-                    company_website: {
-                        required: true,
-                        company_website: true
-                    },
-                    company_location_no: {
-                        minlength: 5,
-                    },
-                    company_type: {
-                        required: true
-                    }
-                },
-
-                invalidHandler: function (event, validator) { //display error alert on form submit              
-                    success1.hide();
-                    error1.show();
-                    App.scrollTo(error1, -200);
-                },
-
-                highlight: function (element) { // hightlight error inputs
-                    $(element)
-                        .closest('.help-inline').removeClass('ok'); // display OK icon
-                    $(element)
-                        .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
-                },
-
-                unhighlight: function (element) { // revert the change dony by hightlight
-                    $(element)
-                        .closest('.control-group').removeClass('error'); // set error class to the control group
-                },
-
-                success: function (label) {
-                    label
-                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
-                    .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
-                },
-
-                submitHandler: function (form) {
-                    success1.show();
-                    error1.hide();
-                }
-            });
-
-            //Sample 2
-            var form2 = $('#form_sample_2');
-            var error2 = $('.alert-error', form2);
-            var success2 = $('.alert-success', form2);
-
-            form2.validate({
-                errorElement: 'span', //default input error message container
-                errorClass: 'help-inline', // default input error message class
-                focusInvalid: false, // do not focus the last invalid input
-                ignore: "",
-                rules: {
-                    name: {
-                        minlength: 2,
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    category: {
-                        required: true
-                    },
-                    education: {
-                        required: true
-                    },
-                    occupation: {
-                        minlength: 5,
-                    },
-                    membership: {
-                        required: true
-                    },
-                    service: {
-                        required: true,
-                        minlength: 2
-                    }
-                },
-
-                messages: { // custom messages for radio buttons and checkboxes
-                    membership: {
-                        required: "Please select a Membership type"
-                    },
-                    service: {
-                        required: "Please select  at least 2 types of Service",
-                        minlength: jQuery.format("Please select  at least {0} types of Service")
-                    }
-                },
-
-                errorPlacement: function (error, element) { // render error placement for each input type
-                    if (element.attr("name") == "education") { // for chosen elements, need to insert the error after the chosen container
-                        error.insertAfter("#form_2_education_chzn");
-                    } else if (element.attr("name") == "membership") { // for uniform radio buttons, insert the after the given container
-                        error.addClass("no-left-padding").insertAfter("#form_2_membership_error");
-                    } else if (element.attr("name") == "service") { // for uniform checkboxes, insert the after the given container
-                        error.addClass("no-left-padding").insertAfter("#form_2_service_error");
-                    } else {
-                        error.insertAfter(element); // for other inputs, just perform default behavoir
-                    }
-                },
-
-                invalidHandler: function (event, validator) { //display error alert on form submit   
                     success2.hide();
                     error2.show();
-                    App.scrollTo(error2, -200);
+                    App.scrollTo(error1, -200);
                 },
 
                 highlight: function (element) { // hightlight error inputs
@@ -229,24 +114,16 @@ var FormValidation = function () {
                 },
 
                 success: function (label) {
-                    if (label.attr("for") == "service" || label.attr("for") == "membership") { // for checkboxes and radip buttons, no need to show OK icon
-                        label
-                            .closest('.control-group').removeClass('error').addClass('success');
-                        label.remove(); // remove error label here
-                    } else { // display success icon for other inputs
-                        label
-                            .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
-                        .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
-                    }
+                    label
+                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                    .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
                 },
 
                 submitHandler: function (form) {
                     success2.show();
                     error2.hide();
-                }
-
-            });
-
+                } 
+				   });
             //apply validation on chosen dropdown value change, this only needed for chosen dropdown integration.
             $('.chosen, .chosen-with-diselect', form2).change(function () {
                 form2.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input

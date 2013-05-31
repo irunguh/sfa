@@ -83,7 +83,41 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+               
+			     $.ajax({
+				      type: "POST",
+					  url: './api/saveCompany.php',
+					  data: {
+					   username: $('#user').val(),
+					   company_name: $('#company_name').val(),
+					   company_address: $('#company_address').val(),
+					   company_office_number1: $('#company_office_number1').val(),
+					   company_office_number2: $('#company_office_number2').val(),
+					   company_email: $('#company_email').val(),
+					   company_website: $('#company_website').val(),
+					   company_location_no: $('#company_location_no').val(),
+					   company_size: $('#company_size').val(),
+					   company_type: $('#company_type').val(),
+					   company_status: $('#company_status').val(),
+					   company_state: $('#company_state').val(),
+					   country: $('#select2_sample4').val()
+					  },
+					  success: function(data){
+					   if(data === 'successful')
+					   { 
+					   
+					    window.location.replace('dashboard.php?page=company_table');
+						//alert('Save Successful');
+					   }
+					   else {
+					        //$('.alert-invalid', $('.login-form')).show();
+							alert('Save Failed. An Error occured');
+	            
+					   }
+					  }
+				   });
+			   
+			   
             }).hide();
         }
 

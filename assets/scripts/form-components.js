@@ -227,6 +227,18 @@ var FormComponents = function () {
             placeholder: "Select an option",
             allowClear: true
         });
+		 $('#company_size').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+		 $('#company_type').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+		$('#company_status').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
 
         $('#select2_sample2').select2({
             placeholder: "Select a State",
@@ -256,7 +268,7 @@ var FormComponents = function () {
 
         function format(state) {
             if (!state.id) return state.text; // optgroup
-            return "<img class='flag' src='assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+            return "<img class='flag' src='./assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
         }
         $("#select2_sample4").select2({
             allowClear: true,
@@ -266,6 +278,7 @@ var FormComponents = function () {
                 return m;
             }
         });
+		
 
         $("#select2_sample5").select2({
             tags: ["red", "green", "blue", "yellow", "pink"]

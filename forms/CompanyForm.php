@@ -59,11 +59,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                           </a>
                                        </li>
                                        <li class="span3">
-                                          <a href="#tab4" data-toggle="tab" class="step">
+                                          <a href="#tab2" data-toggle="tab" class="step">
                                           <span class="number">2</span>
                                           <span class="desc"><i class="icon-ok"></i> Confirmation </span>   
                                           </a> 
                                        </li>
+									   
                                     </ul>
                                  </div>
                               </div>
@@ -132,29 +133,42 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">Company Size</label>
                                        <div class="controls">
-                                          <input id="company_size" name="company_size" type="company_size" class="span6 m-wrap" />
+                                       <!--   <input id="company_size" name="company_size" type="company_size" class="span6 m-wrap" /> -->
+									    <select name="" id="company_size" class="span6 select2">
+										 <?php foreach($db->query("SELECT Company_SizeID, Company_Size FROM  company_size") as $row): ?>
+										  <option value="<?php echo $row['Company_Size'] ?>"><?php echo $row['Company_Size'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                          
                                        </div>
                                     </div>
 									<div class="control-group">
                                        <label class="control-label">Company Type</label>
                                        <div class="controls">
-                                          <input id="company_type" name="company_type" type="company_type" class="span6 m-wrap" />
-                                         
+                                          <!--<input id="company_type" name="company_type" type="company_type" class="span6 m-wrap" /> -->
+                                          <select name="" id="company_type" class="span6 select2">
+										 <?php foreach($db->query("SELECT Company_TypeID,Company_Type FROM company_type") as $row): ?>
+										  <option value="<?php echo $row['Company_TypeID'] ?>"><?php echo $row['Company_Type'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                        </div>
                                     </div>
 									<div class="control-group">
                                        <label class="control-label">Company Status</label>
                                        <div class="controls">
-                                          <input id="company_status" name="company_status" type="company_status" class="span6 m-wrap" />
+                                          <!--<input id="company_status" name="company_status" type="company_status" class="span6 m-wrap" />-->
+										   <select name="" id="company_status" class="span6 select2">
+										 <?php foreach($db->query("SELECT  Company_StatusID ,Company_Status  FROM   company_status") as $row): ?>
+										  <option value="<?php echo $row['Company_StatusID'] ?>"><?php echo $row['Company_Status'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                           
                                        </div>
                                     </div>
 									<div class="control-group">
                                        <label class="control-label">State</label>
                                        <div class="controls">
-                                          <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" />
-                                          
+                                       <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" />  
                                        </div>
                                     </div>
 									<div class="control-group">
@@ -181,7 +195,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="tab-pane" id="tab4">
+                                 <div class="tab-pane" id="tab2">
                                     <h3 class="block">Confirm Details and Submit</h3>
                                     <div class="control-group">
                                        <label class="control-label">Username:</label>
@@ -272,6 +286,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
                                  </div>
+								  
                               </div>
                               <div class="form-actions clearfix">
                                  <a href="javascript:;" class="btn button-previous">
