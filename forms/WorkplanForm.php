@@ -93,10 +93,11 @@ require_once("./db_connection/database_connect.php"); // For database connection
 								  <div class="control-group">
 									  <label class="control-label">Meeting Date</label>
 									  <div class="controls">
-										 <div class="input-append date form_datetime">
-											 <input id= "meeting_date" size="16" type="text" value="" readonly class="m-wrap">
-											 <span class="add-on"><i class="icon-calendar"></i></span>
-										 </div>
+										 
+									<!-- <input id= "meeting_date" size="16" type="text" value="" readonly class="m-wrap"> -->
+											  <input id= "meeting_date" class="m-wrap m-ctrl-medium date-picker" size="16" type="text" value="" />
+											 
+										 
 									  </div>
 								   </div>
 								    <div class="control-group">

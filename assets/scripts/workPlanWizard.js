@@ -100,7 +100,7 @@ var WorkPlanWizard = function () {
 					  success: function(data){
 					   if(data === 'successful')
 					   { 
-					   
+					 //  alert(meeting_date);
 					    //window.location.replace('dashboard.php?page=company_table&success=1');
 						jQuery('#form_wizard_3').hide();
 						jQuery('#success_save').show();
