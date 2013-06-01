@@ -131,11 +131,9 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">Company Size</label>
                                        <div class="controls">
-                                       <!--   <input id="company_size" name="company_size" type="company_size" class="span6 m-wrap" /> -->
-									    <select name="" id="company_size" class="span6 select2">
-										 <?php foreach($db->query("SELECT Company_SizeID, Company_Size FROM  company_size") as $row): ?>
-										  <option value="<?php echo $row['Company_Size'] ?>"><?php echo $row['Company_Size'] ?></option>
-										 <?php endforeach; ?> 
+                                      
+										   <select id="company_size" class="span6 select2" name="company_size" >
+										     <option value=""></option>
 										   </select>
                                          
                                        </div>
@@ -143,22 +141,18 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">Company Type</label>
                                        <div class="controls">
-                                          <!--<input id="company_type" name="company_type" type="company_type" class="span6 m-wrap" /> -->
-                                          <select name="" id="company_type" class="span6 select2">
-										 <?php foreach($db->query("SELECT Company_TypeID,Company_Type FROM company_type") as $row): ?>
-										  <option value="<?php echo $row['Company_TypeID'] ?>"><?php echo $row['Company_Type'] ?></option>
-										 <?php endforeach; ?> 
+                                         
+										    <select id="company_type" class="span6 select2" name="company_type" >
+										     <option value=""></option>
 										   </select>
                                        </div>
                                     </div>
 									<div class="control-group">
                                        <label class="control-label">Company Status</label>
                                        <div class="controls">
-                                          <!--<input id="company_status" name="company_status" type="company_status" class="span6 m-wrap" />-->
-										   <select name="" id="company_status" class="span6 select2">
-										 <?php foreach($db->query("SELECT  Company_StatusID ,Company_Status  FROM   company_status") as $row): ?>
-										  <option value="<?php echo $row['Company_StatusID'] ?>"><?php echo $row['Company_Status'] ?></option>
-										 <?php endforeach; ?> 
+                                         
+										    <select id="company_status" class="span6 select2" name="company_status" >
+										     <option value=""></option>
 										   </select>
                                           
                                        </div>
@@ -166,24 +160,22 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">State</label>
                                        <div class="controls">
-                                <!--  <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" /> -->
-								  <select name="" id="company_state" class="span6 select2">
-										 <?php foreach($db->query("SELECT  StateID ,State  FROM   state") as $row): ?>
-										  <option value="<?php echo $row['StateID'] ?>"><?php echo $row['State'] ?></option>
-										 <?php endforeach; ?> 
+                                
+										   <select id="company_state" class="span6 select2" name="company_state" >
+										     <option value=""></option>
 										   </select>
+										   
                                        </div>
                                     </div>
 									<div class="control-group">
                                        <label class="control-label">Country</label>
 									   
                                        <div class="controls">
-										   <select name="" id="country" class="span6 select2">
-											  <?php 
-										  ?>
-										 <?php foreach($db->query("SELECT country_code, country FROM  country") as $row): ?>
-										  <option value="<?php echo $row['country_code'] ?>"><?php echo $row['country'] ?></option>
-										 <?php endforeach; ?> 
+										  <!-- <select name="country" id="country" class="span6 select2">
+										   
+										   </select> -->
+										   <select id="country" class="span6 select2" name="country" >
+										     <option value=""></option>
 										   </select>
                                           
                                        </div>
@@ -359,6 +351,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 	 }
    </script>
    
+  
 	
   
    <!-- END JAVASCRIPTS -->   

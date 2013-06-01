@@ -784,9 +784,19 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
    <script src="assets/scripts/form-wizard.js"></script>     
    <script src="assets/scripts/form-components.js"></script> 
-   <script src="assets/scripts/branchWizard.js"></script> 
+   
+  
     
    <!-- End Form Scripts -->
+    <!-- Custom Scripts -->
+   <script src="assets/scripts/branchWizard.js"></script> 
+   <script src="assets/scripts/retrieveCountry.js"></script> 
+   <script src="assets/scripts/retrieveSize.js"></script> 
+   <script src="assets/scripts/retrieveType.js"></script> 
+   <script src="assets/scripts/retrieveState.js"></script> 
+   <script src="assets/scripts/retrieveStatus.js"></script> 
+   
+   <!-- End custom scripts -->
    
    <!-- Tables Scripts -->
    <script src="assets/scripts/table-editable.js"></script> 
@@ -815,7 +825,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 FormComponents.init();
 		 TableEditable.init();
 		 BranchWizard.init();
-		 
+		 //RetrieveCountry.init();
       });
    </script>
    <!-- END JAVASCRIPTS -->
