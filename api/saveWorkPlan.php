@@ -1,6 +1,6 @@
 <?php 
  /*
- Script to save company branch details form data after confirmation
+ Script to save workplan details form data after confirmation
  
  */
  
@@ -8,35 +8,39 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 
  
 // Retrieve values from the form for registration purposes
-	$username = $_POST['username'];
-	$companyid = $_POST['company_name'];
-	$branch_name = $_POST['company_address'];
-	$branch_address = $_POST['company_office_number1'];
-	$stateid = $_POST['company_office_number2'];
-	$country_code = $_POST['company_email'];
+	$company = $_POST['company'];
+	$contact = $_POST['contact'];
+	$meeting_date = $_POST['meeting_date'];
+	$start_time = $_POST['start_time'];
+	$end_time = $_POST['end_time'];
+	$proposed_activity = $_POST['proposed_activity'];
+	$work_address = $_POST['work_address'];
+	$work_activity_type = $_POST['work_activity_type'];
 	
 //Create a prepare statement
-$statement = $db->prepare("INSERT INTO  company_branch (Username, 
-CompanyID, Branch_Name,Branch_Address,StateID,Country_Code)  
-VALUES(:username, :companyid, :branch_name, :branch_address, :stateid, :country_code ) ");
+$statement = $db->prepare("INSERT INTO work_plan (CompanyID, 
+ContactID, Meeting_Date,Start_Time,End_Time,Proposed_Activity,Address, Activity_TypeID)  
+VALUES(:company, :contact, :meeting_date, :start_time , :end_time , :proposed_activity , :work_address , :work_activity_type) ");
 ///
-$statement->execute(array(':username' => $username,
-   ':companyid' => $companyid,
-   ':branch_name' => $branch_name,
-   ':branch_address' => $branch_address,
-   ':stateid' => $stateid,
-   ':country_code' => $country_code
+$statement->execute(array(':company' => $company,
+   ':contact' => $contact,
+   ':meeting_date' => $meeting_date,
+   ':start_time' => $start_time,
+   ':end_time' => $end_time,
+   ':proposed_activity' => $proposed_activity,
+   ':work_address' => $work_address,
+   ':work_activity_type' => $work_activity_type
    
 ));
-
+$count = $statement->rowCount();
 ///
-if(!$statement)
-{
-  echo "error" ;
-}
-else 
+if($count > 0)
 {
   echo "successful";
+}
+if($count <= 0)
+{
+   print_r($statement->errorInfo());
 }
 
 ?>

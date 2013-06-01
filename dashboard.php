@@ -702,6 +702,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'company_table': 
 						    include('./tables/CompanyTable.php');
 							break;
+						case 'workplan_table': 
+						    include('./tables/WorkplanTable.php');
+							break;
+						case 'calendar': 
+						    include('./api/workPlanCalendar.php');
+							break;
 						  default:
 						   // $page ='dashboard';
 	                        include('dashboard.php');
@@ -790,11 +796,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <!-- End Form Scripts -->
     <!-- Custom Scripts -->
    <script src="assets/scripts/branchWizard.js"></script> 
+    <script src="assets/scripts/workPlanWizard.js"></script>
    <script src="assets/scripts/retrieveCountry.js"></script> 
    <script src="assets/scripts/retrieveSize.js"></script> 
    <script src="assets/scripts/retrieveType.js"></script> 
    <script src="assets/scripts/retrieveState.js"></script> 
    <script src="assets/scripts/retrieveStatus.js"></script> 
+   <script src="assets/scripts/retrieveCompany.js"></script> 
+   <script src="assets/scripts/retrieveContacts.js"></script> 
+   <script src="assets/scripts/retrieveActivityType.js"></script> 
    
    <!-- End custom scripts -->
    
@@ -825,6 +835,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 FormComponents.init();
 		 TableEditable.init();
 		 BranchWizard.init();
+		 WorkPlanWizard.init();
 		 //RetrieveCountry.init();
       });
    </script>

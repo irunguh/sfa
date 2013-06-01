@@ -255,6 +255,18 @@ var FormComponents = function () {
             placeholder: "Select an option",
             allowClear: true
         });
+		$('#company').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+		$('#contact').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+		$('#work_activity_type').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
         $('#select2_sample2').select2({
             placeholder: "Select a State",
             allowClear: true
