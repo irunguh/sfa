@@ -243,7 +243,18 @@ var FormComponents = function () {
             placeholder: "Select an option",
             allowClear: true
         });
-
+		$('#company_branch_name').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+        $('#country').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
+        $('#company_country').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
         $('#select2_sample2').select2({
             placeholder: "Select a State",
             allowClear: true

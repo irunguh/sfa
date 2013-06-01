@@ -25,10 +25,11 @@ require_once("./db_connection/database_connect.php"); // For database connection
                </div>
             </div>
             <!-- END PAGE HEADER-->
-			
+			  
 			
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
+			  
                <div class="span12">
                   <div class="portlet box blue" id="form_wizard_1">
                      <div class="portlet-title">
@@ -43,11 +44,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         </div>
                      </div>
                      <div class="portlet-body form">
-					    <div class="alert alert-error hide">
-							<button class="close" data-dismiss="alert"></button>
-							<span>Some information missing.</span>
-						  </div>
-                        <form id="company_form" class="form-horizontal">
+					    <form id="company_form" class="form-horizontal">
                            <div class="form-wizard">
                               <div class="navbar steps">
                                  <div class="navbar-inner">
@@ -64,7 +61,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                           <span class="desc"><i class="icon-ok"></i> Confirmation </span>   
                                           </a> 
                                        </li>
-									   
+									  
 									   
                                     </ul>
                                  </div>
@@ -181,7 +178,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        <label class="control-label">Country</label>
 									   
                                        <div class="controls">
-										   <select name="" id="select2_sample4" class="span6 select2">
+										   <select name="" id="country" class="span6 select2">
 											  <?php 
 										  ?>
 										 <?php foreach($db->query("SELECT country_code, country FROM  country") as $row): ?>
@@ -274,15 +271,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                            <span class = "text" id="confirm_company_country"></span>
                                        </div>
                                     </div>
-                                    <div class="control-group">
-                                       <label class="control-label"></label>
-                                       <div class="controls">
-                                          <label class="checkbox">
-                                          <input type="checkbox" value="" /> I confirm details
-                                          </label>
-                                       </div>
-                                    </div>
                                  </div>
+								
 								  
                               </div>
 							  
@@ -299,9 +289,43 @@ require_once("./db_connection/database_connect.php"); // For database connection
                               </div>
                            </div>
                         </form>
+						   
                      </div>
                   </div>
                </div>
+			     <div class="span10">
+						   <div id="success_save" class="portlet box blue hide">
+							 <div class="portlet-title">
+								<div class="caption"><i class="icon-cogs"></i>Success</div>
+								<div class="tools">
+								   <a href="javascript:;" class="collapse"></a>
+								   <a href="#portlet-config" data-toggle="modal" class="config"></a>
+								   <a href="javascript:;" class="reload hidden-phone"></a>
+								  
+								</div>
+							 </div>
+								 <div  class="portlet-body">
+									<div class="alert alert-block alert-success fade in">
+									   
+									   <h4 class="alert-heading">Success!</h4>
+									   <p>
+										Thank you for submitting data. The Record was successfully updated!
+									   </p>
+									   <p>
+										 You can view data or create a new record. Please Select an action below
+									   </p>
+									   <p>
+										  <a class="btn green" href="dashboard.php?page=company">Add Another</a> 
+										  <a class="btn black" href="dashboard.php?page=company_table">View Record</a>
+									   </p>
+									</div>
+									
+								   
+								 </div>
+                  </div>
+				</div>
+			   
+			   
             </div>
 			 
             <!-- END PAGE CONTENT-->         
@@ -325,11 +349,11 @@ require_once("./db_connection/database_connect.php"); // For database connection
 			$('#confirm_company_email').text(document.getElementById("company_email").value);
 			$('#confirm_company_website').text(document.getElementById("company_website").value);
 			$('#confirm_company_location').text(document.getElementById("company_location_no").value);
-			$('#confirm_company_size').text(document.getElementById("company_size").value);
-			$('#confirm_company_type').text(document.getElementById("company_type").value);
-			$('#confirm_company_status').text(document.getElementById("company_status").value);
-			$('#confirm_company_state').text(document.getElementById("company_state").value);
-			$('#confirm_company_country').text(document.getElementById("select2_sample4").value);
+			$('#confirm_company_size').text($('#company_size :selected').text());
+			$('#confirm_company_type').text($('#company_type :selected').text());
+			$('#confirm_company_status').text($('#company_status :selected').text());
+			$('#confirm_company_state').text($('#company_state :selected').text());
+			$('#confirm_company_country').text($('#country :selected').text());
 			
 			 
 	 }

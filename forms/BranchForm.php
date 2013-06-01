@@ -30,7 +30,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
                <div class="span12">
-                  <div class="portlet box blue" id="form_wizard_1">
+                  <div class="portlet box blue" id="form_wizard_2">
                      <div class="portlet-title">
                         <div class="caption">
                            <i class="icon-reorder"></i> Company Branch Details Form - <span class="step-title">Step 1 of 2</span>
@@ -83,7 +83,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                     <div class="control-group">
                                        <label class="control-label">Select Company </label>
                                        <div class="controls">
-                                          <input id= "company_name" type="text" name ="company_name" class="span6 m-wrap" />
+                                        <!--  <input id= "company_name" type="text" name ="company_name" class="span6 m-wrap" /> -->
+										   <select name="" id="company_branch_name" class="span6 select2">
+										 <?php foreach($db->query("SELECT  CompanyID ,Company_Name  FROM company") as $row): ?>
+										  <option value="<?php echo $row['CompanyID'] ?>"><?php echo $row['Company_Name'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                        </div>
                                     </div>
                                      <div class="control-group">
@@ -96,25 +101,30 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									<div class="control-group">
                                        <label class="control-label">Branch Address</label>
                                        <div class="controls">
-                                          <input id="address" name="branch_address" type="text" class="span6 m-wrap" />
+                                          <input id="branch_address" name="branch_address" type="text" class="span6 m-wrap" />
                                           <span class="help-inline">Enter Company Branch Address</span>
                                        </div>
                                     </div>
-									<div class="control-group">
+								   <div class="control-group">
                                        <label class="control-label">Select State</label>
                                        <div class="controls">
-                                          <input id="state" name="select_state" type="text" class="span6 m-wrap" />
-                                          <span class="help-inline">Select Company State Name</span>
+                                <!--  <input id="company_state" name="company_state" type="company_state" class="span6 m-wrap" /> -->
+								       <select name="company_state" id="company_state" class="span6 select2">
+										 <?php foreach($db->query("SELECT  StateID ,State  FROM   state") as $row): ?>
+										  <option value="<?php echo $row['StateID'] ?>"><?php echo $row['State'] ?></option>
+										 <?php endforeach; ?> 
+										   </select>
                                        </div>
                                     </div>
 									
 									<div class="control-group">
-                                       <label class="control-label">Select Country Code</label>
+                                       <label class="control-label">Select Country</label>
 									   
                                        <div class="controls">
-										   <select name="" id="select2_sample4" class="span6 select2">
+										   <select name="company_country" id="company_country" class="span6 select2">
 										 <?php foreach($db->query("SELECT country_code, country FROM  country") as $row): ?>
-										  <option value="<?php echo $row['country_code'] ?>"><?php echo $row['country_code'] ?></option>
+										  <option value="<?php echo $row['country_code'] ?>">
+										 <?php echo $row['country'] ?></option>
 										 <?php endforeach; ?> 
 										   </select>
                                           
@@ -156,19 +166,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
 									<div class="control-group">
-                                       <label class="control-label">Country Code:</label>
+                                       <label class="control-label">Country:</label>
                                        <div class="controls">
                                            <span class = "text" id="country_code"></span>
                                        </div>
                                     </div>
-                                    <div class="control-group">
-                                       <label class="control-label"></label>
-                                       <div class="controls">
-                                          <label class="checkbox">
-                                          <input type="checkbox" value="" /> I confirm details
-                                          </label>
-                                       </div>
-                                    </div>
+                                   
                                  </div>
                               </div>
                               <div class="form-actions clearfix">
@@ -202,11 +205,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
    
      function myconfirmbranch(){
 			$('#confirm_branch_username').text(document.getElementById("branch_username").value);
-			$('#confirm_company_name').text(document.getElementById("company_name").value);
+			$('#confirm_company_name').text($('#company_branch_name :selected').text());
 			$('#confirm_company_branch_name').text(document.getElementById("branch_name").value);
-			$('#confirm_address').text(document.getElementById("address").value);
-			$('#confirm_company_state').text(document.getElementById("state").value);
-			$('#country_code').text(document.getElementById("select2_sample4").value);
+			$('#confirm_address').text(document.getElementById("branch_address").value);
+			$('#confirm_company_state').text($('#company_state :selected').text());
+			$('#country_code').text($('#company_country :selected').text());
+			
 			
 			 
 	 }

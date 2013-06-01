@@ -784,6 +784,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
    <script src="assets/scripts/form-wizard.js"></script>     
    <script src="assets/scripts/form-components.js"></script> 
+   <script src="assets/scripts/branchWizard.js"></script> 
     
    <!-- End Form Scripts -->
    
@@ -813,6 +814,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 FormWizard.init();
 		 FormComponents.init();
 		 TableEditable.init();
+		 BranchWizard.init();
 		 
       });
    </script>

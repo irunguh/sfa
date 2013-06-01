@@ -7,8 +7,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
             <div class="row-fluid">
                <div class="span12">
                   <h3 class="page-title">
-                     Company Tables  Data
-                     <small>View Information About Companies</small>
+                     Company Branch Tables  Data
+                     <small>View Information About Branch</small>
                   </h3>
                   <ul class="breadcrumb">
                      <li>
@@ -20,12 +20,32 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         <a href="#">Company</a>
                         <span class="icon-angle-right"></span>
                      </li>
-                     <li><a href="#">View</a></li>
+                     <li><a href="#">Branch</a></li>
+					 <li><a href="#">View</a></li>
                   </ul>
                </div>
             </div>
             <!-- END PAGE HEADER-->
-			
+			<div class="row-fluid">
+			<div class="span6">
+			         <?php
+					 $succcess = 0; 
+					  if(isset($_GET['page'])){
+					  
+					  $success = $_GET['success'] ;
+					  
+					  } 
+					  
+					  ?>
+			   
+			       <?php if($success > 0) {?>
+                  <div id="message" class="alert alert-success">
+					<button class="close" data-dismiss="alert"></button>
+					<span>Record Save was Success!</span>
+				  </div>
+				  <?php }?>
+			  </div>
+			 </div>
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
 			 
@@ -62,11 +82,11 @@ require_once("./db_connection/database_connect.php"); // For database connection
                            <thead>
                               <tr>
                                  <th>Username</th>
-                                 <th>Company Name</th>
-                                 <th>Address</th>
-                                 <th>Officer No 1</th>
-								 <th>Email</th>
-								 <th>Website</th>
+                                 <th>CompanyID</th>
+                                 <th>Branch Name</th>
+                                 <th>Branch Address</th>
+								 <th>State ID</th>
+								 <th>Country Code</th>
                                  <th>Edit</th>
                                  <th>Delete</th>
                               </tr>
@@ -74,18 +94,18 @@ require_once("./db_connection/database_connect.php"); // For database connection
                            <tbody>
 						   <?php 
 				        // $stmt = $db->prepare("SELECT * FROM  company ");
-						 $sql = "SELECT * FROM  company order by CompanyID desc" ;
+						 $sql = "SELECT * FROM  company_branch order by BranchID desc" ;
 						 $result = $db->query($sql);
                         // $query = $stmt->execute(); 						 
 						   ?>
 						   <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
                               <tr class="">
                                  <td><?php echo $rows['Username'] ?></td>
-                                 <td><?php echo $rows['Company_Name'] ?></td>
-                                 <td><?php echo $rows['Address'] ?></td>
-								 <td><?php echo $rows['Office_Number1'] ?></td>
-								 <td><?php echo $rows['Email'] ?></td>
-                                 <td><?php echo $rows['Website'] ?></td>
+                                 <td><?php echo $rows['CompanyID'] ?></td>
+                                 <td><?php echo $rows['Branch_Name'] ?></td>
+								 <td><?php echo $rows['Branch_Address'] ?></td>
+								 <td><?php echo $rows['StateID'] ?></td>
+                                 <td><?php echo $rows['Country_Code'] ?></td>
                                  <td><a class="edit" href="javascript:;">Edit</a></td>
                                  <td><a class="delete" href="javascript:;">Delete</a></td>
                               </tr>
