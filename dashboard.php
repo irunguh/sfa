@@ -385,6 +385,26 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					
 					</ul>
 				</li>
+				 
+			   <li class="">
+        			<a href="javascript:;">
+					<i class="icon-table"></i> 
+					<span class="title">View Tables</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+					    <li class="">
+							<!--<a href="dashboard.php?page=company"> -->
+							  <a class="ajaxify" href="./tables/CompanyTable.php">
+							<i class="icon-user"></i> 
+							<span class="title">View Compananies</span>
+							</a>
+						</li> 
+				   </ul>
+					
+			</li>
+				
+				
 				 <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 

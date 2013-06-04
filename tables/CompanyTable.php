@@ -1,5 +1,5 @@
 <?php
-require_once("./db_connection/database_connect.php"); // For database connection 
+require_once("../db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
@@ -45,7 +45,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         <div class="clearfix">
                            <div class="btn-group">
                               <!--  -->
-                              <a href="dashboard.php?page=company"> <button  class="btn green">Add New</button><i class="icon-plus"></i> </a> 
+                           <!--<a href="dashboard.php?page=company"> <button  class="btn green">Add New</button><i class="icon-plus"></i> </a> 
                              <!--  -->
                            </div>
                            <div class="btn-group pull-right">

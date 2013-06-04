@@ -1,6 +1,6 @@
-
-
-
+<script src="assets/scripts/custom/companyWizard.js"></script>
+<script src="assets/scripts/custom/form-components.js"></script>
+<script src="assets/scripts/form-validation.js"></script>  
 <?php
 require_once("../db_connection/database_connect.php"); // For database connection 
 ?>
@@ -354,7 +354,9 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 									   </p>
 									   <p>
 										  <a class="btn green" href="dashboard.php?page=company">Add Another</a> 
-										  <a class="btn black" href="dashboard.php?page=company_table">View Record</a>
+										 <!-- <a class="ajaxify" href="./tables/CompanyTable.php">
+										  View Record</a>
+										  <a class="ajaxify" href="./forms/CompanyForm.php">View Record</a> -->
 									   </p>
 									</div>
 									
@@ -373,44 +375,8 @@ require_once("../db_connection/database_connect.php"); // For database connectio
       <!-- END PAGE -->  
    
    <!-- END CONTAINER -->
-   <!-- BEGIN FOOTER -->
-     
-   
-   <!-- END PAGE LEVEL STYLES -->    
- 
- <!-- Include Relevant js files -->
-  <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>   
-   <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->  
-   <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
-   <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-   <!--[if lt IE 9]>
-   <script src="assets/plugins/excanvas.js"></script>
-   <script src="assets/plugins/respond.js"></script>  
-   <![endif]-->   
-   <script src="assets/plugins/breakpoints/breakpoints.js" type="text/javascript"></script>  
-   <!-- IMPORTANT! jquery.slimscroll.min.js depends on jquery-ui-1.10.1.custom.min.js --> 
-   <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-   <script src="assets/plugins/jquery.blockui.js" type="text/javascript"></script>  
-   <script src="assets/plugins/jquery.cookie.js" type="text/javascript"></script>
-   <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script> 
-   <!-- END CORE PLUGINS -->
-   <!-- BEGIN PAGE LEVEL PLUGINS -->
-    
-  
-   <!-- Forms Scripts -->
-   <script type="text/javascript" src="assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-   <script type="text/javascript" src="assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-   
-   <script src="assets/scripts/form-wizard.js"></script>     
-   <script src="assets/scripts/form-components.js"></script> 
-    <script src="assets/scripts/form-validation.js"></script>
-  
-    
-   <!-- End Form Scripts -->
-    <!-- Custom Scripts -->
-   
-   <script src="assets/scripts/custom/retrieveCountry.js"></script> 
+   <!-- BEGIN FOOTER --> 
+  <script src="assets/scripts/custom/retrieveCountry.js"></script> 
    <script src="assets/scripts/custom/retrieveSize.js"></script> 
    <script src="assets/scripts/custom/retrieveType.js"></script> 
    <script src="assets/scripts/custom/retrieveState.js"></script> 
@@ -418,37 +384,17 @@ require_once("../db_connection/database_connect.php"); // For database connectio
    <script src="assets/scripts/custom/retrieveCompany.js"></script> 
    <script src="assets/scripts/custom/retrieveContacts.js"></script> 
    <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
-    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
-	
-	
-	
-	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
-   
+  <script src="assets/scripts/custom/retrieveBranch.js"></script> 
    <!-- End custom scripts -->
-   
-  
-   <!-- END PAGE LEVEL PLUGINS -->
-   
-   <!-- BEGIN PAGE LEVEL SCRIPTS -->
     
- 
-   <!-- END PAGE LEVEL SCRIPTS -->  
-   <script>
-      jQuery(document).ready(function() {    
-         
-		 FormWizard.init();
+    <script>
+      jQuery(document).ready(function() { 
+					  
+         CompanyWizard.init();
 		 FormComponents.init();
-		// TableEditable.init();
-		 
-		// FormValidation.init();
+
       });
    </script>
- 
- <!-- End Include --->
-
- 
- 
  
  
  
