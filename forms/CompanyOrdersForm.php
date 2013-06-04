@@ -1,5 +1,8 @@
+<script src="assets/scripts/custom/orderWizard.js"></script>
+<script src="assets/scripts/form-components.js"></script>
+<script src="assets/scripts/form-validation.js"></script>  
 <?php
-require_once("./db_connection/database_connect.php"); // For database connection 
+require_once("../db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
@@ -30,7 +33,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
                <div class="span12">
-                  <div class="portlet box blue" id="form_wizard_1">
+                  <div class="portlet box blue" id="form_wizard_order">
                      <div class="portlet-title">
                         <div class="caption">
                            <i class="icon-reorder"></i> Company Orders Details Form - <span class="step-title">Step 1 of 2</span>
@@ -72,39 +75,69 @@ require_once("./db_connection/database_connect.php"); // For database connection
                               </div>
                               <div class="tab-content">
                                  <div class="tab-pane active" id="tab1">
-                                    <h3 class="block">Company Order Details</h3>
-                                    <div class="control-group">
-                                       <label class="control-label">Username</label>
-                                       <div class="controls">
-                                          <input id ="username" type="text" name="username" class="span6 m-wrap" />
-                                          <span class="help-inline">Provide your username</span>
-                                       </div>
-                                    </div>
-                                    <div class="control-group">
-                                       <label class="control-label">Select Company id </label>
-                                       <div class="controls">
-                                          <select id="company" class="span6 select2" name="company" >
-										     <option value=""></option>
-										</select>
-                                       </div>
-                                    </div>
-                                     <div class="control-group">
-                                       <label class="control-label">Select Branch Id</label>
-                                       <div class="controls">
-                                         <!-- <input id="branch_name" type="text" name="branch_name" class="span6 m-wrap" /> -->
-										   <select id="company_branch_name" class="span6 select2" name="company_branch_name" >
-										     <option value=""></option>
-										</select>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Product No</label>
-                                       <div class="controls">
-                                          <input id="product" name="product" type="text" class="span6 m-wrap" />
-                                       </div>
-                                    </div>
+								    <div id="myerror" class="alert alert-error hide">
+									  <button class="close" data-dismiss="alert"></button>
+									   Please correct the following missing fields.
+								   </div>
+                                    <h3 class="form-section">Company Order Details</h3>
+									 <div class="row-fluid">
+									  <div class="span6">
+										<div class="control-group">
+										   <label class="control-label">Username</label>
+										   <div class="controls">
+											  <input id ="username" type="text" name="username" class="span9 m-wrap" />
+											
+										   </div>
+										</div>
+										</div>
+										 <div class="span6">
+										<div class="control-group">
+										   <label class="control-label">Select Company</label>
+										   <div class="controls">
+											  <select id="company" class="span9 select2" name="company" >
+												 <option value=""></option>
+											</select>
+										   </div>
+										   </div>
+										</div>
+									 </div>
+									  <div class="row-fluid">
+									     <div class="span6">
+										 <div class="control-group">
+										   <label class="control-label">Select Branch</label>
+										   <div class="controls">
+											 <!-- <input id="branch_name" type="text" name="branch_name" class="span6 m-wrap" /> -->
+											   <select id="company_branch_name" class="span9 select2" name="company_branch_name" >
+												 <option value=""></option>
+											</select>
+										   </div>
+										   </div>
+										</div>
+										</div>
+									  <h3 class="form-section">Products:</h3>
+									   <div class="row-fluid">
+									     <div class="span6">
+											 <div class="controls">
+												 <label class="checkbox line">
+												 <input type="checkbox" value="1" name="service"/> Product 1
+												 </label>
+												 <label class="checkbox line">
+												 <input type="checkbox" value="2" name="service"/> Product 2
+												 </label>
+												 <label class="checkbox line">
+												 <input type="checkbox" value="3" name="service"/> Product 3
+												 </label>
+												 <span class="help-block">(select at least two)</span>
+												 <div id="form_2_service_error"></div>
+											  </div>
+											</div>
+										</div>
                                  </div>
                                  <div class="tab-pane" id="tab4">
+								    <div id="myerror2" class="alert alert-error hide">
+									  <button class="close" data-dismiss="alert"></button>
+									 The Form has some fields missing. Please click back button and review the missing fields.
+								   </div>
                                     <h3 class="block">Confirm Details and Submit</h3>
                                     <div class="control-group">
                                        <label class="control-label">Username:</label>
@@ -133,14 +166,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
 									
-                                    <div class="control-group">
-                                       <label class="control-label"></label>
-                                       <div class="controls">
-                                          <label class="checkbox">
-                                          <input type="checkbox" value="" /> I confirm details
-                                          </label>
-                                       </div>
-                                    </div>
+                                   
                                  </div>
                               </div>
                               <div class="form-actions clearfix">
@@ -169,13 +195,36 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
   
+  <script src="assets/scripts/custom/retrieveCountry.js"></script> 
+   <script src="assets/scripts/custom/retrieveSize.js"></script> 
+   <script src="assets/scripts/custom/retrieveType.js"></script> 
+   <script src="assets/scripts/custom/retrieveState.js"></script> 
+   <script src="assets/scripts/custom/retrieveStatus.js"></script> 
+   <script src="assets/scripts/custom/retrieveCompany.js"></script> 
+   <script src="assets/scripts/custom/retrieveContacts.js"></script> 
+   <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
+  <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+   <!-- End custom scripts -->
+    
+    <script>
+      jQuery(document).ready(function() { 
+					  
+         OrderWizard.init();
+		 FormComponents.init();
+
+      });
+   </script>
    <script>
       
    
      function myconfirmbranch(){
+	 //alert($('#company :selected').text());
+	 //alert($('#confirm_username').text(document.getElementById("username").value));
 			$('#confirm_username').text(document.getElementById("username").value);
-			$('#confirm_company_name').text(document.getElementById("company_name").value);
-			$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
+			//$('#confirm_company_name').text(document.getElementById("company").value);
+			$('#confirm_company_name').text($('#company :selected').text());
+			//$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
+			$('#confirm_company_branch_name').text($('#company_branch_name :selected').text());
 			$('#confirm_product_no').text(document.getElementById("product").value);
 			
 			

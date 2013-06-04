@@ -456,7 +456,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					 <li class="">
-							<a href="dashboard.php?page=orders">
+							 <a class="ajaxify" href="./forms/CompanyOrdersForm.php">
 							<i class="icon-user"></i> 
 							<span class="title">Create Orders</span>
 							</a>
