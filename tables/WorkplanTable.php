@@ -86,7 +86,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <td><?php echo $rows['Meeting_Date'] ?></td>
 								 <td><?php echo $rows['Start_Time'] ?></td>
 								 <td><?php echo $rows['End_Time'] ?></td>
-                                 <td><?php echo $rows['Address'] ?></td>
+                                 <td><?php echo $rows['Meeting_Address'] ?></td>
                                  <td><a class="edit" href="javascript:;">Edit</a></td>
                                  <td><a class="delete" href="javascript:;">Delete</a></td>
                               </tr>

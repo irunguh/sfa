@@ -1,5 +1,8 @@
+
+
+
 <?php
-require_once("./db_connection/database_connect.php"); // For database connection 
+require_once("../db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
@@ -61,8 +64,6 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                           <span class="desc"><i class="icon-ok"></i> Confirmation </span>   
                                           </a> 
                                        </li>
-									  
-									   
                                     </ul>
                                  </div>
                               </div>
@@ -71,117 +72,162 @@ require_once("./db_connection/database_connect.php"); // For database connection
                               </div>
                               <div class="tab-content">
                                  <div class="tab-pane active" id="tab1">
-                                    <h3 class="block">Company Details</h3>
-                                    <div class="control-group">
-                                       <label class="control-label">Username</label>
-                                       <div class="controls">
-                                          <input id ="user" type="text" name="username" class="span6 m-wrap" />
-                                          <span class="help-inline">Provide your username</span>
-                                       </div>
-                                    </div>
-                                    <div class="control-group">
-                                       <label class="control-label">Company Name</label>
-                                       <div class="controls">
-                                          <input id= "company_name" type="company_name" name ="company_name" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Full Company Name</span>
-                                       </div>
-                                    </div>
-                                     <div class="control-group">
-                                       <label class="control-label">Company Address</label>
-                                       <div class="controls">
-                                          <input id="company_address" type="company_address" name="company_address" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Your Company Address</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Office Number 1</label>
-                                       <div class="controls">
-                                          <input id="company_office_number1" name="company_office_number1" type="company_office_number1" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Company Office Number 1</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Office Number 2</label>
-                                       <div class="controls">
-                                          <input id="company_office_number2" name="company_office_number2" type="company_office_number2" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Company Office Number 2</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Email</label>
-                                       <div class="controls">
-                                          <input id="company_email" name="company_email" type="company_email" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Email Address</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Website</label>
-                                       <div class="controls">
-                                          <input id="company_website" name="company_website" type="company_website" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Company Website</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Location No</label>
-                                       <div class="controls">
-                                          <input id="company_location_no" name="company_location_no" type="company_location_no" class="span6 m-wrap" />
-                                          <span class="help-inline">Enter Location No</span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Size</label>
-                                       <div class="controls">
-                                      
-										   <select id="company_size" class="span6 select2" name="company_size" >
-										     <option value=""></option>
-										   </select>
-                                         
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Type</label>
-                                       <div class="controls">
-                                         
-										    <select id="company_type" class="span6 select2" name="company_type" >
-										     <option value=""></option>
-										   </select>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Company Status</label>
-                                       <div class="controls">
-                                         
-										    <select id="company_status" class="span6 select2" name="company_status" >
-										     <option value=""></option>
-										   </select>
-                                          
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">State</label>
-                                       <div class="controls">
-                                
-										   <select id="company_state" class="span6 select2" name="company_state" >
-										     <option value=""></option>
-										   </select>
-										   
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Country</label>
-									   
-                                       <div class="controls">
-										  <!-- <select name="country" id="country" class="span6 select2">
-										   
-										   </select> -->
-										   <select id="country" class="span6 select2" name="country" >
-										     <option value=""></option>
-										   </select>
-                                          
-                                       </div>
-                                    </div>
+								 
+								   <div id="myerror" class="alert alert-error hide">
+									  <button class="close" data-dismiss="alert"></button>
+									   Please correct the following missing fields.
+								   </div>
+						   
+                                   <h3 class="form-section">Company Details</h3>
+									    <div class="row-fluid">
+										   <div class="span6">
+												<div class="control-group">
+												   <label class="control-label">Username<span class="required">*</span></label>
+												   <div class="controls">
+													  <input id ="user" type="text" name="username" class="span9 m-wrap" />                                        
+												   </div>
+												</div>
+										   </div>
+											 <div class="span6">
+												<div class="control-group">
+												   <label class="control-label">Company Name<span class="required">*</span></label>
+												   <div class="controls">
+													  <input id= "company_name" type="text" name ="company_name" class="span9 m-wrap" />                                 
+												   </div>
+												</div>
+											 </div>
+										</div>
+									<h3 class="form-section">Company Contacts</h3>	
+									  <div class="row-fluid">
+										   <div class="span6">
+											 <div class="control-group">
+											   <label class="control-label">Company Address<span class="required">*</span></label>
+											   <div class="controls">
+												  <input id="company_address" type="text" name="company_address" class="span9 m-wrap" />
+											   </div>
+											 </div>
+											 </div>
+											 <div class="span6"> 
+												<div class="control-group">
+												   <label class="control-label">Office Number 1<span class="required">*</span></label>
+												   <div class="controls">
+													  <input id="company_office_number1" name="company_office_number1" type="text" class="span9 m-wrap" />
+													 
+												   </div>
+												</div>
+											  </div>
+                                          </div>
+										   <div class="row-fluid">
+											  <div class="span6"> 											  
+													<div class="control-group">
+													   <label class="control-label">Office Number 2<span class="required">*</span></label>
+													   <div class="controls">
+														  <input id="company_office_number2" name="company_office_number2" type="text" class="span9 m-wrap" />
+													   </div>
+													</div>
+												</div>	 
+												 <div class="span6"> 
+													<div class="control-group">
+													   <label class="control-label">Email<span class="required">*</span></label>
+													   <div class="controls">
+														  <input id="company_email" name="company_email" type="text" class="span9 m-wrap" />
+													   </div>
+													</div>
+												</div>	
+										  </div>	
+  										   <div class="row-fluid">
+												<div class="span6"> 
+												<div class="control-group">
+												   <label class="control-label">Website<span class="required">*</span></label>
+												   <div class="controls">
+													  <input id="company_website" name="company_website" type="text" class="span9 m-wrap" />
+												   </div>
+												</div>
+												</div>
+												 <div class="span6"> 
+													<div class="control-group">
+													   <label class="control-label">Company Location No<span class="required">*</span></label>
+													   <div class="controls">
+														  <input id="company_location_no" name="company_location_no" type="text" class="span9 m-wrap" />
+													   </div>
+													</div>
+												</div>
+										 </div>
+								<h3 class="form-section">Other Details</h3>	
+								  <div class="row-fluid">
+								    <div class="span6"> 
+										<div class="control-group">
+										   <label class="control-label">Company Size</label>
+										   <div class="controls">
+										  
+											   <select id="company_size" class="span9 select2" name="company_size" >
+												 <option value=""></option>
+											   </select>
+											 
+										   </div>
+										</div>
+									</div>
+									 <div class="span6"> 
+										<div class="control-group">
+										   <label class="control-label">Company Type</label>
+										   <div class="controls">
+											 
+												<select id="company_type" class="span9 select2" name="company_type" >
+												 <option value=""></option>
+											   </select>
+										   </div>
+										</div>
+									</div>
+									</div>
+									   <div class="row-fluid">
+								        <div class="span6"> 
+											<div class="control-group">
+											   <label class="control-label">Company Status</label>
+											   <div class="controls">
+												 
+													<select id="company_status" class="span9 select2" name="company_status" >
+													 <option value=""></option>
+												   </select>
+												  
+											   </div>
+											</div>
+										</div>
+										  <div class="span6"> 
+											<div class="control-group">
+											   <label class="control-label">State</label>
+											   <div class="controls">
+										
+												   <select id="company_state" class="span9 select2" name="company_state" >
+													 <option value=""></option>
+												   </select>
+												   
+											   </div>
+											</div>
+											</div>
+										</div>
+										
+										 <div class="row-fluid">
+								          <div class="span6"> 
+											<div class="control-group">
+											   <label class="control-label">Country</label>
+											   <div class="controls">
+												   <select id="country" class="span9 select2" name="country" >
+													 <option value=""></option>
+												   </select>
+											   </div>
+											</div>
+											</div>
+											</div>
+									
+									
+									
+									
                                  </div>
                                  <div class="tab-pane" id="tab2">
+								 <div id="myerror2" class="alert alert-error hide">
+									  <button class="close" data-dismiss="alert"></button>
+									 The Form has some fields missing. Please click back button and review the missing fields.
+								   </div>
                                     <h3 class="block">Confirm Details and Submit</h3>
                                     <div class="control-group">
                                        <label class="control-label">Username:</label>
@@ -272,7 +318,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <a href="javascript:;" class="btn button-previous">
                                  <i class="m-icon-swapleft"></i> Back 
                                  </a>
-                                 <a href="javascript:;" class="btn blue button-next" onclick="myconfirm()">
+                                 <a href="javascript:;" class="btn blue button-next" onclick="myconfirm();"> <!--  -->
                                  Continue <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
                                  <a href="javascript:;" class="btn green button-submit">
@@ -328,30 +374,120 @@ require_once("./db_connection/database_connect.php"); // For database connection
    
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
+     
+   
+   <!-- END PAGE LEVEL STYLES -->    
+ 
+ <!-- Include Relevant js files -->
+  <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script>   
+   <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->  
+   <script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+   <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+   <!--[if lt IE 9]>
+   <script src="assets/plugins/excanvas.js"></script>
+   <script src="assets/plugins/respond.js"></script>  
+   <![endif]-->   
+   <script src="assets/plugins/breakpoints/breakpoints.js" type="text/javascript"></script>  
+   <!-- IMPORTANT! jquery.slimscroll.min.js depends on jquery-ui-1.10.1.custom.min.js --> 
+   <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+   <script src="assets/plugins/jquery.blockui.js" type="text/javascript"></script>  
+   <script src="assets/plugins/jquery.cookie.js" type="text/javascript"></script>
+   <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script> 
+   <!-- END CORE PLUGINS -->
+   <!-- BEGIN PAGE LEVEL PLUGINS -->
+    
   
+   <!-- Forms Scripts -->
+   <script type="text/javascript" src="assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+   <script type="text/javascript" src="assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+   
+   <script src="assets/scripts/form-wizard.js"></script>     
+   <script src="assets/scripts/form-components.js"></script> 
+    <script src="assets/scripts/form-validation.js"></script>
+  
+    
+   <!-- End Form Scripts -->
+    <!-- Custom Scripts -->
+   
+   <script src="assets/scripts/custom/retrieveCountry.js"></script> 
+   <script src="assets/scripts/custom/retrieveSize.js"></script> 
+   <script src="assets/scripts/custom/retrieveType.js"></script> 
+   <script src="assets/scripts/custom/retrieveState.js"></script> 
+   <script src="assets/scripts/custom/retrieveStatus.js"></script> 
+   <script src="assets/scripts/custom/retrieveCompany.js"></script> 
+   <script src="assets/scripts/custom/retrieveContacts.js"></script> 
+   <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
+    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+	
+	
+	
+	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
+   
+   <!-- End custom scripts -->
+   
+  
+   <!-- END PAGE LEVEL PLUGINS -->
+   
+   <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    
+ 
+   <!-- END PAGE LEVEL SCRIPTS -->  
+   <script>
+      jQuery(document).ready(function() {    
+         
+		 FormWizard.init();
+		 FormComponents.init();
+		// TableEditable.init();
+		 
+		// FormValidation.init();
+      });
+   </script>
+ 
+ <!-- End Include --->
+
+ 
+ 
+ 
+ 
+ 
+ 
    <script>
       
    
      function myconfirm(){
-			$('#confirm_username').text(document.getElementById("user").value);
-			$('#confirm_company_name').text(document.getElementById("company_name").value);
-			$('#confirm_company_address').text(document.getElementById("company_address").value);
-			$('#confirm_company_office1').text(document.getElementById("company_office_number1").value);
-			$('#confirm_company_office2').text(document.getElementById("company_office_number2").value);
-			$('#confirm_company_email').text(document.getElementById("company_email").value);
-			$('#confirm_company_website').text(document.getElementById("company_website").value);
-			$('#confirm_company_location').text(document.getElementById("company_location_no").value);
-			$('#confirm_company_size').text($('#company_size :selected').text());
-			$('#confirm_company_type').text($('#company_type :selected').text());
-			$('#confirm_company_status').text($('#company_status :selected').text());
-			$('#confirm_company_state').text($('#company_state :selected').text());
-			$('#confirm_company_country').text($('#country :selected').text());
+	 
+	         //////////
+			
+	
+					
+				/*	 if(validator.form()){ // validation perform
+						$('form#company_form').attr({action: 'mycontroller'});			
+						//$('form#myForm').submit();
+						//alert('Nice form validated');
+							
+					} */
+				        	$('#confirm_username').text(document.getElementById("user").value);
+							$('#confirm_company_name').text(document.getElementById("company_name").value);
+							$('#confirm_company_address').text(document.getElementById("company_address").value);
+							$('#confirm_company_office1').text(document.getElementById("company_office_number1").value);
+							$('#confirm_company_office2').text(document.getElementById("company_office_number2").value);
+							$('#confirm_company_email').text(document.getElementById("company_email").value);
+							$('#confirm_company_website').text(document.getElementById("company_website").value);
+							$('#confirm_company_location').text(document.getElementById("company_location_no").value);
+							$('#confirm_company_size').text($('#company_size :selected').text());
+							$('#confirm_company_type').text($('#company_type :selected').text());
+							$('#confirm_company_status').text($('#company_status :selected').text());
+							$('#confirm_company_state').text($('#company_state :selected').text());
+							$('#confirm_company_country').text($('#country :selected').text()); 
+			
 			
 			 
 	 }
    </script>
    
-  
+   
 	
   
    <!-- END JAVASCRIPTS -->   

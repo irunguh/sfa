@@ -330,7 +330,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				</li>
 					        		
         		<li class="start active ">
-        			<a href="dashboard.php?page=main">
+        			<!--<a href="dashboard.php?page=main"> -->
+					 <a class="ajaxify start" href="main.php">
 					<i class="icon-home"></i> 
 					<span class="title">Dashboard</span>
 					<span class="selected"></span>
@@ -344,7 +345,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					    <li class="">
-							<a href="dashboard.php?page=company">
+							<!--<a href="dashboard.php?page=company"> -->
+							  <a class="ajaxify" href="./forms/CompanyForm.php">
 							<i class="icon-user"></i> 
 							<span class="title">Company</span>
 							</a>
@@ -576,6 +578,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						<span class="title">WorkPlan Status</span>
 						</a>
 					   </li>
+					   <li class="">
+						<a href="dashboard.php?page=calendar">
+						<i class="icon-user"></i> 
+						<span class="title">View Calendar</span>
+						</a>
+					   </li>
 					</ul>
 				</li>	
         		<li class="">
@@ -608,7 +616,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					   
                        // $page = $_GET['page']; 
 					 //  $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'main';
-					
+					/*
 					  if(isset($_GET['page'])){
 					  
 					    //$page = $_GET['page'];
@@ -717,11 +725,16 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						    include('main.php');
 						
 						}
-
+						
+						
+						*/
+           
 					?>
 				 
 				 
-				 
+				  <div class="page-content-body">
+
+                 </div>
 				 <!-- END PAGE CONTAINER-->    
       </div>
       <!-- END PAGE -->
@@ -788,23 +801,27 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script type="text/javascript" src="assets/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
    <script type="text/javascript" src="assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
     <script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+   
    <script src="assets/scripts/form-wizard.js"></script>     
    <script src="assets/scripts/form-components.js"></script> 
-   
+    <script src="assets/scripts/form-validation.js"></script>
   
     
    <!-- End Form Scripts -->
     <!-- Custom Scripts -->
-   <script src="assets/scripts/branchWizard.js"></script> 
-    <script src="assets/scripts/workPlanWizard.js"></script>
-   <script src="assets/scripts/retrieveCountry.js"></script> 
-   <script src="assets/scripts/retrieveSize.js"></script> 
-   <script src="assets/scripts/retrieveType.js"></script> 
-   <script src="assets/scripts/retrieveState.js"></script> 
-   <script src="assets/scripts/retrieveStatus.js"></script> 
-   <script src="assets/scripts/retrieveCompany.js"></script> 
-   <script src="assets/scripts/retrieveContacts.js"></script> 
-   <script src="assets/scripts/retrieveActivityType.js"></script> 
+   <script src="assets/scripts/custom/branchWizard.js"></script> 
+    <script src="assets/scripts/custom/workPlanWizard.js"></script>
+   <script src="assets/scripts/custom/retrieveCountry.js"></script> 
+   <script src="assets/scripts/custom/retrieveSize.js"></script> 
+   <script src="assets/scripts/custom/retrieveType.js"></script> 
+   <script src="assets/scripts/custom/retrieveState.js"></script> 
+   <script src="assets/scripts/custom/retrieveStatus.js"></script> 
+   <script src="assets/scripts/custom/retrieveCompany.js"></script> 
+   <script src="assets/scripts/custom/retrieveContacts.js"></script> 
+   <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
+    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
    
    <!-- End custom scripts -->
    
@@ -836,7 +853,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 TableEditable.init();
 		 BranchWizard.init();
 		 WorkPlanWizard.init();
-		 //RetrieveCountry.init();
+		// FormValidation.init();
       });
    </script>
    <!-- END JAVASCRIPTS -->

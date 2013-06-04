@@ -83,13 +83,18 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                     <div class="control-group">
                                        <label class="control-label">Select Company id </label>
                                        <div class="controls">
-                                          <input id= "company_name" type="text" name ="company_name" class="span6 m-wrap" />
+                                          <select id="company" class="span6 select2" name="company" >
+										     <option value=""></option>
+										</select>
                                        </div>
                                     </div>
                                      <div class="control-group">
                                        <label class="control-label">Select Branch Id</label>
                                        <div class="controls">
-                                          <input id="branch_name" type="text" name="branch_name" class="span6 m-wrap" />
+                                         <!-- <input id="branch_name" type="text" name="branch_name" class="span6 m-wrap" /> -->
+										   <select id="company_branch_name" class="span6 select2" name="company_branch_name" >
+										     <option value=""></option>
+										</select>
                                        </div>
                                     </div>
 									<div class="control-group">
@@ -170,7 +175,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
      function myconfirmbranch(){
 			$('#confirm_username').text(document.getElementById("username").value);
 			$('#confirm_company_name').text(document.getElementById("company_name").value);
-			$('#confirm_company_branch_name').text(document.getElementById("branch_name").value);
+			$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
 			$('#confirm_product_no').text(document.getElementById("product").value);
 			
 			

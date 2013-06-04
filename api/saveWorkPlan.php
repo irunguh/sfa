@@ -18,7 +18,7 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 	$work_activity_type = $_REQUEST['work_activity_type'];
 	
 //Create a prepare statement
-$statement = $db->prepare("INSERT INTO work_plan (CompanyID,ContactID, Meeting_Date,Start_Time,End_Time,Proposed_Activity,Address, Activity_TypeID)  
+$statement = $db->prepare("INSERT INTO work_plan (CompanyID,ContactID, Meeting_Date,Start_Time,End_Time,Proposed_Activity,Meeting_Address, Activity_TypeID)  
 VALUES(:company, :contact, :date, :start_time , :end_time , :activity , :work_address , :work_activity_type) ");
 ///
 $statement->execute(array(':company' => $company,
@@ -36,7 +36,7 @@ $count = $statement->rowCount();
 if($count > 0)
 {
   echo "successful";
-  echo $meeting_date;
+  //echo $meeting_date;
 }
 if($count <= 0)
 {

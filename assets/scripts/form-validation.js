@@ -7,12 +7,12 @@ var FormValidation = function () {
 
             // for more info visit the official plugin documentation: 
             // http://docs.jquery.com/Plugins/Validation
-			
-			var form2 = document.getElementById("#create_company");
-            var error2 = $('.alert-error', form2);
-            var success2 = $('.alert-success', form2);
+			 
+			var mycompany = document.getElementById("#company_form");
+            var error2 = $('.alert-error', mycompany);
+            var success2 = $('.alert-success', mycompany);
 			/////////////////////
-			form2.validate({
+			mycompany.validate({
 	            errorElement: 'span', //default input error message container
                 errorClass: 'help-inline', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input

@@ -7,8 +7,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
             <div class="row-fluid">
                <div class="span12">
                   <h3 class="page-title">
-                     WorkPlan Clocking Form Wizard
-                     <small> WorkPlan</small>
+                     WorkPlan Clocking
+                     <small> Clock a Job</small>
                   </h3>
                   <ul class="breadcrumb">
                      <li>
@@ -20,7 +20,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         <a href="#">WorkPlan Clocking</a>
                         <span class="icon-angle-right"></span>
                      </li>
-                     <li><a href="#">Form Wizard</a></li>
+                     
                   </ul>
                </div>
             </div>
@@ -33,7 +33,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                   <div class="portlet box blue" id="form_wizard_1">
                      <div class="portlet-title">
                         <div class="caption">
-                           <i class="icon-reorder"></i> WorkPlan Clocking Details Form - <span class="step-title">Step 1 of 2</span>
+                           <i class="icon-reorder"></i> WorkPlan Clocking
                         </div>
                         <div class="tools hidden-phone">
                            <a href="javascript:;" class="collapse"></a>
@@ -47,136 +47,28 @@ require_once("./db_connection/database_connect.php"); // For database connection
 							<button class="close" data-dismiss="alert"></button>
 							<span>Some information missing.</span>
 						  </div>
-                        <form id="company_type_form" class="form-horizontal">
-                           <div class="form-wizard">
-                              <div class="navbar steps">
-                                 <div class="navbar-inner">
-                                    <ul class="row-fluid">
-                                       <li class="span3">
-                                          <a href="#tab1" data-toggle="tab" class="step active">
-                                          <span class="number">1</span>
-                                          <span class="desc"><i class="icon-ok"></i> WorkPlan Clocking Setup </span>   
-                                          </a>
-                                       </li>
-                                       <li class="span3">
-                                          <a href="#tab4" data-toggle="tab" class="step">
-                                          <span class="number">2</span>
-                                          <span class="desc"><i class="icon-ok"></i> Confirmation </span>   
-                                          </a> 
-                                       </li>
-                                    </ul>
-                                 </div>
+                           <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                           <form action="#" class="form-horizontal">
+						      <div class="control-group">
+                              <label class="control-label">Select Work To Clock</label>
+                              <div class="controls">
+                                 <select class="span6 chosen" data-placeholder="Choose a Category" tabindex="1">
+                                    <option value=""></option>
+                                    <option value="Category 1">Category 1</option>
+                                    <option value="Category 2">Category 2</option>
+                                    <option value="Category 3">Category 5</option>
+                                    <option value="Category 4">Category 4</option>
+                                 </select>
+								  
                               </div>
-                              <div id="bar" class="progress progress-success progress-striped">
-                                 <div class="bar"></div>
-                              </div>
-                              <div class="tab-content">
-                                 <div class="tab-pane active" id="tab1">
-                                    <h3 class="block"> WorkPlan Clocking</h3>
-                                    <div class="control-group">
-                                       <label class="control-label">WorkPlan Id </label>
-                                       <div class="controls">
-                                          <input id ="workplan" type="text" name="workplan" class="span6 m-wrap" />
-                                          <span class="help-inline">Select workplan</span>
-                                       </div>
-                                    </div>
-                                   
-								  <div class="control-group">
-									  <label class="control-label">Clocking Date</label>
-									  <div class="controls">
-										 <div class="input-append date form_datetime">
-											 <input id= "clocking_date" size="16" type="text" value="" readonly class="m-wrap">
-											 <span class="add-on"><i class="icon-calendar"></i></span>
-										 </div>
-									  </div>
-								   </div>
-								    <div class="control-group">
-                                       <label class="control-label">Longitude</label>
-                                       <div class="controls">
-                                          <input id ="longitude" type="text" name="longitude" class="span6 m-wrap" />
-                                       </div>
-                                    </div>
-								    <div class="control-group">
-                                       <label class="control-label">Latitude</label>
-                                       <div class="controls">
-                                          <input id ="latitude" type="text" name="latitude" class="span6 m-wrap" />
-                                       </div>
-                                    </div>
-								   
-								   <div class="control-group">
-                                       <label class="control-label">Location Address</label>
-                                       <div class="controls">
-                                          <input id ="location_address" type="text" name="location_address" class="span6 m-wrap" />
-                                         
-                                       </div>
-                                    </div> 
-									
-                                 </div>
-                                 <div class="tab-pane" id="tab4">
-                                    <h3 class="block">Confirm Details and Submit</h3>
-                                    <div class="control-group">
-                                       <label class="control-label">WorkPlan:</label>
-                                       <div class="controls">
-                                          <span  class="text">
-										  <span class = "text" id="confirm_workplan"></span>
-										  </span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Clocking Date:</label>
-                                       <div class="controls">
-                                          <span  class="text">
-										  <span class = "text" id="confirm_clocking_date"></span>
-										  </span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Longitude:</label>
-                                       <div class="controls">
-                                          <span  class="text">
-										  <span class = "text" id="confirm_Longitude"></span>
-										  </span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Latitude:</label>
-                                       <div class="controls">
-                                          <span  class="text">
-										  <span class = "text" id="confirm_latitude"></span>
-										  </span>
-                                       </div>
-                                    </div>
-									<div class="control-group">
-                                       <label class="control-label">Location Address:</label>
-                                       <div class="controls">
-                                          <span  class="text">
-										  <span class = "text" id="confirm_location_address"></span>
-										  </span>
-                                       </div>
-                                    </div>
-                                    <div class="control-group">
-                                       <label class="control-label"></label>
-                                       <div class="controls">
-                                          <label class="checkbox">
-                                          <input type="checkbox" value="" /> I confirm details
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="form-actions clearfix">
-                                 <a href="javascript:;" class="btn button-previous">
-                                 <i class="m-icon-swapleft"></i> Back 
-                                 </a>
-                                 <a href="javascript:;" class="btn blue button-next" onclick="myconfirmbranch()">
-                                 Continue <i class="m-icon-swapright m-icon-white"></i>
-                                 </a>
-                                 <a href="javascript:;" class="btn green button-submit">
-                                 Submit <i class="m-icon-swapright m-icon-white"></i>
-                                 </a>
-                              </div>
+							
                            </div>
-                        </form>
+						    <div class="form-actions">
+                                   <button type="submit" class="btn blue">Clock In</button>
+                             </div>
+						   </form>
+						   </div> 
                      </div>
                   </div>
                </div>

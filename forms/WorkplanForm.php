@@ -78,7 +78,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        <div class="controls">
                                         <select id="company" class="span6 select2" name="company" >
 										     <option value=""></option>
-										   </select>
+										</select>
                                        </div>
                                     </div>
                                    <div class="control-group">
@@ -125,7 +125,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
 								   <div class="control-group">
-                                       <label class="control-label">Address</label>
+                                       <label class="control-label">Meeting Address</label>
                                        <div class="controls">
                                           <input id ="work_address" type="text" name="work_address" class="span6 m-wrap" />
                                          
@@ -227,7 +227,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                   </div>
                </div>
 			    <div class="span10">
-						   <div id="success_save" class="portlet box blue hide">
+						   <div id="success_save_workplan" class="portlet box blue hide">
 							 <div class="portlet-title">
 								<div class="caption"><i class="icon-cogs"></i>Success</div>
 								<div class="tools">
