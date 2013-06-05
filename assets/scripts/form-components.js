@@ -267,6 +267,10 @@ var FormComponents = function () {
             placeholder: "Select an option",
             allowClear: true
         });
+		$('#work_clock').select2({
+            placeholder: "Select an option",
+            allowClear: true
+        });
         $('#select2_sample2').select2({
             placeholder: "Select a State",
             allowClear: true

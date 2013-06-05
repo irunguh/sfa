@@ -585,12 +585,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						<span class="title">Create WorkPlan</span>
 						</a>
 					  </li> 
-					   <li class="">
+					  <!-- <li class="">
 						<a href="dashboard.php?page=workplan_clocking">
 						<i class="icon-user"></i> 
 						<span class="title">WorkPlan Clocking</span>
 						</a>
-					   </li> 
+					   </li> -->
 					   <!-- <li class="">
 						<a href="dashboard.php?page=workplan_status">
 						<i class="icon-user"></i> 
@@ -839,6 +839,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="assets/scripts/custom/retrieveContacts.js"></script> 
    <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+   <script src="assets/scripts/custom/retrieveWorkplan.js"></script> 
    <script src="assets/scripts/custom/jquery.dateFormat.js"></script> 	
 	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>

@@ -8,12 +8,7 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 
  
 // Retrieve values from the form for registration purposes
-	$username = $_POST['username'];
-	$companyid = $_POST['company_name'];
-	$branch_name = $_POST['company_address'];
-	$branch_address = $_POST['company_office_number1'];
-	$stateid = $_POST['company_office_number2'];
-	$country_code = $_POST['company_email'];
+	$work_clock = $_POST['work_clock'];
 	
 //Create a prepare statement
 $statement = $db->prepare("INSERT INTO  company_branch (Username, 
