@@ -17,6 +17,13 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 	
 	$start_time = $_REQUEST['start_time'];
 	$end_time = $_REQUEST['end_time'];
+	//format times
+     $convert_start_time = 	new DateTime($start_time);
+	 $new_start_time = $convert_start_time->format('H:i:s');
+	 ///
+	 $convert_end_time = 	new DateTime($end_time);
+	 $new_end_time = $convert_end_time->format('H:i:s');
+	
 	$proposed_activity = $_REQUEST['proposed_activity'];
 	$work_address = $_REQUEST['work_address'];
 	$work_activity_type = $_REQUEST['work_activity_type'];
@@ -28,8 +35,8 @@ VALUES(:company, :contact, :date, :start_time , :end_time , :activity , :work_ad
 $statement->execute(array(':company' => $company,
    ':contact' => $contact,
    ':date' => $newdate,
-   ':start_time' => $start_time,
-   ':end_time' => $end_time,
+   ':start_time' => $new_start_time,
+   ':end_time' => $new_end_time,
    ':activity' => $proposed_activity,
    ':work_address' => $work_address,
    ':work_activity_type' => $work_activity_type

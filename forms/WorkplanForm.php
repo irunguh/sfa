@@ -90,7 +90,6 @@ require_once("./db_connection/database_connect.php"); // For database connection
 								     <div class="span6">		  
 										      <div class="control-group">
 											  <label class="control-label">Meeting Date</label>
-											 
 											  <div class="controls">
 												 <div class="input-append date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
 													<input id= "meeting_date" name="meeting_date" class="m-wrap m-ctrl-medium date-picker" size="16" type="text" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
@@ -149,28 +148,26 @@ require_once("./db_connection/database_connect.php"); // For database connection
 								   </div>
 									  
 									</div>
-									 <h3 class="form-section"> WorkPlan Meeting Address </h3>
+									 <h3 class="form-section"> WorkPlan Meeting Address & Proposed Activities</h3>
 									  <div class="row-fluid">
-										   <div class="span10">
+										   <div class="span6">
 										   <div class="control-group">
 											   <label class="control-label">Meeting Address:</label>
 											   <div class="controls">
-												   <textarea id= "work_address" name="work_address" class="span12 ckeditor m-wrap" name="editor3" rows="6"></textarea>
+												   <textarea id="work_address" name="work_address" class="span8 m-wrap" rows="6"></textarea>
 											   </div>
 											</div> 
 											</div> 
-										</div> 
-									 <h3 class="form-section"> WorkPlan Proposed Activities </h3>
-										  <div class="row-fluid">
-										     <div class="span10">
+											 <div class="span6">
 											 <div class="control-group">
 												   <label class="control-label">Proposed Activity:</label>
 												   <div class="controls">
-													  <textarea id= "proposed_activity" class="span6 ckeditor m-wrap" name="editor3" rows="6"></textarea>
+													  <textarea id= "proposed_activity" class="span8 m-wrap"  rows="6"></textarea>
 												   </div>
 											 </div>
 											 </div>
-										  </div>
+										</div> 
+									
                                  </div>
                                  <div class="tab-pane" id="tab4">
 								   <div id="myerror2" class="alert alert-error hide">
@@ -306,8 +303,10 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <script>
      function myconfirmbranch(){
 	        ///
-			 var proposed_activity = CKEDITOR.instances['proposed_activity'].getData();
-			  var confirm_address = CKEDITOR.instances['work_address'].getData();
+			 //var proposed_activity = CKEDITOR.instances['proposed_activity'].getData();
+			  //var confirm_address = CKEDITOR.instances['work_address'].getData();
+			  var confirm_address = $('textarea#work_address').val();
+			  var proposed_activity = $('textarea#proposed_activity').val();
 	        //set text
 			//$('#confirm_company').text(document.getElementById("company").value); 
 			 $('#confirm_company').text($('#company :selected').text());
@@ -317,11 +316,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
 			$('#confirm_meeting_date').text(document.getElementById("meeting_date").value); 
 			$('#confirm_start_time').text(document.getElementById("start_time").value);
 			$('#confirm_end_time').text(document.getElementById("end_time").value); 
-			$('#confirm_proposed_activity').text(jQuery(proposed_activity).text());
-			//$('#confirm_address').text(document.getElementById("work_address").value); 
-			//$('#confirm_activity_type').text(document.getElementById("work_activity_type").value);
+			$('#confirm_proposed_activity').text(proposed_activity);
+			
 			//
-		   $('#confirm_address').text(jQuery(confirm_address).text());
+		   $('#confirm_address').text(confirm_address);
+		   
+		   
 		   $('#confirm_activity_type').text($('#work_activity_type :selected').text());
 	 }
    </script>

@@ -219,8 +219,8 @@ var WorkPlanWizard = function () {
 					   meeting_date: $('#meeting_date').val(),
 					   start_time: $('#start_time').val(),
 					   end_time: $('#end_time').val(),
-					   proposed_activity: CKEDITOR.instances['proposed_activity'].getData(),
-					   work_address: CKEDITOR.instances['work_address'].getData(),
+					   proposed_activity: $('textarea#proposed_activity').val(),
+					   work_address: $('textarea#work_address').val(),
 					   work_activity_type: $('#work_activity_type').val()
 					  },
 					  success: function(data){
