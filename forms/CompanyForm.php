@@ -1,8 +1,6 @@
-<script src="assets/scripts/custom/companyWizard.js"></script>
-<script src="assets/scripts/custom/form-components.js"></script>
-<script src="assets/scripts/form-validation.js"></script>  
+
 <?php
-require_once("../db_connection/database_connect.php"); // For database connection 
+require_once("./db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
@@ -224,7 +222,7 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 									
                                  </div>
                                  <div class="tab-pane" id="tab2">
-								 <div id="myerror2" class="alert alert-error hide">
+								   <div id="myerror2" class="alert alert-error hide">
 									  <button class="close" data-dismiss="alert"></button>
 									 The Form has some fields missing. Please click back button and review the missing fields.
 								   </div>
@@ -376,29 +374,6 @@ require_once("../db_connection/database_connect.php"); // For database connectio
    
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER --> 
-  <script src="assets/scripts/custom/retrieveCountry.js"></script> 
-   <script src="assets/scripts/custom/retrieveSize.js"></script> 
-   <script src="assets/scripts/custom/retrieveType.js"></script> 
-   <script src="assets/scripts/custom/retrieveState.js"></script> 
-   <script src="assets/scripts/custom/retrieveStatus.js"></script> 
-   <script src="assets/scripts/custom/retrieveCompany.js"></script> 
-   <script src="assets/scripts/custom/retrieveContacts.js"></script> 
-   <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
-  <script src="assets/scripts/custom/retrieveBranch.js"></script> 
-   <!-- End custom scripts -->
-    
-    <script>
-      jQuery(document).ready(function() { 
-					  
-         CompanyWizard.init();
-		 FormComponents.init();
-
-      });
-   </script>
- 
- 
- 
- 
    <script>
       
    

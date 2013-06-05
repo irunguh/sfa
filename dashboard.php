@@ -331,7 +331,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					        		
         		<li class="start active ">
         			<!--<a href="dashboard.php?page=main"> -->
-					 <a class="ajaxify start" href="main.php">
+					 <a href="dashboard.php?page=main">
 					<i class="icon-home"></i> 
 					<span class="title">Dashboard</span>
 					<span class="selected"></span>
@@ -345,13 +345,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					    <li class="">
-							<!--<a href="dashboard.php?page=company"> -->
-							  <a class="ajaxify" href="./forms/CompanyForm.php">
+							<a href="dashboard.php?page=company"> 
 							<i class="icon-user"></i> 
 							<span class="title">Company</span>
 							</a>
 						</li> 
-						 <li class="">
+						<!-- <li class="">
 							<a href="dashboard.php?page=branch">
 							<i class="icon-user"></i> 
 							<span class="title">Company Branch</span>
@@ -381,7 +380,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 							<i class="icon-user"></i> 
 							<span class="title">Company Type</span>
 							</a>
-						</li>
+						</li> -->
 					
 					</ul>
 				</li>
@@ -394,10 +393,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					    <li class="">
-							<!--<a href="dashboard.php?page=company"> -->
-							  <a class="ajaxify" href="./tables/CompanyTable.php">
+							<a href="dashboard.php?page=company">
 							<i class="icon-user"></i> 
-							<span class="title">View Compananies</span>
+							<span class="title">View Companies</span>
 							</a>
 						</li> 
 				   </ul>
@@ -405,7 +403,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 			</li>
 				
 				
-				 <li class="">
+				<!-- <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
 					<span class="title">Services</span>
@@ -426,7 +424,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 							</a>
 						</li> 
 				       </ul>
-				 </li> 
+				 </li>  -->
 				 <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
@@ -456,7 +454,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					 <li class="">
-							 <a class="ajaxify" href="./forms/CompanyOrdersForm.php">
+							<!-- <a class="ajaxify" href="./forms/CompanyOrdersForm.php"> -->
+							 <a href="dashboard.php?page=orders">
 							<i class="icon-user"></i> 
 							<span class="title">Create Orders</span>
 							</a>
@@ -483,7 +482,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</ul>
 					
 				 </li> 
-				   <li class="">
+				 <!--  <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
 					<span class="title">Payments</span>
@@ -505,8 +504,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					 
 					</ul>
 					
-				 </li> 
-				 <li class="">
+				 </li>  -->
+				<!-- <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
 					<span class="title">Activities</span>
@@ -557,8 +556,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					<i class="icon-user"></i> 
 					<span class="title">Speciality</span>
 					</a>
-				</li> 
-				 <li class="">
+				</li> -->
+				<!-- <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
 					<span class="title">User Management</span>
@@ -572,11 +571,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						</a>
 					</li> 
 					</ul>
-				</li>	
+				</li>	-->
 				 <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
-					<span class="title">Work</span>
+					<span class="title">WorkPlan</span>
 					<span class="arrow "></span>
 					</a>
 					<ul class="sub-menu">
@@ -592,16 +591,16 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						<span class="title">WorkPlan Clocking</span>
 						</a>
 					   </li> 
-					    <li class="">
+					   <!-- <li class="">
 						<a href="dashboard.php?page=workplan_status">
 						<i class="icon-user"></i> 
 						<span class="title">WorkPlan Status</span>
 						</a>
-					   </li>
+					   </li> -->
 					   <li class="">
 						<a href="dashboard.php?page=calendar">
 						<i class="icon-user"></i> 
-						<span class="title">View Calendar</span>
+						<span class="title">My Calendar</span>
 						</a>
 					   </li>
 					</ul>
@@ -636,7 +635,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					   
                        // $page = $_GET['page']; 
 					 //  $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 'main';
-					/*
+					
 					  if(isset($_GET['page'])){
 					  
 					    //$page = $_GET['page'];
@@ -747,14 +746,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						}
 						
 						
-						*/
+						
            
 					?>
 				 
 				 
-				  <div class="page-content-body">
-
-                 </div>
+				
 				 <!-- END PAGE CONTAINER-->    
       </div>
       <!-- END PAGE -->
@@ -831,6 +828,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <!-- Custom Scripts -->
    <script src="assets/scripts/custom/branchWizard.js"></script> 
     <script src="assets/scripts/custom/workPlanWizard.js"></script>
+	<script src="assets/scripts/custom/companyWizard.js"></script>
    <script src="assets/scripts/custom/retrieveCountry.js"></script> 
    <script src="assets/scripts/custom/retrieveSize.js"></script> 
    <script src="assets/scripts/custom/retrieveType.js"></script> 
@@ -839,7 +837,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="assets/scripts/custom/retrieveCompany.js"></script> 
    <script src="assets/scripts/custom/retrieveContacts.js"></script> 
    <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
-    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+   <script src="assets/scripts/custom/retrieveBranch.js"></script> 
+   <script src="assets/scripts/custom/jquery.dateFormat.js"></script> 	
 	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
    
@@ -868,7 +867,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
          Index.initMiniCharts();
          Index.initDashboardDaterange();
          Index.initIntro();
-		 FormWizard.init();
+		// FormWizard.init();
+		 CompanyWizard.init();
 		 FormComponents.init();
 		 TableEditable.init();
 		 BranchWizard.init();

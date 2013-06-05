@@ -11,6 +11,10 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 	$company = $_REQUEST['company'];
 	$contact = $_REQUEST['contact'];
 	$meeting_date = $_REQUEST['meeting_date'];
+	 //format the date
+	 $date = new DateTime($meeting_date);
+     $newdate = $date->format('Y-m-d');
+	
 	$start_time = $_REQUEST['start_time'];
 	$end_time = $_REQUEST['end_time'];
 	$proposed_activity = $_REQUEST['proposed_activity'];
@@ -23,7 +27,7 @@ VALUES(:company, :contact, :date, :start_time , :end_time , :activity , :work_ad
 ///
 $statement->execute(array(':company' => $company,
    ':contact' => $contact,
-   ':date' => $meeting_date,
+   ':date' => $newdate,
    ':start_time' => $start_time,
    ':end_time' => $end_time,
    ':activity' => $proposed_activity,
