@@ -55,11 +55,6 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
   
-   <script>
-      
-   
-   
-   </script>
    
   
 	

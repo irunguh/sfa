@@ -826,6 +826,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     
    <!-- End Form Scripts -->
     <!-- Custom Scripts -->
+	<script src="assets/scripts/custom/calendar.js"></script> 
    <script src="assets/scripts/custom/branchWizard.js"></script> 
     <script src="assets/scripts/custom/workPlanWizard.js"></script>
 	<script src="assets/scripts/custom/companyWizard.js"></script>
@@ -853,6 +854,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    <script src="assets/scripts/app.js" type="text/javascript"></script>
+    <!--<script src="assets/scripts/custom-calendar.js" type="text/javascript"></script> -->
    <script src="assets/scripts/index.js" type="text/javascript"></script>   
  
    <!-- END PAGE LEVEL SCRIPTS -->  
@@ -860,19 +862,21 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
       jQuery(document).ready(function() {    
          App.init(); // initlayout and core plugins
          Index.init();
-         Index.initJQVMAP(); // init index page's custom scripts
+		// CustomCalendar.init();
+        /* Index.initJQVMAP(); // init index page's custom scripts
          Index.initCalendar(); // init index page's custom scripts
          Index.initCharts(); // init index page's custom scripts
          Index.initChat();
          Index.initMiniCharts();
          Index.initDashboardDaterange();
-         Index.initIntro();
+         Index.initIntro(); */
 		// FormWizard.init();
 		 CompanyWizard.init();
 		 FormComponents.init();
 		 TableEditable.init();
 		 BranchWizard.init();
 		 WorkPlanWizard.init();
+		// calendar.init();
 		// FormValidation.init();
       });
    </script>
