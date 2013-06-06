@@ -49,6 +49,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         <div class="caption"><i class="icon-comments"></i>Meeting Clock In and Reschedule</div>
                      </div>
                      <div class="portlet-body">
+					
                         <table id="table_clock_in" class="table table-striped table-hover">
                            <thead>
                               <tr>
@@ -56,6 +57,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <th>Contact</th>
                                  <th>Meeting_Date</th>
                                  <th>Activity</th>
+								 <th>Actions</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -69,13 +71,58 @@ require_once("./db_connection/database_connect.php"); // For database connection
 						 
 						    <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
                               <tr>
-							     <td class="nr"><?php echo $rows['WorkPlanID'] ?></td>
+							     <td class="nr"><?php echo $rows['WorkPlanID'];
+                                    $workId = $rows['WorkPlanID'];
+								 ?></td>
                                  <td><?php echo $rows['ContactID'] ?></td> 	
                                  <td><?php echo $rows['Meeting_Date'] ?></td>
                                  <td><?php echo $rows['Proposed_Activity'] ?></td>
-                                 <td><button id="clocking"  type="button" class="btn green use-address">Clock In</button></td>
-                                 <td><button type="button" class="btn blue">Reschedule</button> </td>
-								  <td><button type="button" class="btn red">Cancel</button> </td>
+                                 <td>
+								  <?php
+								  //we make sure that this user has not yet clocked-in if so
+								  //we show a message informing them that they have 
+					           $sql2 = "SELECT count(WorkPlanID) FROM  
+							   work_plan_clocking where WorkPlanID = '$workId' " ;
+						      $result2 = $db->query($sql2);
+							  //echo  $result2 ;
+							  $count =  0;
+							       while($row2 = $result2->fetch(PDO::FETCH_ASSOC)){
+								      $count  = $row2['count(WorkPlanID)'];
+								   
+								   }
+								?>
+								
+								  <?php
+								  //we make sure that this user has not yet clocked-in if so
+								  //we show a message informing them that they have 
+					           $sql3 = "SELECT count(WorkPlanID) FROM  
+							   work_plan_status where WorkPlanID = '$workId' " ;
+						      $result3 = $db->query($sql3);
+							  //echo  $result2 ;
+							  $count2 =  0;
+							       while($row3 = $result3->fetch(PDO::FETCH_ASSOC)){
+								      $count  = $row3['count(WorkPlanID)'];
+								   
+								   }
+								?>
+								
+								
+								 <?php if($count > 0 && $count >0): ?>
+								    <div class="span10">
+								      <div class="alert alert-success">
+									   <button class="close" data-dismiss="alert"></button>
+									  Sorry,not available.
+									</div>
+									</div>
+								 <?php endif; ?>
+								 
+								 <?php if($count == 0 && $count2 == 0): ?>
+								  <button id="clocking"  type="button" class="btn green use-address">Clock In</button>
+								 
+								 </td>
+                                 <td><button type="button" class="btn blue use-address2">Reschedule</button> </td>
+								 <td><button type="button" class="btn red use-address3">Cancel</button> </td>
+								 <?php endif; ?>
                               </tr>
                             <?php } ?>  
                            </tbody>
@@ -177,7 +224,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
 					   if(data === 'successful')
 					   { 
 					
-					    alert('Meeting Clock-in was successful');
+					   // alert('Meeting Clock-in was successful');
+						 window.location.replace('dashboard.php?page=calendar');
 					   }
 					   else {
 					     
@@ -207,8 +255,33 @@ function errorFunction(position) {
 			
 		});
 		///////
-	
+$(".use-address2").click(function() {
+		 var work_id = $(".use-address2").closest("tr").find(".nr").text();
+		 ////
+		  $.ajax({
+				      type: "POST",
+					  url: './api/saveReschedule.php',
+					  data: {
+					   work_id: work_id
+					   
+					  },
+					  success: function(data){
+					   if(data === 'successful')
+					   { 
+					   //alert('Reschedule Done');
+					   // alert('Meeting Clock-in was successful');
+					   window.location.replace('dashboard.php?page=workplan_status_table');
+						 //window.location.replace('dashboard.php?page=calendar');
+					   }
+					   else {
+					     
+							alert(data);
+	            
+					   }
+					  }
+				   });
 		
+		});
 		
   </script>
 

@@ -256,11 +256,11 @@ var FormComponents = function () {
             allowClear: true
         });
 		$('#company').select2({
-            placeholder: "Select an option",
+            placeholder: "Select company",
             allowClear: true
         });
 		$('#contact').select2({
-            placeholder: "Select an option",
+            placeholder: "Select contact",
             allowClear: true
         });
 		$('#work_activity_type').select2({

@@ -603,6 +603,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						<span class="title">My Calendar</span>
 						</a>
 					   </li>
+					   <li class="">
+						<a href="dashboard.php?page=workplan_status_table">
+						<i class="icon-user"></i> 
+						<span class="title">Update WorkPlan Calendar</span>
+						</a>
+					   </li>
 					</ul>
 				</li>	
         		<li class="">
@@ -735,7 +741,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'calendar': 
 						    include('./api/workPlanCalendar.php');
 							break;
-						  default:
+						case 'workplan_status_table': 
+						    include('./tables/WorkplanStatus.php');
+							break;
+						
+						default:
 						   // $page ='dashboard';
 	                        include('dashboard.php');
 						}

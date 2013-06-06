@@ -214,6 +214,7 @@ var WorkPlanWizard = function () {
 				      type: "POST",
 					  url: './api/saveWorkPlan.php',
 					  data: {
+					   work_id: $('#work_id_input').val(),
 					   company: $('#company').val(),
 					   contact: $('#contact').val(),
 					   meeting_date: $('#meeting_date').val(),
