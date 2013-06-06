@@ -8,20 +8,23 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 
  
 // Retrieve values from the form for registration purposes
-	$work_clock = $_POST['work_clock'];
+	$work_id = $_POST['work_id'];
+	$lat = $_POST['latitude'];
+	$long = $_POST['longitude'];
+	$loc_address = $_POST['location_address'];
+	//clocking date is now
+	 $clocking_date = Date('Y-m-d');
+    // $newdate = $date->format('Y-m-d');
 	
 //Create a prepare statement
-$statement = $db->prepare("INSERT INTO  company_branch (Username, 
-CompanyID, Branch_Name,Branch_Address,StateID,Country_Code)  
-VALUES(:username, :companyid, :branch_name, :branch_address, :stateid, :country_code ) ");
+	$statement = $db->prepare("INSERT INTO  work_plan_clocking (WorkPlanID,Clocking_Date,Longtitude,Latitude,Location_Address)  
+	VALUES(:workplanid, :clocking_date, :longitude, :latitude, :location_address) ");
 ///
-$statement->execute(array(':username' => $username,
-   ':companyid' => $companyid,
-   ':branch_name' => $branch_name,
-   ':branch_address' => $branch_address,
-   ':stateid' => $stateid,
-   ':country_code' => $country_code
-   
+$statement->execute(array(':workplanid' => $work_id,
+   ':clocking_date' => $clocking_date,
+   ':longitude' => $lat,
+   ':latitude' => $long,
+   ':location_address' => $loc_address
 ));
 
 ///
@@ -32,6 +35,7 @@ if(!$statement)
 else 
 {
   echo "successful";
+ // echo $loc_address;
 }
 
 ?>

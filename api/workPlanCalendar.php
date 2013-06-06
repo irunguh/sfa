@@ -49,14 +49,13 @@ require_once("./db_connection/database_connect.php"); // For database connection
                         <div class="caption"><i class="icon-comments"></i>Meeting Clock In and Reschedule</div>
                      </div>
                      <div class="portlet-body">
-                        <table class="table table-striped table-hover">
+                        <table id="table_clock_in" class="table table-striped table-hover">
                            <thead>
                               <tr>
+							     <th>Work Id</th>
                                  <th>Contact</th>
                                  <th>Meeting_Date</th>
                                  <th>Activity</th>
-								 <th>Clock In</th>
-								 <th>Reschedule</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -65,16 +64,18 @@ require_once("./db_connection/database_connect.php"); // For database connection
 						      $date = new DateTime($today);
                               $newdate = $date->format('Y-m-d');
 						 
-						 $sql = "SELECT ContactID, Meeting_Date,Proposed_Activity FROM  work_plan where Meeting_Date = '$newdate' " ;
+						 $sql = "SELECT WorkPlanID, ContactID, Meeting_Date,Proposed_Activity FROM  work_plan where Meeting_Date = '$newdate' " ;
 						 $result = $db->query($sql); ?>
 						 
 						    <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
                               <tr>
-                                 <td><?php echo $rows['ContactID'] ?></td>
+							     <td class="nr"><?php echo $rows['WorkPlanID'] ?></td>
+                                 <td><?php echo $rows['ContactID'] ?></td> 	
                                  <td><?php echo $rows['Meeting_Date'] ?></td>
                                  <td><?php echo $rows['Proposed_Activity'] ?></td>
-                                 <td><button id="clocking" onclick="geoLocation()" type="button" class="btn green">Clock In</button></td>
+                                 <td><button id="clocking"  type="button" class="btn green use-address">Clock In</button></td>
                                  <td><button type="button" class="btn blue">Reschedule</button> </td>
+								  <td><button type="button" class="btn red">Cancel</button> </td>
                               </tr>
                             <?php } ?>  
                            </tbody>
@@ -119,41 +120,95 @@ require_once("./db_connection/database_connect.php"); // For database connection
 </script>
 
 <!-- Basic Geolocation script -->
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<!--<script src="http://j.maxmind.com/app/geoip.js"></script> <!-- For our fallback -->
 
-<script type="application/javascript" >
+  
+   <!-- END JAVASCRIPTS -->   
 
-//Check if browser supports W3C Geolocation API
+ <script>
+   $(".use-address").click(function() {
+			
+			//console.log('Log Work Id is' + work_id);
+			//do geolcation here
+			if (navigator.geolocation) {
+                 ////
+				
+				navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+				
 
-if (navigator.geolocation) {
+			} else {
 
-    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+				alert('It appears that Geolocation, which is required for this web page application, is not enabled in your browser. Please use a browser which supports the Geolocation API.');
 
-} else {
-
-    alert('It appears that Geolocation, which is required for this web page application, is not enabled in your browser. Please use a browser which supports the Geolocation API.');
-
+			}
+			/////////////////////////
+			 function successFunction(position,work_id) {
+	 ///
+	 var work_id = $(".use-address").closest("tr").find(".nr").text();
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+	
+	
+	  // set up the Geocoder object
+    var geocoder = new google.maps.Geocoder();
+	
+	 // turn coordinates into an object
+    var yourLocation = new google.maps.LatLng(latitude, longitude);
+	//Find out my location
+	  geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
+    if(status == google.maps.GeocoderStatus.OK) {
+      if(results[0]) {
+     
+		//alert('My Address is'+results[0].formatted_address + 'Work id is '+work_id);
+		//send data via ajax
+		 $.ajax({
+				      type: "POST",
+					  url: './api/saveWorkplanClocking.php',
+					  data: {
+					   latitude: latitude,
+					   longitude: longitude,
+					   location_address: results[0].formatted_address,
+					   work_id: work_id
+					   
+					  },
+					  success: function(data){
+					   if(data === 'successful')
+					   { 
+					
+					    alert('Meeting Clock-in was successful');
+					   }
+					   else {
+					     
+							alert(data);
+	            
+					   }
+					  }
+				   });
+		
+      } else {
+	
+	  console.log('Google did not return any results.');
+      }
+    } else {
+      
+	  console.log("Reverse Geocoding failed due to: " + status);
+    }
+  });
 }
-
-function successFunction(position) {
-
-    var lat = position.coords.latitude;
-
-    var long = position.coords.longitude;
-
-    alert('Your location coordinates are: Latitude:'+lat+' Longitude: '+long);
-
-}
-
+		//////
 function errorFunction(position) {
 
     alert('Error!');
 
-}
-
-</script> -->
+}	
+			//////////////////////////
+			
+		});
+		///////
 	
-  
-   <!-- END JAVASCRIPTS -->   
-
-
+		
+		
+  </script>
 
