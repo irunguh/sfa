@@ -66,7 +66,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
 						      $date = new DateTime($today);
                               $newdate = $date->format('Y-m-d');
 						 
-						 $sql = "SELECT WorkPlanID, ContactID, Meeting_Date,Proposed_Activity FROM  work_plan where Meeting_Date = '$newdate' " ;
+						 $sql = "SELECT WorkPlanID, ContactID, Meeting_Date,Proposed_Activity FROM  
+						 work_plan where Meeting_Date = '$newdate' " ;
 						 $result = $db->query($sql); ?>
 						 
 						    <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
@@ -101,13 +102,11 @@ require_once("./db_connection/database_connect.php"); // For database connection
 							  //echo  $result2 ;
 							  $count2 =  0;
 							       while($row3 = $result3->fetch(PDO::FETCH_ASSOC)){
-								      $count  = $row3['count(WorkPlanID)'];
+								      $count2  = $row3['count(WorkPlanID)'];
 								   
 								   }
-								?>
-								
-								
-								 <?php if($count > 0 && $count >0): ?>
+								?>	
+								 <?php if($count > 0 || $count2 >0): ?>
 								    <div class="span10">
 								      <div class="alert alert-success">
 									   <button class="close" data-dismiss="alert"></button>
@@ -116,7 +115,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									</div>
 								 <?php endif; ?>
 								 
-								 <?php if($count == 0 && $count2 == 0): ?>
+								 <?php if($count == 0 || $count2): ?>
 								  <button id="clocking"  type="button" class="btn green use-address">Clock In</button>
 								 
 								 </td>
