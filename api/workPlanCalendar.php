@@ -115,7 +115,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									</div>
 								 <?php endif; ?>
 								 
-								 <?php if($count == 0 || $count2): ?>
+								 <?php if($count == 0 && $count2 == 0): ?>
 								  <button id="clocking"  type="button" class="btn green use-address">Clock In</button>
 								 
 								 </td>
@@ -281,6 +281,33 @@ $(".use-address2").click(function() {
 				   });
 		
 		});
+		/////
+		$(".use-address3").click(function() {
+		 var work_id = $(".use-address3").closest("tr").find(".nr").text();
+		 ////
+		  $.ajax({
+				      type: "POST",
+					  url: './api/saveCancelWorkplan.php',
+					  data: {
+					   work_id: work_id
+					   
+					  },
+					  success: function(data){
+					   if(data === 'successful')
+					   { 
+					   //alert('Reschedule Done');
+					   // alert('Meeting Clock-in was successful');
+					   window.location.replace('dashboard.php?page=calendar');
+						 //window.location.replace('dashboard.php?page=calendar');
+					   }
+					   else {
+					     
+							alert(data);
+	            
+					   }
+					  }
+				   });
 		
+		});
   </script>
 
