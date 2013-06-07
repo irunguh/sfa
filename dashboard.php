@@ -794,8 +794,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'bar': 
 						    include('./charts/barChart.php');
 							break;
-						case 'line': 
-						    include('./charts/lineChart.php');
+						case 'pie': 
+						    include('./charts/pieChart.php');
 							break;
 						case 'inbox': 
 						    include('./inbox/inbox.php');
