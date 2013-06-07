@@ -180,24 +180,21 @@ var OrderWizard = function () {
                
 			     $.ajax({
 				      type: "POST",
-					  url: './api/saveWorkPlan.php',
+					  url: './api/saveOrder.php',
 					  data: {
+					   username: $('#username').val(),
 					   company: $('#company').val(),
-					   contact: $('#contact').val(),
-					   meeting_date: $('#meeting_date').val(),
-					   start_time: $('#start_time').val(),
-					   end_time: $('#end_time').val(),
-					   proposed_activity: $('#proposed_activity').val(),
-					   work_address: $('#work_address').val(),
-					   work_activity_type: $('#work_activity_type').val()
+					   branch: $('#company_branch_name').val()
+					//   product_no: $('#start_time').val()
 					  },
 					  success: function(data){
 					   if(data === 'successful')
 					   { 
 					 //  alert(meeting_date);
 					    //window.location.replace('dashboard.php?page=company_table&success=1');
-						jQuery('#form_wizard_order').hide();
-						jQuery('#success_save_workplan').show();
+						//jQuery('#form_wizard_order').hide();
+						//jQuery('#success_save_workplan').show();
+						alert('Order Saved');
 					   }
 					   else {
 					        //$('.alert-invalid', $('.login-form')).show();

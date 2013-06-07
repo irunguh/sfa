@@ -60,6 +60,17 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" />
    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css" />
+   
+   
+      <!-- BEGIN PAGE LEVEL STYLES -->
+   <link href="assets/plugins/bootstrap-tag/css/bootstrap-tag.css" rel="stylesheet" type="text/css" />
+  
+   <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+   
+   <!-- BEGIN:File Upload Plugin CSS files-->
+ 
+   <!-- END:File Upload Plugin CSS files-->     
+   <link href="assets/css/pages/inbox.css" rel="stylesheet" type="text/css" />
    <!-- End Form Component -->	
    <!-- Data Tables -->
   
@@ -482,6 +493,42 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</ul>
 					
 				 </li> 
+				  <li class="">
+        			<a href="javascript:;">
+					<i class="icon-table"></i> 
+					<span class="title">Charts</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+					    <li class="">
+							<a href="dashboard.php?page=pie">
+							<i class="icon-user"></i> 
+							<span class="title">Pie Chart</span>
+							</a>
+						</li>
+						 <li class="">
+							<a href="dashboard.php?page=bar">
+							<i class="icon-user"></i> 
+							<span class="title">Bar Chart</span>
+							</a>
+						</li>
+					</ul>
+				  </li> 
+				  <li class="">
+        			<a href="javascript:;">
+					<i class="icon-table"></i> 
+					<span class="title">Messaging</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+					    <li class="">
+							<a href="dashboard.php?page=inbox">
+							<i class="icon-user"></i> 
+							<span class="title">Inbox</span>
+							</a>
+						</li>
+					</ul>
+				  </li>
 				 <!--  <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
@@ -744,7 +791,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'workplan_status_table': 
 						    include('./tables/WorkplanStatus.php');
 							break;
-						
+						case 'bar': 
+						    include('./charts/barChart.php');
+							break;
+						case 'line': 
+						    include('./charts/lineChart.php');
+							break;
+						case 'inbox': 
+						    include('./inbox/inbox.php');
+							break;
 						default:
 						   // $page ='dashboard';
 	                        include('dashboard.php');
@@ -840,6 +895,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="assets/scripts/custom/branchWizard.js"></script> 
     <script src="assets/scripts/custom/workPlanWizard.js"></script>
 	<script src="assets/scripts/custom/companyWizard.js"></script>
+	<script src="assets/scripts/custom/orderWizard.js"></script>
+	
    <script src="assets/scripts/custom/retrieveCountry.js"></script> 
    <script src="assets/scripts/custom/retrieveSize.js"></script> 
    <script src="assets/scripts/custom/retrieveType.js"></script> 
@@ -855,6 +912,31 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
    
    <!-- End custom scripts -->
+   
+    <!-- Inbox Scripts -->
+	<script src="assets/plugins/bootstrap-tag/js/bootstrap-tag.js" type="text/javascript" ></script> 
+   <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript" ></script>
+  
+   <!-- BEGIN:File Upload Plugin JS files-->
+   <script src="assets/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+   <!-- The Templates plugin is included to render the upload/download listings -->
+   <script src="assets/plugins/jquery-file-upload/js/vendor/tmpl.min.js"></script>
+   <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+   <script src="assets/plugins/jquery-file-upload/js/vendor/load-image.min.js"></script>
+   <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+   <script src="assets/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
+   <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+   <script src="assets/plugins/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+   <!-- The basic File Upload plugin -->
+   <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+   <!-- The File Upload file processing plugin -->
+   <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-fp.js"></script>
+   <!-- The File Upload user interface plugin -->
+   <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
+   <script src="assets/scripts/inbox.js"></script>  
+	<!-- end inbox scripts -->
+   
+   
    
    <!-- Tables Scripts -->
    <script src="assets/scripts/table-editable.js"></script> 
@@ -887,6 +969,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 TableEditable.init();
 		 BranchWizard.init();
 		 WorkPlanWizard.init();
+		 OrderWizard.init();
+		 Inbox.init();
 		// calendar.init();
 		// FormValidation.init();
       });

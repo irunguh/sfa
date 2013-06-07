@@ -444,12 +444,12 @@ var Charts = function () {
         initPieCharts: function () {
             var graphData = [];
             var series = Math.floor(Math.random() * 10) + 2;
-            for (var i = 0; i < series; i++) {
+           for (var i = 0; i < series; i++) {
                 graphData[i] = {
-                    label: "Series" + (i + 1),
+                    label: "OTB",
                     data: Math.floor((Math.random() - 1) * 100) + 1
                 }
-            }
+            } 
 
             $.plot($("#graph_1"), graphData, {
                 series: {

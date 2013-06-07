@@ -1,8 +1,5 @@
-<script src="assets/scripts/custom/orderWizard.js"></script>
-<script src="assets/scripts/form-components.js"></script>
-<script src="assets/scripts/form-validation.js"></script>  
 <?php
-require_once("../db_connection/database_connect.php"); // For database connection 
+require_once("./db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">

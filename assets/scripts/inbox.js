@@ -4,7 +4,7 @@ var Inbox = function () {
     var loading = $('.inbox-loading');
 
     var loadInbox = function (name) {
-        var url = 'inbox_inbox.html';
+        var url = './inbox/inbox_inbox.html';
         var title = $('.inbox-nav > li.' + name + ' a').attr('data-title');
 
         loading.show();
@@ -23,7 +23,7 @@ var Inbox = function () {
     }
 
     var loadMessage = function (name, resetMenu) {
-        var url = 'inbox_view.html';
+        var url = './inbox/inbox_view.html';
 
         loading.show();
         content.html('');
@@ -85,7 +85,7 @@ var Inbox = function () {
     }
 
     var loadCompose = function () {
-        var url = 'inbox_compose.html';
+        var url = './inbox/inbox_compose.html';
 
         loading.show();
         content.html('');
@@ -93,7 +93,7 @@ var Inbox = function () {
         // load the form via ajax
         $.post(url, {}, function (res) {
             $('.inbox-nav > li.active').removeClass('active');
-            $('.inbox-header > h1').text('Compose');
+            $('.inbox-header > h1').text('Compose A Message');
 
             loading.hide();
             content.html(res);
@@ -106,10 +106,10 @@ var Inbox = function () {
             App.fixContentHeight();
             App.initUniform();
         });
-    }
+    } 
 
     var loadReply = function () {
-        var url = 'inbox_reply.html';
+        var url = './inbox/inbox_reply.html';
 
         loading.show();
         content.html('');
@@ -134,7 +134,7 @@ var Inbox = function () {
     }
 
     var loadSearchResults = function () {
-        var url = 'inbox_search_result.html';
+        var url = './inbox/inbox_search_result.html';
 
         loading.show();
         content.html('');
