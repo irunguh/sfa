@@ -31,7 +31,12 @@ require_once("./db_connection/database_connect.php"); // For database connection
  } 
  else if(!isset($_GET['work_id']))
  {
-   $work_id = 0 ;
+    $work_id = 0 ;
+    $start_time = null;
+    $end_time = null ;
+    $proposed_activity = null ;
+    $meeting_address = null ;
+    $meeting_date = null ;
  }
  
  
@@ -336,6 +341,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
    <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
+     
   <script>
    $(document).ready(function(){
    

@@ -1,7 +1,13 @@
  // Ajax Code To retrieve contacts information 
  
- var item = "";
-        $.getJSON("./api/retrieveContacts.php", function(data) {
+  //var id = $("#company").val(); 
+  
+  $('#company').change(function(){
+     
+  //alert('Changed Company !');
+  var value = $('select#company option').filter(":selected").val();
+  //alert(value);
+   $.getJSON("./api/retrieveContacts.php", { id : value },function(data) {
             
 			var select = document.getElementById('contact');
 			select.options.length = 0; 
@@ -9,5 +15,12 @@
 						var d = data[i];
 						select.options.add(new Option(d.First_Name,d.ContactID))
 					}
-          
-        }, 'json');
+          //alert('Select populated!');
+        }, 
+		
+		'json');
+  
+  });
+  
+ 
+       

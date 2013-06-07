@@ -2,8 +2,10 @@
 //Retrieve the status details
 
 require_once("../db_connection/database_connect.php"); // For database connection
+
+$company_id = $_REQUEST['id'];
  
-$stmt = $db->query("SELECT  ContactID , First_Name FROM  company_contacts"); // Retrieve data to display
+$stmt = $db->query("SELECT  ContactID , First_Name FROM  company_contacts where CompanyID = '$company_id' "); // Retrieve data to display
 $stmt->execute();
 /////////////////////
 	$data = array();
