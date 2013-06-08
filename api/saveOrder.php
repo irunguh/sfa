@@ -10,18 +10,21 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 	$username = $_POST['username'];
 	$companyid = $_POST['company'];
 	$branch = $_POST['branch'];
-	$product = 1 ;
+	//This is an array
+	$product =  $_POST['product'];
+	//we use implode to convert to string
+	$new_product = implode(",",$product);
 
 	
 //Create a prepare statement
-$statement = $db->prepare("INSERT INTO   company_orders (Username, 
+$statement = $db->prepare("INSERT INTO company_orders (Username, 
 CompanyID, BranchID,Product_No)  
 VALUES(:username, :companyid, :branch, :product) ");
 ///
 $statement->execute(array(':username' => $username,
    ':companyid' => $companyid,
    ':branch' => $branch,
-   ':product' => $product
+   ':product' => $new_product
 ));
 
 ///

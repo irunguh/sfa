@@ -113,21 +113,16 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										</div>
 									  <h3 class="form-section">Products:</h3>
 									   <div class="row-fluid">
-									     <div class="span6">
-											 <div class="controls">
-												 <label class="checkbox line">
-												 <input type="checkbox" value="1" name="service"/> Product 1
-												 </label>
-												 <label class="checkbox line">
-												 <input type="checkbox" value="2" name="service"/> Product 2
-												 </label>
-												 <label class="checkbox line">
-												 <input type="checkbox" value="3" name="service"/> Product 3
-												 </label>
-												 <span class="help-block">(select at least two)</span>
-												 <div id="form_2_service_error"></div>
+									     <div class="span10">
+											<div class="control-group">
+											  <label class="control-label">Select Products</label>
+											  <div class="controls">
+												 <select id="product" class="span6 m-wrap" multiple="multiple" data-placeholder="Choose a Category" tabindex="1">
+													
+												 </select>
 											  </div>
-											</div>
+										   </div>
+										</div>
 										</div>
                                  </div>
                                  <div class="tab-pane" id="tab4">
@@ -222,7 +217,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 			$('#confirm_company_name').text($('#company :selected').text());
 			//$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
 			$('#confirm_company_branch_name').text($('#company_branch_name :selected').text());
-			$('#confirm_product_no').text(document.getElementById("product").value);
+			$('#confirm_product_no').text($('#product :selected').text());
 			
 			
 			 

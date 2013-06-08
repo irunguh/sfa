@@ -6,10 +6,13 @@
  
 require_once("../db_connection/database_connect.php"); // For database connection
 
- 
+ /*$work_id = null ;
+ if(isset($_GET['work_id']))
+  {
   $work_id = $_REQUEST['work_id'];
+  } */
   
-  if($work_id != 0) //update an existing record and return success
+  if(isset($_REQUEST['work_id'])) //update an existing record and return success
   {
      // Retrieve values
 	                $work_id = $_REQUEST['work_id'];
@@ -55,7 +58,7 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 				   print_r($q->errorInfo());
 				}
   }
-  else if($work_id == 0) // do a new insert
+  else if(!isset($_REQUEST['work_id'])) // do a new insert
   {
 					// Retrieve values
 					$company = $_REQUEST['company'];

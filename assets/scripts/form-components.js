@@ -263,6 +263,10 @@ var FormComponents = function () {
             placeholder: "Select contact",
             allowClear: true
         });
+		/*$('#product').select2({
+            placeholder: "Select product",
+            allowClear: true
+        }); */
 		$('#work_activity_type').select2({
             placeholder: "Select an option",
             allowClear: true

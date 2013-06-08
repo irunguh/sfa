@@ -907,6 +907,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
    <script src="assets/scripts/custom/retrieveBranch.js"></script> 
    <script src="assets/scripts/custom/retrieveWorkplan.js"></script> 
+   <script src="assets/scripts/custom/retrieveProduct.js"></script> 
+   
    <script src="assets/scripts/custom/jquery.dateFormat.js"></script> 	
 	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="assets/plugins/jquery-validation/dist/additional-methods.min.js"></script>
@@ -971,6 +973,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 WorkPlanWizard.init();
 		 OrderWizard.init();
 		 Inbox.init();
+		 
 		// calendar.init();
 		// FormValidation.init();
       });

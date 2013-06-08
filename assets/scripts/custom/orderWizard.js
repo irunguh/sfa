@@ -177,6 +177,9 @@ var OrderWizard = function () {
 
             $('#form_wizard_order').find('.button-previous').hide();
             $('#form_wizard_order .button-submit').click(function () {
+			   
+			   
+			    //alert($('#product').val());
                
 			     $.ajax({
 				      type: "POST",
@@ -184,8 +187,9 @@ var OrderWizard = function () {
 					  data: {
 					   username: $('#username').val(),
 					   company: $('#company').val(),
-					   branch: $('#company_branch_name').val()
-					//   product_no: $('#start_time').val()
+					   branch: $('#company_branch_name').val(),
+					   product: $('#product').val()
+					
 					  },
 					  success: function(data){
 					   if(data === 'successful')

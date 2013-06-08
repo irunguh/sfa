@@ -41,6 +41,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                            <a href="javascript:;" class="remove"></a>
                         </div>
                      </div>
+					 
                      <div class="portlet-body">
                         <div class="clearfix">
                            <div class="btn-group pull-right">
@@ -60,6 +61,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <th>Meeting Date</th>
 								 <th>Start Time</th>
 								 <th>End Time</th>
+								  <th>Proposed Activity</th>
 								 <th>Address</th>
 								 <th>Activity Status</th>
                                  <th>Action</th>
@@ -89,6 +91,8 @@ require_once("./db_connection/database_connect.php"); // For database connection
                            </tbody>
                         </table>
                      </div>
+					 
+					 
                   </div>
                   <!-- END EXAMPLE TABLE PORTLET-->
                </div>

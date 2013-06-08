@@ -1,46 +1,6 @@
 <?php
 require_once("./db_connection/database_connect.php"); // For database connection 
 ?>
-
- <?php if(isset($_GET['work_id'])){ 
-    
-  $work_id = $_GET['work_id'] ;
-  //////////////////initialize variables
-  $start_time = null;
-  $end_time = null ;
-  $proposed_activity = null ;
-  $meeting_address = null ;
-   $meeting_date = null ;
-  // $activity_typeid = null ;
- // $companyid = null ;
- // $contactid = null ;
-  //select statement to retrieve information to update
-  $sql = "SELECT * FROM work_plan_status where WorkPlanID = '$work_id' " ;
-  $result = $db->query($sql);
-  //while loop
-    while($rows = $result->fetch(PDO::FETCH_ASSOC)){
-	   
-	   $start_time = $rows['Start_Time'];
-       $end_time = $rows['End_Time'] ;
-       $proposed_activity = $rows['Proposed_Activity'] ;
-       $meeting_address = $rows['Address'] ;
-	   $meeting_date = $rows['Meeting_Date'] ;
-	}
-   
- 
- } 
- else if(!isset($_GET['work_id']))
- {
-    $work_id = 0 ;
-    $start_time = null;
-    $end_time = null ;
-    $proposed_activity = null ;
-    $meeting_address = null ;
-    $meeting_date = null ;
- }
- 
- 
- ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">
             <!-- BEGIN PAGE HEADER-->   
@@ -124,7 +84,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 												<select id="company" class="span9" name="company" >
 													 <option value=""></option>
 												</select>
-												<input id="work_id_input" type="hidden" value="<?php echo $work_id  ?>"/>
+												
 											   </div>
 											</div>
 									      </div>
@@ -341,34 +301,6 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
    <script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 
-     
-  <script>
-   $(document).ready(function(){
-   
-   var myVal = 3; 
- // alert(myVal);
-   $("#company").val(myVal);
-   $("#contact").val(myVal);
-   $("#work_activity_type").val(myVal);
-   
-     
-   
-   $("#meeting_date").val("<?php echo $meeting_date;  ?>");
-   $("#start_time").val("<?php echo $start_time;  ?>");
-   $("#end_time").val("<?php echo $end_time;  ?>");
-   $("textarea#proposed_activity").val("<?php echo $proposed_activity;  ?>");
-   $("textarea#work_address").val("<?php echo $meeting_address;  ?>");
-   
-   
-   });
-   //setting my values manually testing
-   //set country
-  /*  $("select2#company option").each(function(){
-	  this.selected = (this.text == 1) ;
-	}); */
-  	
-  
-  </script>
    <script>
      function myconfirmbranch(){
 	        ///
