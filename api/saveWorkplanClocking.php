@@ -26,16 +26,16 @@ $statement->execute(array(':workplanid' => $work_id,
    ':latitude' => $long,
    ':location_address' => $loc_address
 ));
-
+$count = $statement->rowCount();
 ///
-if(!$statement)
-{
-  echo "error" ;
-}
-else 
-{
-  echo "successful";
- // echo $loc_address;
-}
+	if($count > 0)
+	{
+	  echo "successful";
+	}
+	if($count <= 0)
+	{
+	   print_r($statement->errorInfo());
+	}
+
 
 ?>

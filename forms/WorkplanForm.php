@@ -92,7 +92,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										      <div class="control-group">
 											  <label class="control-label">Meeting Date</label>
 											  <div class="controls">
-												 <div class="input-append date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+												 <div class="input-append date date-picker" data-date="<?php echo("dd-mm-yyyy") ?>" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
 													<input id= "meeting_date" name="meeting_date" class="m-wrap m-ctrl-medium date-picker" size="16" type="text" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
 												 </div>
 											  </div>

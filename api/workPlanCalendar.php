@@ -72,8 +72,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 						 
 						    <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
                               <tr>
-							     <td class="myid"><?php echo $rows['WorkPlanID'];
-                                    $workId = $rows['WorkPlanID'];
+							     <td class="nr"><?php echo $rows['WorkPlanID'];$workId = $rows['WorkPlanID'];
 								 ?></td>
                                  <td><?php echo $rows['ContactID'] ?></td> 	
                                  <td><?php echo $rows['Meeting_Date'] ?></td>
@@ -97,7 +96,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 								  //we make sure that this user has not yet clocked-in if so
 								  //we show a message informing them that they have 
 					           $sql3 = "SELECT count(WorkPlanID) FROM  
-							   work_plan_status where WorkPlanID = '$workId' and Activity_Status = 1 " ;
+							   work_plan_status where WorkPlanID = '$workId' " ;
 						      $result3 = $db->query($sql3);
 							  //echo  $result2 ;
 							  $count2 =  0;
@@ -121,16 +120,14 @@ require_once("./db_connection/database_connect.php"); // For database connection
 								  
 								?>
 								 <?php if($count3 > 0): ?>
-								    <a href="#myModal1" role="button" class="btn btn-primary edit-reschedule" data-toggle="modal">Edit Reschedule</a>
+								    <a href="#myModal1" role="button" class="btn btn-primary edit-reschedule" data-toggle="modal">Edit</a>
 								 <?php endif; ?>
-								 
-								 <?php if($count == 0 && $count2 == 0): ?>
-								  <button id="clocking"  type="button" class="btn green use-address">Clock In</button>
-								 
 								 </td>
+								  <?php if($count == 0 && $count2 == 0): ?>
+								 <td> <button  type="button" class="btn green clocking">Clock In</button></td>
                                 <!-- <td><button type="button" class="btn blue use-address2">Reschedule</button> </td> -->
-								 <td> <a href="#" role="button" class="btn btn-primary use-address2">Reschedule</a></td>
-								 <td><button type="button" class="btn red use-address3">Cancel</button> </td>
+								 <td> <a href="#" role="button" class="btn btn-primary reschedule">Reschedule</a></td>
+								 <td><button type="button" class="btn red cancel">Cancel</button> </td>
 								 <?php endif; ?>
                               </tr>
                             <?php } ?>  
@@ -160,7 +157,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 												<select id="company" class="span9" name="company" >
 													 <option value=""></option>
 												</select>
-												<input id="work_id_input" type="hidden" value="<?php echo $work_id  ?>"/>
+												<input id="work_id_input" type="hidden" value=""/>
 											   </div>
 											</div>
 									      </div>
@@ -307,95 +304,129 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END JAVASCRIPTS -->   
 
  <script>
-   $(".use-address").click(function() {
-			
+   
+    $('.clocking').on('click', function() {		
 			//console.log('Log Work Id is' + work_id);
 			//do geolcation here
 			if (navigator.geolocation) {
-                 ////
-				
-				navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
-				
+                 ////	
+				 console.log('Navigator Activated!');
+				navigator.geolocation.getCurrentPosition(successFunction, errorFunction,{timeout:10000});	
 
 			} else {
 
 				alert('It appears that Geolocation, which is required for this web page application, is not enabled in your browser. Please use a browser which supports the Geolocation API.');
 
 			}
-			/////////////////////////
+			//
 			 function successFunction(position,work_id) {
 	 ///
-	 var work_id = $(".use-address").closest("tr").find(".nr").text();
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-	
-	
-	  // set up the Geocoder object
-    var geocoder = new google.maps.Geocoder();
-	
-	 // turn coordinates into an object
-    var yourLocation = new google.maps.LatLng(latitude, longitude);
-	//Find out my location
-	  geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
-    if(status == google.maps.GeocoderStatus.OK) {
-      if(results[0]) {
-     
-		//alert('My Address is'+results[0].formatted_address + 'Work id is '+work_id);
-		//send data via ajax
-		 $.ajax({
-				      type: "POST",
-					  url: './api/saveWorkplanClocking.php',
-					  data: {
-					   latitude: latitude,
-					   longitude: longitude,
-					   location_address: results[0].formatted_address,
-					   work_id: work_id
-					   
-					  },
-					  success: function(data){
-					   if(data === 'successful')
-					   { 
+					var work_id = $(".use-address").closest("tr").find(".nr").text();
 					
-					   // alert('Meeting Clock-in was successful');
-						 window.location.replace('dashboard.php?page=calendar');
-					   }
-					   else {
-					     
-							alert(data);
-	            
-					   }
+					var latitude = position.coords.latitude;
+					var longitude = position.coords.longitude;
+					
+					
+					  // set up the Geocoder object
+					var geocoder = new google.maps.Geocoder();
+					
+					 // turn coordinates into an object
+					var yourLocation = new google.maps.LatLng(latitude, longitude);
+					//Find out my location
+					  geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
+					if(status == google.maps.GeocoderStatus.OK) {
+					  if(results[0]) {
+					                  /////
+					                  $('.clocking').on('click', function() {
+										//This code retrieve specific id 
+										//check http://jsfiddle.net/beME9/  for more on this
+										var $row = jQuery(this).closest('tr');
+										var $columns = $row.find('td');
+
+										$columns.addClass('row-highlight');
+										var values = "";
+										
+										jQuery.each($columns, function(i, item) {
+											values = values + 'td' + (i + 1) + ':' + item.innerHTML + '<br/>';
+										   // alert(values);
+										});
+										//console.log(values[4]);
+										var work_id = values[4] ;
+										//send data via ajax
+						             $.ajax({
+									  type: "POST",
+									  url: './api/saveWorkplanClocking.php',
+									  data: {
+									   latitude: latitude,
+									   longitude: longitude,
+									   location_address: results[0].formatted_address,
+									   work_id: work_id
+									   
+									  },
+									  success: function(data){
+									   if(data === 'successful')
+									   { 
+									
+										alert('Meeting Clock-in was successful');
+										// window.location.replace('dashboard.php?page=calendar');
+									   }
+									   else {
+										 
+											alert('An Error Occured '+data);
+								
+									   }
+									  }
+								   });
+										});
+										//////
+						
+						
+					  } else {
+					
+					  console.log('Google did not return any results.');
 					  }
-				   });
-		
-      } else {
-	
-	  console.log('Google did not return any results.');
-      }
-    } else {
-      
-	  console.log("Reverse Geocoding failed due to: " + status);
-    }
-  });
-}
-		//////
-function errorFunction(position) {
+					} else {
+					  
+					  console.log("Reverse Geocoding failed due to: " + status);
+					}
+				  });
+				}
+						//////
+				function errorFunction(position,work_id) {
+				
+								
+					alert('Sorry An Error Occured with Geolocation Server!'+ position ); 
+					
 
-    alert('Error!');
-
-}	
-			//////////////////////////
+				}	
+			//
 			
-		});
-		///////
-$(".use-address2").click(function() {
-		 var work_id = $(".use-address2").closest("tr").find(".nr").text();
-		 ////
-		  $.ajax({
+     });
+
+	
+			/////// Reschedule
+         $(".reschedule").click(function() {
+						
+						//This code retrieve specific id 
+						//check http://jsfiddle.net/beME9/  for more on this
+						var $row = jQuery(this).closest('tr');
+						var $columns = $row.find('td');
+
+						$columns.addClass('row-highlight');
+						var values = "";
+						
+						jQuery.each($columns, function(i, item) {
+							values = values + 'td' + (i + 1) + ':' + item.innerHTML + '<br/>';
+						   // alert(values);
+						});
+						//console.log(values[4]);
+						var work_id_value = values[4] ;
+						
+				  $.ajax({
 				      type: "POST",
 					  url: './api/saveReschedule.php',
 					  data: {
-					   work_id: work_id
-					   
+					   work_id: work_id_value   
 					  },
 					  success: function(data){
 					   if(data === 'successful')
@@ -415,16 +446,28 @@ $(".use-address2").click(function() {
 					  }
 				   }); 
 		
-		});
-		/////
-		$(".use-address3").click(function() {
-		 var work_id = $(".use-address3").closest("tr").find(".nr").text();
-		 ////
+		}); 
+		///// cancel meeting
+		$(".cancel").click(function() {
+					//This code retrieve specific id 
+						//check http://jsfiddle.net/beME9/  for more on this
+						var $row = jQuery(this).closest('tr');
+						var $columns = $row.find('td');
+
+						$columns.addClass('row-highlight');
+						var values = "";
+						
+						jQuery.each($columns, function(i, item) {
+							values = values + 'td' + (i + 1) + ':' + item.innerHTML + '<br/>';
+						   // alert(values);
+						});
+						//console.log(values[4]);
+						var work_id_value = values[4] ;
 		  $.ajax({
 				      type: "POST",
 					  url: './api/saveCancelWorkplan.php',
 					  data: {
-					   work_id: work_id
+					   work_id: work_id_value
 					   
 					  },
 					  success: function(data){
@@ -443,26 +486,50 @@ $(".use-address2").click(function() {
 					  }
 				   });
 		
-		});
+		}); 
 		
 		$(".use-edit").click(function() {
 
-			var work_id = $(".use-edit").closest("tr").find(".nr").text();
-		   window.location.replace('dashboard.php?page=workplan&work_id='+work_id);
+		//This code retrieve specific id 
+		//check http://jsfiddle.net/beME9/  for more on this
+		var $row = jQuery(this).closest('tr');
+		var $columns = $row.find('td');
 
+		$columns.addClass('row-highlight');
+		var values = "";
+		
+		jQuery.each($columns, function(i, item) {
+			values = values + 'td' + (i + 1) + ':' + item.innerHTML + '<br/>';
+		   // alert(values);
 		});
+		//console.log(values[4]);
+		var work_id = values[4] ;
+		window.location.replace('dashboard.php?page=workplan&work_id='+work_id);
+
+		}); 
   </script>
   <script>
-         /////
-		 $('.mytableclick tr').click(function(){
-      // alert($(this).index() + 1 );
-	     var work_id  = $(this).index() + 1 ;
+   $('.edit-reschedule').click(function(){
+     //This code retrieve specific id 
+						//check http://jsfiddle.net/beME9/  for more on this
+						var $row = jQuery(this).closest('tr');
+						var $columns = $row.find('td');
+
+						$columns.addClass('row-highlight');
+						var values = "";
+						
+						jQuery.each($columns, function(i, item) {
+							values = values + 'td' + (i + 1) + ':' + item.innerHTML + '<br/>';
+						   // alert(values);
+						});
+						//console.log(values[4]);
+						var work_id_value = values[4] ; ;
 		 /////
 		 $.ajax({
 				      type: "POST",
 					  url: './api/retrieveWorkplanToEdit.php',
 					  data: {
-					   work_id: work_id
+					   work_id: work_id_value
 					   
 					  },
 					  success: function(data){
@@ -501,7 +568,7 @@ $(".use-address2").click(function() {
 									   $("textarea#proposed_activity").val(proposed_activity);
 									   $("textarea#work_address").val(address); 
 									   //
-									   $("#work_id_input").val(work_id);
+									   $("#work_id_input").val(work_id_value);
 									
 											  
 					
@@ -510,8 +577,10 @@ $(".use-address2").click(function() {
 		 /////
 	  
     });
-		///
+	///
 		$(".workplan-edit").click(function() {
+		
+		  
 		           $.ajax({
 				      type: "POST",
 					  url: './api/saveWorkPlan.php',
@@ -542,7 +611,7 @@ $(".use-address2").click(function() {
 	            
 					   }
 					  }
-				   });
+				   }); 
 		});
-  
   </script>
+ 

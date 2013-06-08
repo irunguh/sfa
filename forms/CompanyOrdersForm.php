@@ -123,6 +123,15 @@ require_once("./db_connection/database_connect.php"); // For database connection
 											  </div>
 										   </div>
 										</div>
+										 <div class="span6">
+										<div class="control-group">
+										   <label class="control-label">Quantity</label>
+										   <div class="controls">
+											  <input id ="product_quantity" type="text" name="product_quantity" class="span9 m-wrap" />
+											
+										   </div>
+										</div>
+										</div>
 										</div>
                                  </div>
                                  <div class="tab-pane" id="tab4">
