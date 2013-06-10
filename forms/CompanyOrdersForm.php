@@ -198,9 +198,9 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <a href="javascript:;" class="btn blue button-next" onclick="myconfirmbranch()">
                                  Continue <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
-								    <a href="javascript:;" id="jqcc" class="btn blue">
+								   <!-- <a href="javascript:;" id="jqcc" class="btn blue">
                                  Test Selected 
-                                 </a>
+                                 </a> -->
                                  <a href="javascript:;" class="btn green button-submit">
                                  Submit <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
