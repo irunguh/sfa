@@ -404,7 +404,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</a>
 					<ul class="sub-menu">
 					    <li class="">
-							<a href="dashboard.php?page=company">
+							<a href="dashboard.php?page=company_table">
 							<i class="icon-user"></i> 
 							<span class="title">View Companies</span>
 							</a>

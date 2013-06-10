@@ -48,7 +48,7 @@ var TableEditable = function () {
                 oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
                 oTable.fnDraw();
             }
-
+           
             var oTable = $('#sample_editable_1').dataTable({
                 "aLengthMenu": [
                     [5, 15, 20, -1],

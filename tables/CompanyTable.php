@@ -1,5 +1,5 @@
 <?php
-require_once("../db_connection/database_connect.php"); // For database connection 
+require_once("./db_connection/database_connect.php"); // For database connection 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">

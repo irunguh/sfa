@@ -111,104 +111,48 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										   </div>
 										</div>
 										</div>
-									  <h3 class="form-section">Multi-product Quantity-based Order Form:</h3>
-									   <div class="row-fluid">
-									           <div id="page-wrap">
-													<table class="table table-striped table-bordered table-advance table-hover">
-														<tr>
-															 <th>Product Name</th> 
-															 <th>Quantity</th>
-															 <th>Unit Price</th>
-															 <th>=</th>
-															 <th style="text-align: right; padding-right: 30px;">Totals</th> 
-														</tr>
-														<tr class="odd">
-															<td class="product-title">Sparkle No. 6&reg; - <em>Dry Line Marking Compound</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>165</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="even">
-															<td class="product-title">Turface&reg; MVP - <em>Calcined Clay Soil Conditioner</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>300</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="odd">
-															<td class="product-title">Turface&reg; Pro League - <em>Calcined Clay Top Dressing</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" ></input></td>
-															
-															<td class="price-per-pallet">$<span>340</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="even">
-															<td class="product-title">Turface&reg; Pro League Red - <em>Calcined Clay Top Dressing</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-red-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>455</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-red-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="odd">
-															<td class="product-title">Turface&reg; Quick Dry - <em>Calcined Clay Moisture Absorbent</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" ></input></td>
-															
-															<td class="price-per-pallet">$<span>300</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="even">
-															<td class="product-title">Turface&reg; Mound Clay Red - <em>Virgin Red Clay</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>410</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="odd">
-															<td class="product-title">Diamond Pro&reg; Red Infield Conditioner - <em>Vitrified Clay Top Dressing</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" ></input></td>
-															
-															<td class="price-per-pallet">$<span>365</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="even">
-															<td class="product-title">Diamond Pro&reg; Drying Agent - <em>Calcined Clay Moisture Absorbent</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>340</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="odd">
-															<td class="product-title">Diamond Pro&reg; Professional - <em>Calcined Clay Top Dressing</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" ></input></td>
-															
-															<td class="price-per-pallet">$<span>375</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr class="even">
-															<td class="product-title">Diamond Pro&reg; Top Dressing - <em>Calcined Clay Soil Conditioner</em></td>
-															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets"></input></td>
-															
-															<td class="price-per-pallet">$<span>340</span></td>
-															<td class="equals">=</td>
-															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled"></input></td>
-														</tr>
-														<tr>
-															<td colspan="6" style="text-align: right;">
-															 TOTAL: <input type="text" class="total-box" value="$0" id="product-subtotal" disabled="disabled"></input>
-															</td>
-														</tr>
-													</table>	
-												</div>
+									  <h3 class="form-section">Product Order Form:</h3>
+									   <div id="c_b" class="row-fluid">   
+										 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                           <thead>
+                                                <tr>
+												 <th></th>
+												 <th>PRODUCT</th> 
+												 <th>QUANTITY</th>
+												 <th>MR PRICE</th>
+												 <th>LIST PRICE</th>
+												 <th>=</th>
+												 <th style="text-align: right; padding-right: 30px;">TOTALS</th> 
+												</tr>
+                                           </thead>
+												 <tbody>
+											   <?php 
+											// $stmt = $db->prepare("SELECT * FROM  company ");
+											 $sql = "SELECT ProductID as id, Product_Name as product,List_Price as price FROM  products" ;
+											 $result = $db->query($sql);
+											// $query = $stmt->execute(); 						 
+											   ?>
+											   <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
+												  <tr class="txtMult">
+												     <td><input class = "prodSel" type="checkbox" id="chk[]"></td>
+													 <td><input type="text" disabled="disabled" value="<?php echo $rows['product'] ?>" /></td>
+													 <td><input type="text"  class="span4 val1" id="<?php echo $rows['id'] ?>"></input></td>
+													 <td><input type="text"  class="span6 val2" id="<?php echo $rows['id'] ?>"></input></td>
+													 <td><?php echo $rows['price'] ?></td>
+													 <td>=</td>
+													 <td><span class="multTotal">0.00</span></td>
+												  </tr>
+												<?php } ?>
+												     
+											   </tbody>
+											</table>			
+												 
+										</div>
+										 <div class="span4">
+											<div class="alert alert-success">
+											   <button class="close" data-dismiss="alert"></button>
+											   <strong>Order Grand Total:</strong> <span id="grandTotal">0.00</span>
+											</div>
 										</div>
                                  </div>
                                  <div class="tab-pane" id="tab4">
@@ -254,6 +198,9 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <a href="javascript:;" class="btn blue button-next" onclick="myconfirmbranch()">
                                  Continue <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
+								    <a href="javascript:;" id="jqcc" class="btn blue">
+                                 Test Selected 
+                                 </a>
                                  <a href="javascript:;" class="btn green button-submit">
                                  Submit <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
@@ -273,28 +220,31 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- END CONTAINER -->
    <!-- BEGIN FOOTER -->
   
-  <script src="assets/scripts/custom/retrieveCountry.js"></script> 
-   <script src="assets/scripts/custom/retrieveSize.js"></script> 
-   <script src="assets/scripts/custom/retrieveType.js"></script> 
-   <script src="assets/scripts/custom/retrieveState.js"></script> 
-   <script src="assets/scripts/custom/retrieveStatus.js"></script> 
-   <script src="assets/scripts/custom/retrieveCompany.js"></script> 
-   <script src="assets/scripts/custom/retrieveContacts.js"></script> 
-   <script src="assets/scripts/custom/retrieveActivityType.js"></script> 
-  <script src="assets/scripts/custom/retrieveBranch.js"></script> 
-   <!-- End custom scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script>
+ $(document).ready(function () {
+       $(".txtMult input").keyup(multInputs);
+       function multInputs() {
+           var mult = 0;
+		  //  var response = 0 ;
+		  var arr = [] ;
+           // for each row:
+           $("tr.txtMult").each(function () {
+               // get the values from this row:
+               var $val1 = $('.val1', this).val();
+               var $val2 = $('.val2', this).val();
+               var $total = ($val1 * 1) * ($val2 * 1)
+               $('.multTotal',this).text($total);
+               mult += $total;
+			  ///
+           });
+	 }
+	  
+	 
+  });
+</script>
     
-    <script>
-      jQuery(document).ready(function() { 
-					  
-         OrderWizard.init();
-		 FormComponents.init();
-
-      });
-   </script>
-   <script>
-      
-   
+   <script> 
      function myconfirmbranch(){
 	 //alert($('#company :selected').text());
 	 //alert($('#confirm_username').text(document.getElementById("username").value));
@@ -303,16 +253,56 @@ require_once("./db_connection/database_connect.php"); // For database connection
 			$('#confirm_company_name').text($('#company :selected').text());
 			//$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
 			$('#confirm_company_branch_name').text($('#company_branch_name :selected').text());
-			$('#confirm_product_no').text($('#product :selected').text());
+			//$('#confirm_product_no').text(document.getElementById("product").value);
 			
-			
-			 
-	 }
+			//////
+}
    </script>
-   
-	
-  
-   <!-- END JAVASCRIPTS -->   
+  <script>
+ var proddta = {
+    init: function() {
+        // hook into the checkbox/row selector
+        $('td').change(proddta.rowSelect);
+    },
 
+    rowSelect: function(event) {
+      //  alert('hello 1');
+        var work = [];
+        var $closestTr = $(this).closest('tr');
+        var chkbox = $closestTr.find('td:eq(0)').find(':checkbox');
+        
+      //  alert('hello 2 ' + chkbox.is(':checked'));
+        if (null !== chkbox && true === chkbox.is(':checked')) 
+		{
+           
+            var s = '';
+            for (var i = 0; i < 50; i++) 
+			{
+               /* if (i != 0 && i < 40) 
+				{
+                 //   s = $closestTr.find('td:eq(' + i + ')').text(); 
+				 s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                } 
+				else 
+				{
+                    s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                }*/
+				 s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                work.push(s);
+            } 
+			
+        }
+        else 
+		{
+           // alert('hello 99');
+        }
+      //  alert('' + work.join(' '));
+	//	console.log(work.join(' '));
+		console.log(work[1], work[2],work[3]);
+		$('#confirm_product_no').text(work.join(' '));
+    }
+}
+proddta.init();
+/////
 
-
+ </script>
