@@ -111,27 +111,104 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										   </div>
 										</div>
 										</div>
-									  <h3 class="form-section">Products:</h3>
+									  <h3 class="form-section">Multi-product Quantity-based Order Form:</h3>
 									   <div class="row-fluid">
-									     <div class="span10">
-											<div class="control-group">
-											  <label class="control-label">Select Products</label>
-											  <div class="controls">
-												 <select id="product" class="span6 m-wrap" multiple="multiple" data-placeholder="Choose a Category" tabindex="1">
-													
-												 </select>
-											  </div>
-										   </div>
-										</div>
-										 <div class="span6">
-										<div class="control-group">
-										   <label class="control-label">Quantity</label>
-										   <div class="controls">
-											  <input id ="product_quantity" type="text" name="product_quantity" class="span9 m-wrap" />
-											
-										   </div>
-										</div>
-										</div>
+									           <div id="page-wrap">
+													<table class="table table-striped table-bordered table-advance table-hover">
+														<tr>
+															 <th>Product Name</th> 
+															 <th>Quantity</th>
+															 <th>Unit Price</th>
+															 <th>=</th>
+															 <th style="text-align: right; padding-right: 30px;">Totals</th> 
+														</tr>
+														<tr class="odd">
+															<td class="product-title">Sparkle No. 6&reg; - <em>Dry Line Marking Compound</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="sparkle-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>165</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="sparkle-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="even">
+															<td class="product-title">Turface&reg; MVP - <em>Calcined Clay Soil Conditioner</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mvp-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>300</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="turface-mvp-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="odd">
+															<td class="product-title">Turface&reg; Pro League - <em>Calcined Clay Top Dressing</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-num-pallets" ></input></td>
+															
+															<td class="price-per-pallet">$<span>340</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="even">
+															<td class="product-title">Turface&reg; Pro League Red - <em>Calcined Clay Top Dressing</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-pro-league-red-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>455</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="turface-pro-league-red-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="odd">
+															<td class="product-title">Turface&reg; Quick Dry - <em>Calcined Clay Moisture Absorbent</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-quick-dry-num-pallets" ></input></td>
+															
+															<td class="price-per-pallet">$<span>300</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="turface-quick-dry-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="even">
+															<td class="product-title">Turface&reg; Mound Clay Red - <em>Virgin Red Clay</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="turface-mound-clay-red-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>410</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="turface-mound-clay-red-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="odd">
+															<td class="product-title">Diamond Pro&reg; Red Infield Conditioner - <em>Vitrified Clay Top Dressing</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-red-num-pallets" ></input></td>
+															
+															<td class="price-per-pallet">$<span>365</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-red-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="even">
+															<td class="product-title">Diamond Pro&reg; Drying Agent - <em>Calcined Clay Moisture Absorbent</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-drying-agent-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>340</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-drying-agent-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="odd">
+															<td class="product-title">Diamond Pro&reg; Professional - <em>Calcined Clay Top Dressing</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-professional-num-pallets" ></input></td>
+															
+															<td class="price-per-pallet">$<span>375</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-professional-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr class="even">
+															<td class="product-title">Diamond Pro&reg; Top Dressing - <em>Calcined Clay Soil Conditioner</em></td>
+															<td class="num-pallets"><input type="text" class="num-pallets-input" id="diamond-pro-top-dressing-num-pallets"></input></td>
+															
+															<td class="price-per-pallet">$<span>340</span></td>
+															<td class="equals">=</td>
+															<td class="row-total"><input type="text" class="row-total-input" id="diamond-pro-top-dressing-row-total" disabled="disabled"></input></td>
+														</tr>
+														<tr>
+															<td colspan="6" style="text-align: right;">
+															 TOTAL: <input type="text" class="total-box" value="$0" id="product-subtotal" disabled="disabled"></input>
+															</td>
+														</tr>
+													</table>	
+												</div>
 										</div>
                                  </div>
                                  <div class="tab-pane" id="tab4">
