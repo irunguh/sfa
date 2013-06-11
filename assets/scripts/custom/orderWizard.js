@@ -192,7 +192,7 @@ var OrderWizard = function () {
 					
 					  },
 					  success: function(data){
-					   if(data === 'successful')
+					  /* if(data === 'successful')
 					   { 
 					 //  alert(meeting_date);
 					    //window.location.replace('dashboard.php?page=company_table&success=1');
@@ -205,7 +205,8 @@ var OrderWizard = function () {
 							alert(data);
 							console.log("Log>>>"+$("#confirm_product").val());
 	            
-					   }
+					   } */
+					   alert('Order Submitted');
 					  }
 				   });
 			   

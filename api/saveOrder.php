@@ -34,9 +34,9 @@ require_once("../db_connection/database_connect.php"); // For database connectio
           //  echo $quantity;	echo("<br>");		 
 		//	echo $order_price; echo("<br>");
 			///static to change
-			$orderid = 1;
-			$list_price = 12 ;
-			$productid = 1;
+		//	$orderid = 1;
+			//$list_price = 12 ;
+			//$productid = 1;
 			///
 			//Create a prepare statement
 			$statement = $db->prepare("INSERT INTO company_orders (Username, 
@@ -52,25 +52,31 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 			$statement2 = $db->prepare("INSERT INTO  company_orders_breakdown (Username, 
 			COrderID, ProductID, Qty, MR_Price, List_Price, Order_Price)  
 			VALUES(:username, :orderid, :productid, :qty, :mr_price, :list_price, :order_price) ");
-			///
-			$statement2->execute(array(':username' => $username,
-			   ':orderid' => $orderid,
-			   ':productid' => $productid,
-			   ':qty' => $pieces2[1],
-			   ':mr_price' => $pieces2[2],
-			   ':list_price' => $list_price,
-			   ':order_price' => $pieces2[2]
-			));
+			///we introduce a new query here that retrieves $orderid, $list_price, $productid
+			  
+			$list_price =  $db->query("SELECT List_Price from products where ProductID = '$pieces2[0]' ") ;  
+			while ($row = $list_price->fetch(PDO::FETCH_ASSOC)) 
+			{
+				$order_id_query =  $db->query("SELECT COrderID from  company_orders where Product_No = '$pieces2[0]' ") ; 
+				///
+				while ($row2 = $order_id_query->fetch(PDO::FETCH_ASSOC)) 
+			     {
+				    	///
+					$statement2->execute(array(':username' => $username,
+					   ':orderid' => $row2['COrderID'] ,
+					   ':productid' => $pieces2[0],
+					   ':qty' => $pieces2[1],
+					   ':mr_price' => $pieces2[2],
+					   ':list_price' => $row['List_Price'],
+					   ':order_price' => $pieces2[2]
+					));
+				 }
+			
+			}
+			
+			
 			
 		}
-        	
-		/*	if(!$statement) 
-			{
-			  echo "error" ;
-			}
-			else 
-			{
-			  echo "successful";
-			} */
+       
 
 ?>
