@@ -188,7 +188,7 @@ var OrderWizard = function () {
 					   username: $('#username').val(),
 					   company: $('#company').val(),
 					   branch: $('#company_branch_name').val(),
-					   product: $('#product').val()
+					   product: $("#confirm_product").val()
 					
 					  },
 					  success: function(data){
@@ -203,6 +203,7 @@ var OrderWizard = function () {
 					   else {
 					        //$('.alert-invalid', $('.login-form')).show();
 							alert(data);
+							console.log("Log>>>"+$("#confirm_product").val());
 	            
 					   }
 					  }

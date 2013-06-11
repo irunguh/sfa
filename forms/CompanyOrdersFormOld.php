@@ -93,7 +93,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										   <div class="controls">
 											  <select id="company" class="span9 select2" name="company" >
 												 <option value=""></option>
-											   </select>
+											</select>
 										   </div>
 										   </div>
 										</div>
@@ -112,27 +112,40 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										</div>
 										</div>
 									  <h3 class="form-section">Product Order Form:</h3>
-									   <div id="c_b" class="row-fluid">  
-                                            <a href="javascript:;" class="btn green add-product">
-												 Add Product <i class="m-icon-swapright m-icon-white"></i>
-												 </a>	<br/><br/>								   
-										   <div class="portlet-body">
-													<table class="table table-bordered table-hover product-list">
-													   <thead>
-														  <tr>
-														   
-															 <th>Product</th>
-															 <th>Quantity</th>
-															 <th>Order Price</th>
-															 <th>Total</th>
-														  </tr>
-													   </thead>
-													   <tbody>
-														  
-														
-													   </tbody>
-													</table>
-												 </div>		
+									   <div id="c_b" class="row-fluid">   
+										 <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+                                           <thead>
+                                                <tr>
+												 <th></th>
+												 <th>PRODUCT</th> 
+												 <th>QUANTITY</th>
+												 <th>MR PRICE</th>
+												 <th>LIST PRICE</th>
+												 <th>=</th>
+												 <th style="text-align: right; padding-right: 30px;">TOTALS</th> 
+												</tr>
+                                           </thead>
+												 <tbody>
+											   <?php 
+											// $stmt = $db->prepare("SELECT * FROM  company ");
+											 $sql = "SELECT ProductID as id, Product_Name as product,List_Price as price FROM  products" ;
+											 $result = $db->query($sql);
+											// $query = $stmt->execute(); 						 
+											   ?>
+											   <?php  while($rows = $result->fetch(PDO::FETCH_ASSOC)){   ?>
+												  <tr class="txtMult">
+												     <td><input class = "prodSel" type="checkbox" id="chk[]"></td>
+													 <td><input type="text" disabled="disabled" value="<?php echo $rows['product'] ?>" /></td>
+													 <td><input type="text"  class="span4 val1" id="<?php echo $rows['id'] ?>"></input></td>
+													 <td><input type="text"  class="span6 val2" id="<?php echo $rows['id'] ?>"></input></td>
+													 <td><?php echo $rows['price'] ?></td>
+													 <td>=</td>
+													 <td><span class="multTotal">0.00</span></td>
+												  </tr>
+												<?php } ?>
+												     
+											   </tbody>
+											</table>			
 												 
 										</div>
 										 <div class="span4">
@@ -169,10 +182,9 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                        </div>
                                     </div>
                                     <div class="control-group">
-                                       <label class="control-label">Products:</label>
+                                       <label class="control-label">Product No:</label>
                                        <div class="controls">
-                                        <!-- <span class = "text" id="confirm_product_no"></span> -->
-										 <textarea id="confirm_product"></textarea>
+                                         <span class = "text" id="confirm_product_no"></span>
                                        </div>
                                     </div>
 									
@@ -186,7 +198,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
                                  <a href="javascript:;" class="btn blue button-next" onclick="myconfirmbranch()">
                                  Continue <i class="m-icon-swapright m-icon-white"></i>
                                  </a>
-								  <!-- <a href="javascript:;" id="jqcc" class="btn blue" onclick="selectedValues()">
+								   <!-- <a href="javascript:;" id="jqcc" class="btn blue">
                                  Test Selected 
                                  </a> -->
                                  <a href="javascript:;" class="btn green button-submit">
@@ -209,39 +221,27 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- BEGIN FOOTER -->
   
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
-
 <script>
-var counter = 1;
-jQuery('a.add-product').click(function(event){
-    event.preventDefault();
-    counter++;
-    var newRow = jQuery('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="text" name="quantity' +
-        counter + '"/></td><td><input id="order_price" class="val2" type="text" name="order_price' +
-        counter + '"/></td><td><span class="multTotal">0.00</span></td></tr>');
-		//// '+counter+'
-		
-    jQuery('table.product-list').append(newRow);
-	/////
-	 $.getJSON("./api/retrieveProduct.php", function(data) {
-            //
-			var elements = document.getElementsByName('product');
-			//try a loop
-			  //select.options.length = 0; 
-				for (var i = 0; i < data.length; i++) 
-				{
-				     for(var el = 0; el < elements.length; el++)
-			            {
-			              select = elements[el];
-							var d = data[i];
-						//	select.options.add(new Option(d.Product_Name,d.ProductID));
-				         }
-						 select.options.add(new Option(d.Product_Name,d.ProductID));
-			  //
-			   }
-			
-          
-        }, 'json');
-});
+ $(document).ready(function () {
+       $(".txtMult input").keyup(multInputs);
+       function multInputs() {
+           var mult = 0;
+		  //  var response = 0 ;
+		  var arr = [] ;
+           // for each row:
+           $("tr.txtMult").each(function () {
+               // get the values from this row:
+               var $val1 = $('.val1', this).val();
+               var $val2 = $('.val2', this).val();
+               var $total = ($val1 * 1) * ($val2 * 1)
+               $('.multTotal',this).text($total);
+               mult += $total;
+			  ///
+           });
+	 }
+	  
+	 
+  });
 </script>
     
    <script> 
@@ -253,76 +253,56 @@ jQuery('a.add-product').click(function(event){
 			$('#confirm_company_name').text($('#company :selected').text());
 			//$('#confirm_company_branch_name').text(document.getElementById("company_branch_name").value);
 			$('#confirm_company_branch_name').text($('#company_branch_name :selected').text());
-			///
-		  var quantity = '';
-		  var price = '';
-		  var total = '';
-		  var itemName = '' ;
-		  var mult = 0;
-		  //  var response = 0 ;
-		  var arr = [] ;
-		 $("tr.txtMult").each(function(){
-		     quantity = $('.val1', this).val();
-			 price = $('.val2', this).val();
-			//itemName = $('.valname :selected', this).text();
-			productId =  $('.valname', this).val() ;
-			 total = (quantity * 1) * (price * 1);
-			 //
-			 $('.multTotal',this).text(total);
-               mult += total;
-			///
-			//console.log("Product Name: " + itemName + " :" + "  Quantity :" + quantity + "   Price: " +price);
-			
-			
-			///
-			arr.push(productId + ":" + quantity + ":" + price+"\n");
-			
-		 });
-		//	$('#confirm_product_no').text("Product Name: " + $('.product :selected').text() + " :" + "  Quantity :" + quantity + "   Price: " +order_price);
-			//alert(arr);
-			//$('#confirm_product_no').text(arr);
-			$("#confirm_product").val(arr);
-			 ///
-			
+			//$('#confirm_product_no').text(document.getElementById("product").value);
 			
 			//////
-			
 }
    </script>
-   <script>
-    /////////////////
-	  function selectedValues(){
-	      //alert('Clicked!');
-	/*	  var quantity = document.getElementById("quantity").value ;
-		  var order_price = document.getElementById("order_price").value ;
-		  var total = quantity * order_price ;
-		//  console.log("Total "+quantity * order_price);
-		   $('.multTotal').text(total); */
-		 // console.log(quantity);
-		 // console.log(order_price);
-		 /////////
-		  var quantity = '';
-		  var price = '';
-		  var total = '';
-		  var itemName = '' ;
-		  var mult = 0;
-		  //  var response = 0 ;
-		  var arr = [] ;
-		 $("tr.txtMult").each(function(){
-		     quantity = $('.val1', this).val();
-			 price = $('.val2', this).val();
-			 itemName = $('.valname :selected', this).text()
-			 total = (quantity * 1) * (price * 1);
-			 //
-			 $('.multTotal',this).text(total);
-               mult += total;
-			///
-			console.log("Product Name: " + itemName + " :" + "  Quantity :" + quantity + "   Price: " +price);
+  <script>
+ var proddta = {
+    init: function() {
+        // hook into the checkbox/row selector
+        $('td').change(proddta.rowSelect);
+    },
+
+    rowSelect: function(event) {
+      //  alert('hello 1');
+        var work = [];
+        var $closestTr = $(this).closest('tr');
+        var chkbox = $closestTr.find('td:eq(0)').find(':checkbox');
+        
+      //  alert('hello 2 ' + chkbox.is(':checked'));
+        if (null !== chkbox && true === chkbox.is(':checked')) 
+		{
+           
+            var s = '';
+            for (var i = 0; i < 50; i++) 
+			{
+               /* if (i != 0 && i < 40) 
+				{
+                 //   s = $closestTr.find('td:eq(' + i + ')').text(); 
+				 s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                } 
+				else 
+				{
+                    s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                }*/
+				 s = $closestTr.find('td:eq(' + i + ')').find(':input').val();
+                work.push(s);
+            } 
 			
-			///
-			
-		 });
-		
-	  }
-   </script>
-  
+        }
+        else 
+		{
+           // alert('hello 99');
+        }
+      //  alert('' + work.join(' '));
+	//	console.log(work.join(' '));
+		console.log(work[1], work[2],work[3]);
+		$('#confirm_product_no').text(work.join(' '));
+    }
+}
+proddta.init();
+/////
+
+ </script>
