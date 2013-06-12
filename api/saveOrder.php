@@ -19,7 +19,8 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 
 	
 	$pieces = explode(",", $product); 
-	$number = 3 ;
+	
+	$number = count($pieces) ;
 	//Create a prepare statement
 			$statement = $db->prepare("INSERT INTO company_orders (Username, 
 			CompanyID, BranchID,Product_No)  
@@ -30,18 +31,28 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 			   ':branch' => $branch,
 			   ':product' =>$number
 			));
+			////select last inserted id
+			$order_id_query =  $db->query("SELECT COrderID from  company_orders order by COrderID DESC limit 1") ; 
+				///
+				$orderId = null ;
+				while ($row2 = $order_id_query->fetch(PDO::FETCH_ASSOC)) 
+			     {
+				    $orderId = $row2['COrderID'] ;
+				 }
+			  
+			
 	//echo $pieces[0];
 	foreach($pieces as $value) //loop over values
 		{
 			//echo $value."<br>"; //print value
 			$pieces2 = explode(":", $value);
-			echo $pieces2[0]; echo("<br>"); //product
-			echo $pieces2[1]; echo("<br>"); //quantity
-			echo $pieces2[2]; echo("<br>"); //order price
+		//	echo $pieces2[0]; echo("<br>"); //product
+		//	echo $pieces2[1]; echo("<br>"); //quantity
+		//	echo $pieces2[2]; echo("<br>"); //order price
 			////
-		    echo $username; echo("<br>");
-			echo $companyid; echo("<br>");
-			echo $branch; echo("<br>");
+		 //   echo $username; echo("<br>");
+		//	echo $companyid; echo("<br>");
+		//	echo $branch; echo("<br>");
           //  echo $quantity;	echo("<br>");		 
 		//	echo $order_price; echo("<br>");
 			///static to change
@@ -55,22 +66,11 @@ require_once("../db_connection/database_connect.php"); // For database connectio
 			COrderID, ProductID, Qty, MR_Price, List_Price, Order_Price)  
 			VALUES(:username, :orderid, :productid, :qty, :mr_price, :list_price, :order_price) ");
 			///we introduce a new query here that retrieves $orderid, $list_price, $productid
+			/////
 			
-			  
 			$list_price =  $db->query("SELECT List_Price from products where ProductID = '$pieces2[0]' ") ;  
 			while ($row = $list_price->fetch(PDO::FETCH_ASSOC)) 
 			{
-				
-				///////
-			   $order_id_query =  $db->query("SELECT COrderID from  company_orders where Product_No = '$pieces2[0]' ") ; 
-				///
-				$orderId = null ;
-				while ($row2 = $order_id_query->fetch(PDO::FETCH_ASSOC)) 
-			     {
-				    $orderId = $row2['COrderID'] ;
-				 }
-			///////
-				 	///
 					$statement2->execute(array(':username' => $username,
 					   ':orderid' => $orderId ,
 					   ':productid' => $pieces2[0],

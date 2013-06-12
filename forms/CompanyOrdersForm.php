@@ -137,8 +137,13 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										</div>
 										 <div class="span4">
 											<div class="alert alert-success">
-											   <button class="close" data-dismiss="alert"></button>
-											   <strong>Order Grand Total:</strong> <span id="grandTotal">0.00</span>
+								            <a href="javascript:;" id="jqcc" class="btn blue" onclick="getTotals()">Calculate Totals
+                                            </a> 
+											</div>
+										</div>
+										<div class="span4">
+											<div class="alert alert-success">
+									         <strong>Order Grand Total:</strong> <span id="grandTotal">0.00</span>
 											</div>
 										</div>
                                  </div>
@@ -211,6 +216,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 
 <script>
+
 var counter = 1;
 jQuery('a.add-product').click(function(event){
     event.preventDefault();
@@ -242,6 +248,33 @@ jQuery('a.add-product').click(function(event){
           
         }, 'json');
 });
+//
+
+</script>
+<script>
+ 
+   function getTotals(){
+   
+      var quantity = '';
+		  var price = '';
+		  var total = '';
+		  var itemName = '' ;
+		  var mult = 0;
+		  //  var response = 0 ;
+		  var arr = [] ;
+		 $("tr.txtMult").each(function(){
+		     quantity = $('.val1', this).val();
+			 price = $('.val2', this).val();
+			//itemName = $('.valname :selected', this).text();
+			productId =  $('.valname', this).val() ;
+			 total = (quantity * 1) * (price * 1);
+			 //
+			 $('.multTotal',this).text(total);
+               mult += total;
+			
+		 });
+		  $("#grandTotal").text(mult);
+   }
 </script>
     
    <script> 
