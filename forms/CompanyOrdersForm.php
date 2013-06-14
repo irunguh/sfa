@@ -211,74 +211,21 @@ require_once("./db_connection/database_connect.php"); // For database connection
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 <script>
  $(document).ready(function () {
-     //  $(".txtMult input").keyup(multInputs);
-	   
-	   $(".txtMult input").live('keyup',function(){
-	   
-	           var mult = 0;
-           // for each row:
-           $("tr.txtMult").each(function () {
-               // get the values from this row:
-               var $val1 = $('.val1', this).val();
-               var $val2 = $('.val2', this).val();
-               var $total = ($val1 * 1) * ($val2 * 1)
-               $('.multTotal',this).text($total);
-               mult += $total;
-           });
-           $("#grandTotal").text(mult);
-			 
-			});    
-			////
-			$('select').live('change', function() {
-			 // alert( this.value );
-			   //we send an ajax request to retrieve a product list price using the id
-			     $.ajax({
-				      type: "POST",
-					  url: './api/getProductListPrice.php',
-					  data: {
-					   product: this.value
-					
-					  },
-					  success: function(data){
-					  /* if(data === 'successful')
-					   { 
-					 //  alert(meeting_date);
-					    //window.location.replace('dashboard.php?page=company_table&success=1');
-						//jQuery('#form_wizard_order').hide();
-						//jQuery('#success_save_workplan').show();
-						alert('Order Saved');
-					   }
-					   else {
-					        //$('.alert-invalid', $('.login-form')).show();
-							alert(data);
-							console.log("Log>>>"+$("#confirm_product").val());
-	            
-					   } */
-					 //  alert(data);
-					   
-					   $('.val2').val(data)
-					   
-					  }
-				   });
-			  
-			})
-	   
-  });
-</script>	
-
-<script>
-
-var counter = 1;
-jQuery('a.add-product').click(function(event){
+    
+	var counter = 1;
+$('a.add-product').click(function(event){
     event.preventDefault();
     counter++;
-    var newRow = jQuery('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="text" name="quantity' +
-        counter + '"/></td><td><input id="order_price" class="val2" type="text" name="order_price' +
+    var newRow = $('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="text" name="quantity' +
+        counter + '"/></td><td><input id="order_price' +
+        counter + '" class="val2' +
+        counter + '" type="text" name="order_price' +
         counter + '"/></td><td><span class="multTotal">0.00</span></td></tr>');
 		//// '+counter+'
 		
-    jQuery('table.product-list').append(newRow);
-	/////
+    $('table.product-list').append(newRow);
+	///
+	 console.log(counter);
 	 $.getJSON("./api/retrieveProduct.php", function(data) {
             //
 			var elements = document.getElementsByName('product');
@@ -298,10 +245,62 @@ jQuery('a.add-product').click(function(event){
 			
           
         }, 'json');
+		  
+			
+			
+		
 });
 //
+           /////keyup event
+						 $(".txtMult input").live('keyup',function(){
+							   var mult = 0;
+							  var mycounter = 1 ;
+						   // for each row:
+						//alert(mycounter);
+						   $("tr.txtMult").each(function () {
+						   mycounter++;
+							   // get the values from this row:
+							   var $val1 = $('.val1', this).val();
+							   var $val2 = $('.val2'+mycounter, this).val();
+							   var $total = ($val1 * 1) * ($val2 * 1)
+							   $('.multTotal',this).text($total);
+							   mult += $total;
+						   });
+						   $("#grandTotal").text(mult);
+							 
+							});  
+							///
+	
+			////select
+			$('select').live('change',function() {
+			 // alert( this.value );
+			   //we send an ajax request to retrieve a product list price using the id
+			     $.ajax({
+				      type: "POST",
+					  url: './api/getProductListPrice.php',
+					  data: {
+					   product: this.value
+					  },
+					  success: function(data)
+					  { 				  
+					  $('.val2'+counter).val(data);
+					  
+					  
+					 
+					  
+					  
+					  
+					  }
+				  
+				  });
+			  
+			}); 
+			//////////
+	   
+  });
+</script>	
 
-</script>
+
 
     
    <script> 
@@ -321,9 +320,11 @@ jQuery('a.add-product').click(function(event){
 		  var mult = 0;
 		  //  var response = 0 ;
 		  var arr = [] ;
+		  var mycounter = 1 ;
 		 $("tr.txtMult").each(function(){
+		   mycounter++
 		     quantity = $('.val1', this).val();
-			 price = $('.val2', this).val();
+			 price = $('.val2'+mycounter, this).val();
 			//itemName = $('.valname :selected', this).text();
 			productId =  $('.valname', this).val() ;
 			 total = (quantity * 1) * (price * 1);
@@ -349,40 +350,5 @@ jQuery('a.add-product').click(function(event){
 			
 }
    </script>
-   <script>
-    /////////////////
-	  function selectedValues(){
-	      //alert('Clicked!');
-	/*	  var quantity = document.getElementById("quantity").value ;
-		  var order_price = document.getElementById("order_price").value ;
-		  var total = quantity * order_price ;
-		//  console.log("Total "+quantity * order_price);
-		   $('.multTotal').text(total); */
-		 // console.log(quantity);
-		 // console.log(order_price);
-		 /////////
-		  var quantity = '';
-		  var price = '';
-		  var total = '';
-		  var itemName = '' ;
-		  var mult = 0;
-		  //  var response = 0 ;
-		  var arr = [] ;
-		 $("tr.txtMult").each(function(){
-		     quantity = $('.val1', this).val();
-			 price = $('.val2', this).val();
-			 itemName = $('.valname :selected', this).text()
-			 total = (quantity * 1) * (price * 1);
-			 //
-			 $('.multTotal',this).text(total);
-               mult += total;
-			///
-			console.log("Product Name: " + itemName + " :" + "  Quantity :" + quantity + "   Price: " +price);
-			
-			///
-			
-		 });
-		
-	  }
-   </script>
+ 
   

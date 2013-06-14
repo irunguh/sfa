@@ -182,37 +182,25 @@ var OrderWizard = function () {
 			    //alert($('#product').val());
 				
 				//Log Values being passed
+				console.log($("#confirm_product").val().replace( /\n/g, '' ));
 				
-				
-               
-			     $.ajax({
+             
+			   $.ajax({
 				      type: "POST",
 					  url: './api/saveOrder.php',
 					  data: {
 					   username: $('#username').val(),
 					   company: $('#company').val(),
 					   branch: $('#company_branch_name').val(),
-					   product: $("#confirm_product").val()
+					   product: $("#confirm_product").val().replace( /\n/g, '' )
 					
 					  },
 					  success: function(data){
-					  /* if(data === 'successful')
-					   { 
-					 //  alert(meeting_date);
-					    //window.location.replace('dashboard.php?page=company_table&success=1');
-						//jQuery('#form_wizard_order').hide();
-						//jQuery('#success_save_workplan').show();
-						alert('Order Saved');
-					   }
-					   else {
-					        //$('.alert-invalid', $('.login-form')).show();
-							alert(data);
-							console.log("Log>>>"+$("#confirm_product").val());
-	            
-					   } */
+					 
 					   alert('Order Submitted');
 					  }
-				   });
+				   }); 
+				  
 			   
 			   
             }).hide();
