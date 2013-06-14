@@ -180,6 +180,10 @@ var OrderWizard = function () {
 			   
 			   
 			    //alert($('#product').val());
+				
+				//Log Values being passed
+				
+				
                
 			     $.ajax({
 				      type: "POST",

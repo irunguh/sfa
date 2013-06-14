@@ -135,12 +135,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 												 </div>		
 												 
 										</div>
-										 <div class="span4">
-											<div class="alert alert-success">
-								            <a href="javascript:;" id="jqcc" class="btn blue" onclick="getTotals()">Calculate Totals
-                                            </a> 
-											</div>
-										</div>
+										
 										<div class="span4">
 											<div class="alert alert-success">
 									         <strong>Order Grand Total:</strong> <span id="grandTotal">0.00</span>
@@ -214,6 +209,62 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- BEGIN FOOTER -->
   
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script>
+ $(document).ready(function () {
+     //  $(".txtMult input").keyup(multInputs);
+	   
+	   $(".txtMult input").live('keyup',function(){
+	   
+	           var mult = 0;
+           // for each row:
+           $("tr.txtMult").each(function () {
+               // get the values from this row:
+               var $val1 = $('.val1', this).val();
+               var $val2 = $('.val2', this).val();
+               var $total = ($val1 * 1) * ($val2 * 1)
+               $('.multTotal',this).text($total);
+               mult += $total;
+           });
+           $("#grandTotal").text(mult);
+			 
+			});    
+			////
+			$('select').live('change', function() {
+			 // alert( this.value );
+			   //we send an ajax request to retrieve a product list price using the id
+			     $.ajax({
+				      type: "POST",
+					  url: './api/getProductListPrice.php',
+					  data: {
+					   product: this.value
+					
+					  },
+					  success: function(data){
+					  /* if(data === 'successful')
+					   { 
+					 //  alert(meeting_date);
+					    //window.location.replace('dashboard.php?page=company_table&success=1');
+						//jQuery('#form_wizard_order').hide();
+						//jQuery('#success_save_workplan').show();
+						alert('Order Saved');
+					   }
+					   else {
+					        //$('.alert-invalid', $('.login-form')).show();
+							alert(data);
+							console.log("Log>>>"+$("#confirm_product").val());
+	            
+					   } */
+					 //  alert(data);
+					   
+					   $('.val2').val(data)
+					   
+					  }
+				   });
+			  
+			})
+	   
+  });
+</script>	
 
 <script>
 
@@ -251,31 +302,7 @@ jQuery('a.add-product').click(function(event){
 //
 
 </script>
-<script>
- 
-   function getTotals(){
-   
-      var quantity = '';
-		  var price = '';
-		  var total = '';
-		  var itemName = '' ;
-		  var mult = 0;
-		  //  var response = 0 ;
-		  var arr = [] ;
-		 $("tr.txtMult").each(function(){
-		     quantity = $('.val1', this).val();
-			 price = $('.val2', this).val();
-			//itemName = $('.valname :selected', this).text();
-			productId =  $('.valname', this).val() ;
-			 total = (quantity * 1) * (price * 1);
-			 //
-			 $('.multTotal',this).text(total);
-               mult += total;
-			
-		 });
-		  $("#grandTotal").text(mult);
-   }
-</script>
+
     
    <script> 
      function myconfirmbranch(){
