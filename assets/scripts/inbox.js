@@ -17,6 +17,8 @@ var Inbox = function () {
 
             loading.hide();
             content.html(res);
+			content(res);
+			//alert(res);
             App.fixContentHeight();
             App.initUniform();
         });

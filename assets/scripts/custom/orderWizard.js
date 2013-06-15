@@ -36,6 +36,7 @@ var OrderWizard = function () {
 						 invalidHandler: function (event, validator) { //display error alert on form submit              
 							//success2.hide();
 							$('#myerror').show();
+							//alert('Form is not valid');
 							//App.scrollTo(error1, -200);
 						},                              
 						messages: {

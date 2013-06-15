@@ -209,23 +209,47 @@ require_once("./db_connection/database_connect.php"); // For database connection
    <!-- BEGIN FOOTER -->
   
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+
 <script>
  $(document).ready(function () {
     
 	var counter = 1;
-$('a.add-product').click(function(event){
+	
+	    
+	//
+	 $("#remove").live('click',function(){
+	  event.preventDefault();
+	  counter--;
+	 // mycounter--;
+	  $(this).parent().parent().remove(); 
+	// $('table.product-list').remove();
+	  ///
+	  
+		
+	});
+	
+$('a.add-product').live('click',function(){
     event.preventDefault();
     counter++;
-    var newRow = $('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="text" name="quantity' +
+    var newRow = $('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="number" name="quantity' +
         counter + '"/></td><td><input id="order_price' +
         counter + '" class="val2' +
-        counter + '" type="text" name="order_price' +
-        counter + '"/></td><td><span class="multTotal">0.00</span></td></tr>');
+        counter + '" type="number" name="order_price' +
+        counter + '"/></td><td><span class="multTotal">0.00</span></td><td><a href="javascript:;" id="remove">Remove</a></td></tr>');
 		//// '+counter+'
+		////
+		
 		
     $('table.product-list').append(newRow);
+	//
+	$(".val1").numeric();
+	$('.val2'+counter).numeric();
 	///
-	 console.log(counter);
+	
+	/// <td><a href="javascript:void(0);" id="remove">Remove</a></td>
+	 
+	 console.log("Counter Created by Row>>"+counter);
+	 
 	 $.getJSON("./api/retrieveProduct.php", function(data) {
             //
 			var elements = document.getElementsByName('product');
@@ -252,22 +276,39 @@ $('a.add-product').click(function(event){
 });
 //
            /////keyup event
-						 $(".txtMult input").live('keyup',function(){
-							   var mult = 0;
-							  var mycounter = 1 ;
-						   // for each row:
-						//alert(mycounter);
+						 $(".txtMult input").live('keyup',function(e){
+							 
+							 /////
+							 
+		                    //$('.val2'+counter).numeric();
+							var mult = 0;
+							var mycounter = 1 ;
+							   // for each row:
+							//alert(mycounter);
 						   $("tr.txtMult").each(function () {
-						   mycounter++;
+						      	mycounter++; 
+								//$(".val1").numeric();
 							   // get the values from this row:
 							   var $val1 = $('.val1', this).val();
 							   var $val2 = $('.val2'+mycounter, this).val();
 							   var $total = ($val1 * 1) * ($val2 * 1)
 							   $('.multTotal',this).text($total);
 							   mult += $total;
+							   ///
+							   console.log("Counter inside keyup>>"+mycounter)
+							/*   console.log("var1>>"+$val1);
+							   console.log("var2>>"+$val2);
+							   console.log("var2 id>>>"+'val2'+mycounter);
+							   console.log("total is:"+$total); */
+							   console.log("Contents of inside keyup var2>>"+$('.val2'+mycounter, this).val());
+							   console.log("------------------------------------------------");
 						   });
 						   $("#grandTotal").text(mult);
 							 
+							
+							
+							
+							
 							});  
 							///
 	
@@ -283,13 +324,7 @@ $('a.add-product').click(function(event){
 					  },
 					  success: function(data)
 					  { 				  
-					  $('.val2'+counter).val(data);
-					  
-					  
-					 
-					  
-					  
-					  
+					  $('.val2'+counter).val(data);	  
 					  }
 				  
 				  });
@@ -349,6 +384,10 @@ $('a.add-product').click(function(event){
 			//////
 			
 }
+   </script>
+   
+   <script>
+	
    </script>
  
   
