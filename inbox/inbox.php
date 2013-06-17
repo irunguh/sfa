@@ -58,4 +58,20 @@
                </div>
             </div>
          </div>
-         <!-- EN
+         <!-- EN -->
+<script src="assets/plugins/jquery-1.8.3.min.js" type="text/javascript"></script> 	 
+ <script>
+ $(document).ready(function () {
+ 
+    $.ajax({
+				      type: "POST",
+					  url: './inbox/inbox_inbox.php',
+					  data: {
+					   },
+					  success: function(data){
+					    console.log(data);
+					  }
+				   });
+ 
+ });
+ </script>

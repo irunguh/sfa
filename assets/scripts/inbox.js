@@ -9,6 +9,9 @@ var Inbox = function () {
 
         loading.show();
         content.html('');
+		//
+		  
+		//
 
         $.post(url, {}, function (res) {
             $('.inbox-nav > li.active').removeClass('active');
@@ -17,7 +20,7 @@ var Inbox = function () {
 
             loading.hide();
             content.html(res);
-			content(res);
+			//content(res);
 			//alert(res);
             App.fixContentHeight();
             App.initUniform();
