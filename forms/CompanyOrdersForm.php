@@ -218,18 +218,41 @@ require_once("./db_connection/database_connect.php"); // For database connection
 	    
 	//
 	 $("#remove").live('click',function(){
-	  event.preventDefault();
+	  //event.preventDefault();
 	  counter--;
 	 // mycounter--;
 	  $(this).parent().parent().remove(); 
 	// $('table.product-list').remove();
-	  ///
+	  /// recalculate data
+	  var mult = 0;
+							var mycounter = 1 ;
+							   // for each row:
+							//alert(mycounter);
+						   $("tr.txtMult").each(function () {
+						      	mycounter++; 
+								//$(".val1").numeric();
+							   // get the values from this row:
+							   var $val1 = $('.val1', this).val();
+							   var $val2 = $('.val2'+mycounter, this).val();
+							   var $total = ($val1 * 1) * ($val2 * 1)
+							   $('.multTotal',this).text($total);
+							   mult += $total;
+							   ///
+							   console.log("Counter inside keyup>>"+mycounter)
+							/*   console.log("var1>>"+$val1);
+							   console.log("var2>>"+$val2);
+							   console.log("var2 id>>>"+'val2'+mycounter);
+							   console.log("total is:"+$total); */
+							   console.log("Contents of inside keyup var2>>"+$('.val2'+mycounter, this).val());
+							   console.log("------------------------------------------------");
+						   });
+						   $("#grandTotal").text(mult);
 	  
 		
 	});
 	
 $('a.add-product').live('click',function(){
-    event.preventDefault();
+    //event.preventDefault();
     counter++;
     var newRow = $('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="number" name="quantity' +
         counter + '"/></td><td><input id="order_price' +

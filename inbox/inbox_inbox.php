@@ -1,8 +1,8 @@
 <?php
 /* connect to gmail */
 $hostname = '{imap.gmail.com:993/imap/ssl}INBOX'; //gmail server connector
-$username = '****'; //your gmail account username -- username@gmail.com
-$password = '****'; //your gmail password
+$username = ''; //your gmail account username -- username@gmail.com
+$password = ''; //your gmail password
 
 /* try to connect */
 $inbox = imap_open($hostname,$username,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
