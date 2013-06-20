@@ -154,8 +154,15 @@ require_once("./db_connection/database_connect.php"); // For database connection
 											<div class="control-group">
 											   <label class="control-label">Company </label>
 											   <div class="controls">
-												<select id="company" class="span9" name="company" >
-													 <option value=""></option>
+												<select id="company2" class="span9" name="company2" >
+												  <?php 
+													
+													 $stmt = $db->query("SELECT CompanyID,Company_Name FROM  company"); // Retrieve data to display
+                                                     $stmt->execute();
+													?>
+													<?php  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+													<option value="<?php echo $row['CompanyID'] ?>"><?php echo $row['Company_Name'] ?></option>
+												    <?php } ?> 
 												</select>
 												<input id="work_id_input" type="hidden" value=""/>
 											   </div>
@@ -179,8 +186,15 @@ require_once("./db_connection/database_connect.php"); // For database connection
 											   <label class="control-label">Contact</label>
 											   <div class="controls">
 												  <!--<input id ="contact" type="text" name="contact" class="span6 m-wrap" /> -->
-												  <select id="contact" class="span9 select2" name="contact" >
-													 <option value=""></option>
+												  <select id="contact2" class="span9 select2" name="contact2" >
+													  <?php 
+													
+													 $stmt = $db->query("SELECT  ContactID , First_Name FROM  company_contacts "); // Retrieve data to display
+                                                     $stmt->execute();
+													?>
+													<?php  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+													<option value="<?php echo $row['ContactID'] ?>"><?php echo $row['First_Name'] ?></option>
+												    <?php } ?> 
 												   </select>
 											   </div>
 											</div>
@@ -203,8 +217,15 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										   <label class="control-label">Activity Type</label>
 										   <div class="controls">
 											 <!-- <input id ="work_activity_type" type="text" name="work_activity_type" class="span6 m-wrap" /> -->
-											   <select id="work_activity_type" class="span9 select2" name="work_activity_type" >
-												 <option value=""></option>
+											   <select id="work_activity_type2" class="span9 select2" name="work_activity_type2" >
+												  <?php 
+													
+													 $stmt = $db->query("SELECT Company_TypeID, Company_Type FROM   company_type "); // Retrieve data to display
+                                                     $stmt->execute();
+													?>
+													<?php  while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+													<option value="<?php echo $row['Company_TypeID'] ?>"><?php echo $row['Company_Type'] ?></option>
+												    <?php } ?> 
 											   </select>
 										   </div>
 											</div>
@@ -368,6 +389,18 @@ require_once("./db_connection/database_connect.php"); // For database connection
 									   { 
 									
 										alert('Meeting Clock-in was successful');
+										 $.gritter.add({
+												// (string | mandatory) the heading of the notification
+												title: 'Success',
+												// (string | mandatory) the text inside the notification
+												text: 'Meeting Clock-in was successful',
+												// (string | optional) the image to display on the left
+												image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+												// (bool | optional) if you want it to fade out on its own or just sit there
+												sticky: false,
+												// (int | optional) the time you want it to be alive for before fading out
+												time: ''
+											});
 										// window.location.replace('dashboard.php?page=calendar');
 									   }
 									   else {
@@ -559,8 +592,26 @@ require_once("./db_connection/database_connect.php"); // For database connection
 										///
 									});
 									//set variables
-									   $("#company").val(company);
-									   $("#contact").val(contact);
+									console.log('Workplan to edit retrieved');
+									
+									$.gritter.add({
+									// (string | mandatory) the heading of the notification
+									title: 'Tip - For more types, open DIR /assets/plugins/gritter/ ',
+									// (string | mandatory) the text inside the notification
+									text: 'Use this Modal to Edit Wokplan - This is a sample gritter notification. Make changes and click update record button',
+									// (string | optional) the image to display on the left
+									image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+									// (bool | optional) if you want it to fade out on its own or just sit there
+									sticky: false,
+									// (int | optional) the time you want it to be alive for before fading out
+									time: ''
+								});
+									
+									  // $("select#company").val(company);
+									  // console.log( $("select#company2").val(company));
+									   $("select#company2 option").each(function() { this.selected = company; }); 
+									   $("select#contact2 option").each(function() { this.selected = contact; }); 
+									    $("select#work_activity_type2 option").each(function() { this.selected = activity_type; });
 									   $("#work_activity_type").val(activity_type);
 									   $("#meeting_date").val(meeting_date);
 									   $("#start_time").val(starttime);
@@ -586,24 +637,39 @@ require_once("./db_connection/database_connect.php"); // For database connection
 					  url: './api/saveWorkPlan.php',
 					  data: {
 					   work_id: $('#work_id_input').val(),
-					   company: $('#company').val(),
-					   contact: $('#contact').val(),
+					   company: $('#company2').val(),
+					   contact: $('#contact2').val(),
 					   meeting_date: $('#meeting_date').val(),
 					   start_time: $('#start_time').val(),
 					   end_time: $('#end_time').val(),
 					   proposed_activity: $('textarea#proposed_activity').val(),
 					   work_address: $('textarea#work_address').val(),
-					   work_activity_type: $('#work_activity_type').val()
+					   work_activity_type: $('#work_activity_type2').val()
 					  },
 					  success: function(data){
 					   if(data === 'successful')
 					   { 
 					   alert('Record Updated Successfuly');
-					    window.location.replace('dashboard.php?page=calendar');
+					   // window.location.replace('dashboard.php?page=calendar');
 						//jQuery('#form_wizard_workplan').hide();
 						//jQuery('#success_save_workplan').show();
 					//	alert($('#meeting_date').val());
 					//alert(data[2]);
+					////
+					      $.gritter.add({
+									// (string | mandatory) the heading of the notification
+									title: 'Success',
+									// (string | mandatory) the text inside the notification
+									text: 'Record Updated Successfuly',
+									// (string | optional) the image to display on the left
+									image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+									// (bool | optional) if you want it to fade out on its own or just sit there
+									sticky: false,
+									// (int | optional) the time you want it to be alive for before fading out
+									time: ''
+								});
+								 //window.location.replace('dashboard.php?page=calendar');
+					     //////
 					   }
 					   else {
 					        //$('.alert-invalid', $('.login-form')).show();

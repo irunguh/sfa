@@ -529,6 +529,22 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						</li>
 					</ul>
 				  </li>
+				  
+				  <li class="">
+        			<a href="javascript:;">
+					<i class="icon-table"></i> 
+					<span class="title">File Upload</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+					    <li class="">
+							<a href="dashboard.php?page=uploadfile">
+							<i class="icon-user"></i> 
+							<span class="title">sample upload</span>
+							</a>
+						</li>
+					</ul>
+				  </li>
 				 <!--  <li class="">
         			<a href="javascript:;">
 					<i class="icon-table"></i> 
@@ -800,6 +816,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 						case 'inbox': 
 						    include('./inbox/inbox.php');
 							break;
+						case 'uploadfile': 
+						    include('./forms/UploadFile.php');
+							break;
 						default:
 						   // $page ='dashboard';
 	                        include('dashboard.php');
@@ -950,8 +969,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    <script src="assets/scripts/app.js" type="text/javascript"></script>
+   <script src="assets/scripts/form-fileupload.js"></script>
     <!--<script src="assets/scripts/custom-calendar.js" type="text/javascript"></script> -->
-   <script src="assets/scripts/index.js" type="text/javascript"></script>   
+   <script src="assets/scripts/index.js" type="text/javascript"></script> 
+   
  
    <!-- END PAGE LEVEL SCRIPTS -->  
    <script>
@@ -974,6 +995,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 WorkPlanWizard.init();
 		 OrderWizard.init();
 		 Inbox.init();
+		 FormFileUpload.init();
 		 
 		// calendar.init();
 		// FormValidation.init();
