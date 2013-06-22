@@ -125,7 +125,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				  </i>
 				  
 				<?php if($no != 0): ?>
-                  <span class="badge"><?php echo $no; ?></span>
+				
+                  <span id="div2" class="badge"><?php //echo $no; ?></span>
+				  
+				  
 				<?php endif; ?>  
 				  
 				  <span><input type="hidden" id="notify" value="<?php echo $notification_id ?>"></span>
@@ -139,11 +142,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				    $stmt2 = $db->query("SELECT message,date as time FROM  notifications where status = 1") ;
 				    $stmt2->execute();
 				   while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){ ?>
-                     <li>
+                      <li>
                         <a href="#">
                         <span class="label label-success"><i class="icon-plus"></i></span>
-                        New user registered. 
-                        <span class="time">Just now</span>
+                        <?php echo $row2['message']; ?>
+                        <span class="time"><?php echo $row2['time']; ?></span>
                         </a>
                      </li>
                   
@@ -997,6 +1000,56 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 		 
 		// calendar.init();
 		// FormValidation.init();
+		////
+		///////
+	function retrieve(){
+ $.ajax({
+				url: 'api/retrieveNotification.php',
+				dataType: 'json',
+				type: 'GET',
+				 success: function (notification) {
+				  var data = [], row;
+				  var i = 0 ;
+				  var value;
+				  for (i = 0, ilen = notification.notify.length; i < ilen; i++) {
+					row = [];
+				   // row[0] = res.costs[i].id;
+					 value = notification.notify[i].number;
+				
+					}
+					if(value != 0){
+					
+					document.getElementById('div2').innerHTML = +value;
+					///
+					 $.gritter.add({
+												// (string | mandatory) the heading of the notification
+												title: 'Notification',
+												// (string | mandatory) the text inside the notification
+												text: 'System Retrieving new notifications',
+												// (string | optional) the image to display on the left
+												image: 'http://a0.twimg.com/profile_images/59268975/jquery_avatar_bigger.png',
+												// (bool | optional) if you want it to fade out on its own or just sit there
+												sticky: false,
+												// (int | optional) the time you want it to be alive for before fading out
+												time: ''
+											});
+					
+					}
+					if(value == 0)
+					{
+					 $('#div2').hide('slow', function() {
+						//alert('Animation complete.');
+						console.log("No new Notifications");
+						});
+					  //document.getElementById('div2').hide();
+					}
+				}
+			  });
+			  }
+			  setInterval(retrieve, 30000);
+			  retrieve();
+//////////////////////////////////////////////////	
+		////
       });
    </script>
    <!-- END JAVASCRIPTS -->
