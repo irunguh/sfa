@@ -4,7 +4,15 @@
  
  */
  
-require_once("../db_connection/database_connect.php"); // For database connection
+
+require_once("../db_connection/database_connect.php"); // For database connection 
+require_once("../functions.php");
+	//if user is not logged in
+	if(!isLoggedIn())
+	{
+		header('Location: index.php');
+		die();
+	} 
 
  /*$work_id = null ;
  if(isset($_GET['work_id']))

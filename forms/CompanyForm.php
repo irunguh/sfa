@@ -1,6 +1,15 @@
 
 <?php
-require_once("./db_connection/database_connect.php"); // For database connection 
+
+//protect direct access
+ require_once("./functions.php");
+ require_once("./db_connection/database_connect.php"); // For database connection 
+	//if user is not logged in
+	if(!isLoggedIn())
+	{
+		header('Location: index.php');
+		die();
+	} 
 ?>
  <!-- BEGIN PAGE CONTAINER-->
          <div class="container-fluid">

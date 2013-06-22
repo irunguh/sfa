@@ -1,4 +1,5 @@
 <?php 
+ 
 //hide display of warning messages
 //error_reporting(1);
 //we start a session
@@ -10,7 +11,14 @@
 //{
 // header('Location: login.php');
 //} 
-require_once("db_connection/database_connect.php");
+	require_once("db_connection/database_connect.php");
+	require_once("functions.php");
+	//if user is not logged in
+	if(!isLoggedIn())
+	{
+		header('Location: index.php');
+		die();
+	} 
 ?>
 
 <!DOCTYPE html>
@@ -307,7 +315,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                      <li><a href="dashboard.php"><i class="icon-envelope"></i> My Inbox(3)</a></li>
                      <li><a href="dashboard.php"><i class="icon-tasks"></i> My Tasks</a></li>
                      <li class="divider"></li>
-                     <li><a href="index.php"><i class="icon-key"></i> Log Out</a></li>
+                     <li><a href="session_destroy.php"><i class="icon-key"></i> Log Out</a></li>
                   </ul>
                </li>
                <!-- END USER LOGIN DROPDOWN -->
@@ -675,7 +683,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 					</ul>
 				</li>	
         		<li class="">
-        			<a href="index.php">
+        			<a href="session_destroy.php">
 					<i class="icon-user"></i> 
 					<span class="title">Logout</span>
 					</a>
