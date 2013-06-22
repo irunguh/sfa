@@ -10,6 +10,7 @@
 //{
 // header('Location: login.php');
 //} 
+require_once("db_connection/database_connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -100,15 +101,44 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             <!-- BEGIN TOP NAVIGATION MENU -->              
             <ul class="nav pull-right">
                <!-- BEGIN NOTIFICATION DROPDOWN -->   
-               <li class="dropdown" id="header_notification_bar">
+               <li class="dropdown" id="header_notification_bar2">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="icon-warning-sign"></i>
-                  <span class="badge">6</span>
+                  <i class="icon-warning-sign">
+				   <?php  
+						 $stmt = $db->query("SELECT COUNT(message) as number,id as notification_id FROM  notifications
+						 WHERE status = 1
+						 ") ;
+						 $stmt->execute();
+						 ///
+						 $no = 0;
+						 $notification_id = 0;
+						while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+						{
+						 $no = $row['number'];
+						 $notification_id = $row['notification_id'];
+						}
+						 
+
+
+						 ?>
+				  
+				  </i>
+				  
+				<?php if($no != 0): ?>
+                  <span class="badge"><?php echo $no; ?></span>
+				<?php endif; ?>  
+				  
+				  <span><input type="hidden" id="notify" value="<?php echo $notification_id ?>"></span>
                   </a>
                   <ul class="dropdown-menu extended notification">
                      <li>
-                        <p>You have 14 new notifications</p>
+                        <p>You have <?php echo $no; ?> new notifications</p>
                      </li>
+					 <?php 
+				   
+				    $stmt2 = $db->query("SELECT message,date as time FROM  notifications where status = 1") ;
+				    $stmt2->execute();
+				   while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){ ?>
                      <li>
                         <a href="#">
                         <span class="label label-success"><i class="icon-plus"></i></span>
@@ -116,41 +146,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         <span class="time">Just now</span>
                         </a>
                      </li>
-                     <li>
-                        <a href="#">
-                        <span class="label label-important"><i class="icon-bolt"></i></span>
-                        Server #12 overloaded. 
-                        <span class="time">15 mins</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <span class="label label-warning"><i class="icon-bell"></i></span>
-                        Server #2 not respoding.
-                        <span class="time">22 mins</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <span class="label label-info"><i class="icon-bullhorn"></i></span>
-                        Application error.
-                        <span class="time">40 mins</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <span class="label label-important"><i class="icon-bolt"></i></span>
-                        Database overloaded 68%. 
-                        <span class="time">2 hrs</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                        <span class="label label-important"><i class="icon-bolt"></i></span>
-                        2 user IP blocked.
-                        <span class="time">5 hrs</span>
-                        </a>
-                     </li>
+                  
+                   <?php } ?>
                      <li class="external">
                         <a href="#">See all notifications <i class="m-icon-swapright"></i></a>
                      </li>
@@ -928,6 +925,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <script src="assets/scripts/custom/retrieveWorkplan.js"></script> 
    <script src="assets/scripts/custom/retrieveProduct.js"></script>
     <script src="assets/scripts/custom/jquery.numeric.js"></script>
+	<script src="assets/scripts/custom/updateNotify.js"></script>
    
    <script src="assets/scripts/custom/jquery.dateFormat.js"></script> 	
 	<script type="text/javascript" src="assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
