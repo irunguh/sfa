@@ -1,76 +1,140 @@
 var CompanyWizard = function () {
-   return {
+
+
+    return {
         //main function to initiate the module
         init: function () {
             if (!jQuery().bootstrapWizard) {
                 return;
             }
-            // default form wizard
-            $('#form_wizard_1').bootstrapWizard({
-                'nextSelector': '.button-next',
-                'previousSelector': '.button-previous',
-                onTabClick: function (tab, navigation, index) {
-                    alert('on tab click disabled');
-                    return false;
+
+            function format(state) {
+                if (!state.id) return state.text; // optgroup
+                return "<img class='flag' src='assets/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
+            }
+
+         /*   $("#country_list").select2({
+                placeholder: "Select",
+                allowClear: true,
+                formatResult: format,
+                formatSelection: format,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            }); */
+ 
+            var form = $('#company_form');
+            var error = $('.alert-error', form);
+            var success = $('.alert-success', form);
+
+            form.validate({
+                doNotHideMessage: true, //this option enables to show the error/success messages on tab switch.
+                errorElement: 'span', //default input error message container
+                errorClass: 'validate-inline', // default input error message class
+                focusInvalid: false, // do not focus the last invalid input
+                rules: {
+                    //account
+                    username: {
+                        minlength: 5,
+                        required: true
+                    },
+                    company_name: {
+                        minlength: 5,
+                        required: true
+                    },
+                    company_address: {
+                        minlength: 5,
+                        required: true
+                    },
+                    //profile
+                    company_office_number1: {
+                        required: true
+                    },
+                    company_email: {
+                        required: true,
+                        email: true
+                    },
+                    company_office_number2: {
+                        required: true
+                    },
+                    company_website: {
+                        required: true
+                    },
+                    company_location_no: {
+                        required: true
+                    },
+                    company_size: {
+                        required: true
+                    },
+                    company_type: {
+                        required: true
+                    },
+                    //payment
+                    company_status: {
+                        required: true
+                    },
+                    company_state: {
+                        required: true
+                    },
+                    country: {
+                       required: true
+                    }
                 },
-                onNext: function (tab, navigation, index) {
-				   
-                    ///////////////////////////
-					 var validator = $("#company_form").validate({
-						rules: {        	        		
-							username: {
-								required: true
-							},
-							company_name: {
-								required: true
-							},
-							company_address: {
-								required: true
-							},
-							company_office_number1: {
-								required: true
-							},
-							company_office_number2: {
-								required: true
-							},
-							company_email: {
-								required: true
-							},
-							company_website: {
-								required: true
-							},
-							company_location_no: {
-								required: true
-							},
-							company_size: {
-								required: true
-							},
-							company_type: {
-								required: true
-							},
-							company_status: {
-								required: false
-							},
-							company_state: {
-								required: true
-							},
-							country: {
-								required: false
-							}
-						},  
-						 invalidHandler: function (event, validator) { //display error alert on form submit              
-							//success2.hide();
-							$('#myerror').show();
-							//App.scrollTo(error1, -200);
-						},                              
-						messages: {
-							username: " Enter a Name",
-							company_name: " Enter Company Name",
-							company_address: " Please Enter Address",
-							company_office_number1: " Enter Office Number",
-							company_email: " Enter a Valid Company Email"
-						}
-						,
+
+                messages: { // custom messages for radio buttons and checkboxes
+                    'username': {
+                        required: "username is Required"
+                       },
+					   'company_name': {
+                        required: "company name is Required"
+                       },
+					   'company_address': {
+                        required: "company address is Required"
+                       },
+					   'company_office_number1': {
+                        required: "company office number1 is Required"
+                       },
+					   'company_office_number2': {
+                        required: "company office number2 is Required"
+                       },
+					   'company_website': {
+                        required: "company website is Required"
+                       },
+					   'company_location_no': {
+                        required: "company location no is Required"
+                       },
+					   'company_size': {
+                        required: "company size is Required"
+                       },
+					   'company_type': {
+                        required: "company_type is Required"
+                       },
+					   'company_status': {
+                        required: "company status is Required"
+                       },
+					   'company_state': {
+                        required: "company state is Required"
+                       },
+					   'country': {
+                        required: "country is Required"
+                       },
+                },
+
+                errorPlacement: function (error, element) { // render error placement for each input type
+                    if (element.attr("name") == "gender") { // for uniform radio buttons, insert the after the given container
+                        error.addClass("no-left-padding").insertAfter("#form_gender_error");
+                    } else if (element.attr("name") == "payment[]") { // for uniform radio buttons, insert the after the given container
+                        error.addClass("no-left-padding").insertAfter("#form_payment_error");
+                    } else {
+                        error.insertAfter(element); // for other inputs, just perform default behavoir
+                    }
+                },
+
+                invalidHandler: function (event, validator) { //display error alert on form submit   
+                    success.hide();
+                    error.show();
+                    App.scrollTo(error, -200);
+                },
 
                 highlight: function (element) { // hightlight error inputs
                     $(element)
@@ -85,102 +149,64 @@ var CompanyWizard = function () {
                 },
 
                 success: function (label) {
-                    label
-                        .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
-                    .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
-                }
-						
-					});
-					
-					/////////////////////////////////
-					 if(!validator.form()){ // validation perform
-						//$('form#company_form').attr({action: 'mycontroller'});			
-					
-						////////
-						
-						////////
-					//	alert('Some Fields Missing');
-						//window.location.replace('dashboard.php?page=company');
-						//$('#tab2').hide();
-						$('#myerror2').show();
-						/////
-						var total = navigation.find('li').length;
-								var current = index + 1;
-								// set wizard title
-								$('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
-								// set done steps
-								jQuery('li', $('#form_wizard_1')).removeClass("done");
-								var li_list = navigation.find('li');
-								for (var i = 0; i < index; i++) {
-									jQuery(li_list[i]).addClass("done");
-								}
-
-								if (current == 1) {
-									$('#form_wizard_1').find('.button-previous').hide();
-								} else {
-									$('#form_wizard_1').find('.button-previous').show();
-								}
-
-								if (current >= total) 
-								{
-									$('#form_wizard_1').find('.button-next').hide();
-									$('#form_wizard_1').find('.button-submit').hide();
-								} 
-								else 
-								{
-									$('#form_wizard_1').find('.button-next').show();
-									$('#form_wizard_1').find('.button-submit').hide();
-								}
-								App.scrollTo($('.page-title'));
-							
-					} 
-			    
-					 if(validator.form()){
-					   $('form#company_form').attr({action: 'mycontroller'});	
-					  //////
-					// $('#tab1').show();
-					 //alert('Something');
-					  //////
-					  $('#myerror2').hide();
-					      var total = navigation.find('li').length;
-								var current = index + 1;
-								// set wizard title
-								$('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
-								// set done steps
-								jQuery('li', $('#form_wizard_1')).removeClass("done");
-								var li_list = navigation.find('li');
-								for (var i = 0; i < index; i++) {
-									jQuery(li_list[i]).addClass("done");
-								}
-
-								if (current == 1) {
-									$('#form_wizard_1').find('.button-previous').hide();
-								} else {
-									$('#form_wizard_1').find('.button-previous').show();
-								}
-
-								if (current >= total) 
-								{
-									$('#form_wizard_1').find('.button-next').hide();
-									$('#form_wizard_1').find('.button-submit').show();
-								} 
-								else 
-								{
-									$('#form_wizard_1').find('.button-next').show();
-									$('#form_wizard_1').find('.button-submit').hide();
-								}
-								App.scrollTo($('.page-title'));
-					  
-					  /////
-					  
-					 }
-								
-					
-					
-				////////////////////////////
-					
+                    if (label.attr("for") == "gender" || label.attr("for") == "payment[]") { // for checkboxes and radip buttons, no need to show OK icon
+                        label
+                            .closest('.control-group').removeClass('error').addClass('success');
+                        label.remove(); // remove error label here
+                    } else { // display success icon for other inputs
+                        label
+                            .addClass('valid ok') // mark the current input as valid and display OK icon
+                        .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+                    }
                 },
-                onPrevious: function (tab, navigation, index) {
+
+                submitHandler: function (form) {
+                    success.show();
+                    error.hide();
+                    //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+					
+					
+                }
+
+            });
+
+            var displayConfirm = function() {
+                $('.display-value', form).each(function(){
+                    var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":text") || input.is("textarea")) {
+                        $(this).html(input.val());
+                    } else if (input.is("select")) {
+                        $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
+                    } else if ($(this).attr("data-display") == 'card_expiry') {
+                        $(this).html($('[name="card_expiry_mm"]', form).val() + '/' + $('[name="card_expiry_yyyy"]', form).val());
+                    } else if ($(this).attr("data-display") == 'payment') {
+                        var payment = [];
+                        $('[name="payment[]"]').each(function(){
+                            payment.push($(this).attr('data-title'));
+                        });
+                        $(this).html(payment.join("<br>"));
+                    }
+                });
+            }
+
+            // default form wizard
+            $('#form_wizard_1').bootstrapWizard({
+                'nextSelector': '.button-next',
+                'previousSelector': '.button-previous',
+                onTabClick: function (tab, navigation, index) {
+                    alert('on tab click disabled');
+                    return false;
+                },
+                onNext: function (tab, navigation, index) {
+                    success.hide();
+                    error.hide();
+
+                    if (form.valid() == false) {
+                        return false;
+                    }
+
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     // set wizard title
@@ -194,19 +220,45 @@ var CompanyWizard = function () {
 
                     if (current == 1) {
                         $('#form_wizard_1').find('.button-previous').hide();
-						//
-						
-                    } 
-					else {
+                    } else {
                         $('#form_wizard_1').find('.button-previous').show();
                     }
 
-                    if (current >= total) 
-					{
+                    if (current >= total) {
                         $('#form_wizard_1').find('.button-next').hide();
                         $('#form_wizard_1').find('.button-submit').show();
-                    } 
-					else {
+                        displayConfirm();
+                    } else {
+                        $('#form_wizard_1').find('.button-next').show();
+                        $('#form_wizard_1').find('.button-submit').hide();
+                    }
+                    App.scrollTo($('.page-title'));
+                },
+                onPrevious: function (tab, navigation, index) {
+                    success.hide();
+                    error.hide();
+
+                    var total = navigation.find('li').length;
+                    var current = index + 1;
+                    // set wizard title
+                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    // set done steps
+                    jQuery('li', $('#form_wizard_1')).removeClass("done");
+                    var li_list = navigation.find('li');
+                    for (var i = 0; i < index; i++) {
+                        jQuery(li_list[i]).addClass("done");
+                    }
+
+                    if (current == 1) {
+                        $('#form_wizard_1').find('.button-previous').hide();
+                    } else {
+                        $('#form_wizard_1').find('.button-previous').show();
+                    }
+
+                    if (current >= total) {
+                        $('#form_wizard_1').find('.button-next').hide();
+                        $('#form_wizard_1').find('.button-submit').show();
+                    } else {
                         $('#form_wizard_1').find('.button-next').show();
                         $('#form_wizard_1').find('.button-submit').hide();
                     }
@@ -225,8 +277,7 @@ var CompanyWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-               
-			     $.ajax({
+                $.ajax({
 				      type: "POST",
 					  url: './api/saveCompany.php',
 					  data: {
@@ -262,8 +313,6 @@ var CompanyWizard = function () {
 					   
 					  }
 				   });
-			   
-			   
             }).hide();
         }
 

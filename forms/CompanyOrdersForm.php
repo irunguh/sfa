@@ -219,7 +219,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 	//
 	 $("#remove").live('click',function(){
 	
-	  counter--;
+	 // counter--;
 	 // mycounter--;
 	  $(this).parent().parent().remove(); 
 	
@@ -239,7 +239,7 @@ require_once("./db_connection/database_connect.php"); // For database connection
 	});
 	
 $('a.add-product').click(function(){
-    event.preventDefault();
+   // event.preventDefault();
     counter++;
     var newRow = $('<tr class="txtMult"><td><select id="product" class="span12 select2 valname" name="product" ><option value=""></option></select></td><td><input id="quantity" class="val1" type="number" name="quantity' +
         counter + '"/></td><td><input id="order_price' +
@@ -303,7 +303,9 @@ $('a.add-product').click(function(){
 							   $('.multTotal',this).val($total);
 							   mult += $total;
 							   ///
+							  
 							   console.log("------------------------------------------------");
+							    console.log(".val2"+mycounter);
 							   console.log(""+$val1+" * "+$val2+" = "+$total);
 							   ////
 							   //console.log()

@@ -1054,7 +1054,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 				}
 			  });
 			  }
-			  setInterval(retrieve, 30000);
+			  setInterval(retrieve, 90000);
 			  retrieve();
 //////////////////////////////////////////////////	
 		////
